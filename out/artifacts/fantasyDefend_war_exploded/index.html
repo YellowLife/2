@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Defend</title>
+    <!--Bootstrap css stylesheet-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
+    <!--all the custom css stylesheets-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style type="text/css">
+        body,td,th {
+            font-size: 13px;
+        }
+    </style>
+    <!--Google sigin-->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="60574168678-0k19n27a2eqnpa5cv7dtfabr0ugbcoeg.apps.googleusercontent.com">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+    <script src="/scripts/main.js"></script>
+    <script>
+        function start() {
+            gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                    client_id: '60574168678-0k19n27a2eqnpa5cv7dtfabr0ugbcoeg.apps.googleusercontent.com',
+                    // Scopes to request in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+<!--super container for the home page-->
+<div class="home-container">
+
+    <!--top nav bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#sss">Castle Defend</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="empty-li"><a href="#">.</a></li>
+            <li class="nonempty-li"><a href="#section-game">Game</a></li>
+            <li class="nonempty-li"><a href="#section-introduction">Introduction</a></li>
+            <li class="nonempty-li"><a href="#section-contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="section-space"></div>
+
+    <!--game section-->
+    <section id = "section-game" class="section-game" style="background-image:url(img/bg_black.png)">
+        <center>
+            <div class="game-container">
+                <div class="game-left">
+                    <div><img src="img/ppl.png" width="350" height="233" alt=""></div>
+                </div>
+
+                <div class="game-right">
+                    <div class="button-container">
+                        <form method="get" action="Game.html">
+                            <button type="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-user"></span>Play as Guest
+                            </button>
+
+                        </form>
+
+                        <br/>
+
+                        <button id="signinButton" type="button" class="btn btn-success" data-onsuccess="onSignIn">
+                            Sign in with Google
+                        </button>
+
+                        <script>
+                            $('#signinButton').click(function() {
+                                myWindow.close();
+                                auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+                            });
+                        </script>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </center>
+    </section>
+
+
+
+
+
+
+
+    <!--introduction section-->
+    <section id="section-introduction" class="section-introduction">
+        <center>
+            <div class="section-name">Introduction</div>
+            <div class="screenshot-container">
+                <div class="screenshot-child-container">
+                    <div class="screenshot-description" style="background-image:url(img/bg_base.png)">
+                        <h4><font color="#9F3032">Story</font></h4>
+                        <p align="left"><font size="3" color="#9F3032"><em><strong>In the ancient time of China, Chi You the leader of the monster tribe started a rebellion				to overturn the ruling of Yellow Emperor. Yellow Emperor united his tribe with another powerful tribe leader, Yan Emperor to against Chi You. Right before Chi You was defeated, he uses his ultimate power rip the space to send his people in.Thousands year was passed, the descendants are still seeking an opportunity to revenge for their ancestor, but lacking of technology is their biggest concern until they found your computer....<br>
+                            As a CSE 308 student, you found there is no better way to kill those invaders by shooting some pixels. You remember your first homework and decide to upgrade it to help you defend your machine. Now fortifying your denfending hardware, keep those monster away from your storage! </strong></em></font></p>
+                    </div></div>
+
+                <div class="screenshot-child-container">
+
+                    <div class="screenshot-description" style="background-image:url(img/bg_black.png)">
+                        <table width="800" border="1">
+                            <tbody >
+
+                            <tr>
+                                <td><img src="img/ppl_CiTie.png" width="118" height="150" alt=""/></td>
+                                <td style="vertical-align:top">
+                                    <h2 align="center"><font color="#9F3032">Ci Tie</font></h2>
+                                    <p align="left" ><font size="4" color="#9F3032">This monster has a buffalo like apperence, there are two giant horn on his head, his main food source is iron</font></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="screenshot-child-container">
+                    <div class="screenshot-description" style="background-image:url(img/bg_base.png)">
+                        <table width="800" border="1">
+                            <tbody>
+                            <tr>
+                                <td><img src="img/ppl_FeiLian.png" width="118" height="150" alt=""/></td>
+                                <td style="vertical-align:top">
+                                    <h2 align="center"><font color="#9F3032">Fei Lian</font></h2>
+                                    <p align="left" ><font size="4" color="#9F3032">This mythical monster has a deer head and bird body. It controls the power of Wind</font></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="screenshot-child-container">
+                    <div class="screenshot-description" style="background-image:url(img/bg_black.png)">
+                        <table width="800" border="1">
+                            <tbody>
+                            <tr>
+                                <td><img src="img/ppl_HuoDou.png" width="118" height="150" alt=""/></td>
+                                <td style="vertical-align:top">
+                                    <h2 align="center"><font color="#9F3032">Huo Dou</font></h2>
+                                    <p align="left" ><font size="4" color="#9F3032">This monster has a dog like apperence, its body is surrounded by green smoke. It is able to eating fire or spit fire.</font></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="screenshot-child-container">
+                    <div class="screenshot-description" style="background-image:url(img/bg_base.png)">
+                        <table width="800" border="1">
+                            <tbody>
+                            <tr>
+                                <td><img src="img/ppl_Qilin.png" width="118" height="150" alt=""/></td>
+                                <td style="vertical-align:top">
+                                    <h2 align="center"><font color="#9F3032">Kirin</font></h2>
+                                    <p align="left" ><font size="4" color="#9F3032">It is a mythical hooved chimerical creature known in Chinese and other East Asian cultures, said to appear with the imminent arrival or passing of a sage or illustrious ruler.[1] It is a good omen thought to occasion prosperity or serenity. It is often depicted with what looks like fire all over its body.</font></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="screenshot-child-container">
+                    <div class="screenshot-description" style="background-image:url(img/bg_black.png)">
+                        <table width="800" border="1">
+                            <tbody>
+                            <tr>
+                                <td><img src="img/ppl_HongHaier.png" width="118" height="150" alt=""/></td>
+                                <td style="vertical-align:top">
+                                    <h2 align="center"><font color="#9F3032">Red Boy</font></h2>
+                                    <p align="left" ><font size="4" color="#9F3032">Red Boy is a character featured in the novel Journey to the West. He is the son of Princess Iron Fan and the Bull Demon King. Through the orders of his father, Red Boy was told to be the protector of the Fiery Mountains due to his supreme abilities when it came to fire.</font></p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </center>
+    </section>
+
+
+
+    <!--contact section-->
+    <section id="section-contact" class="section-contact">
+        <left>
+            <div class="section-name">Contact</div>
+            <div class="person-container">
+                <div class="person">
+                    <table>
+                        <tr><td>Professor</td></tr>
+                        <tr><td>Richard McKenna</td></tr>
+                        <tr><td>richard@cs.stonybrook.edu</td></tr>
+                    </table>
+                </div>
+                <div class="person">
+                    <table>
+                        <tr><td>Team member</td></tr>
+                        <tr><td>Jun Hao</td></tr>
+                        <tr><td>Jun.hao@stonybrook.edu</td></tr>
+                    </table>
+                </div>
+                <div class="person">
+                    <table>
+                        <tr><td>Team member</td></tr>
+                        <tr><td>Haozhi Qu</td></tr>
+                        <tr><td>Haozhi.qu@stonybrook.edu</td></tr>
+                    </table>
+                </div>
+                <div class="person">
+                    <table>
+                        <tr><td>Team member</td></tr>
+                        <tr><td>Qixiang Chen</td></tr>
+                        <tr><td>qixiang.chen@stonybrook.edu</td></tr>
+                    </table>
+                </div>
+                <div class="person">
+                    <table>
+                        <tr><td>Team member</td></tr>
+                        <tr><td>Yinquan Hao</td></tr>
+                        <tr><td>Yinquan.hao@stonybrook.edu</td></tr>
+                    </table>
+                </div>
+                <div class="person">
+                    <table>
+                        <tr><td>Team member</td></tr>
+                        <tr><td>Liwen Fan</td></tr>
+                        <tr><td>Liwen.Fan@stonybrook.edu</td></tr>
+                    </table>
+                </div>
+            </div>
+        </left>
+    </section>
+
+
+
+</div>
+
+<!--copyright statement footer-->
+<footer><center><div class="copyright">© 2016 Castle Defend. All rights reserved</div></center></footer>
+
+<!--jQuery and Bootstrap scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- main.js-->
+
+
+</body>
+</html>
