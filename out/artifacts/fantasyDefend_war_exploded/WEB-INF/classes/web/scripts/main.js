@@ -11,7 +11,8 @@ function signInCallback(authResult) {
             // console.log('Family Name: ' + profile.getFamilyName());
             // console.log('Image URL: ' + profile.getImageUrl());
             // console.log('Email: ' + profile.getEmail());
-            window.location.replace("/LoginServlet?id="+profile.getId()+"&name="+profile.getName());
+            var info = "id="+ profile.getId()+"&name="+profile.getName();
+            window.location.replace("/LoginServlet?"+info);
         }
     } else {
         // There was an error.

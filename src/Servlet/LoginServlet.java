@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException,SQLException {
-
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("Access-Control-Allow-Origin","*");
 
@@ -29,36 +28,22 @@ public class LoginServlet extends HttpServlet {
             String Name= request.getParameter("name");
             int Level = 1;
             int Balance = 0;
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Google Login</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("no work");
-            String query="select * from account where Id = '"+Id+"'";
-            ResultSet rs = JdbcConnector.excuteQuery(query);
-            if(rs.first()){
-                Level = rs.getInt("Level");
-                Balance= rs.getInt("Balance");
-                JdbcConnector.closeDatabase();
-                out.println("<p>"+Id+"</p>");
-                out.println("<p>"+Name+"</p>");
-                out.println("<p>"+Level+"</p>");
-                out.println("<p>"+Balance+"</p>");
-                out.println("<p>User in list</p>");
-            }else {
-                out.println("<p>User No in list</p>");
-                out.println("<p>"+Id+"</p>");
-                out.println("<p>"+Name+"</p>");
-                JdbcConnector.closeDatabase();
-                query = "INSERT INTO account VALUES ('"+Id+"', '"+Name+"','"+1+"','"+0+"')";
-                boolean r1 = JdbcConnector.excuteUpdate(query);
-                if(r1){
-                    out.println("<p>Add User to acct list successfully</p>");
+            if(!(Id.equalsIgnoreCase("Guest"))){
+                String query = "select * from account where Id = '" + Id + "'";
+                ResultSet rs = JdbcConnector.excuteQuery(query);
+                if (rs.first()) {
+                    Level = rs.getInt("Level");
+                    Balance = rs.getInt("Balance");
+                    JdbcConnector.closeDatabase();
+                } else {
+                    JdbcConnector.closeDatabase();
+                    query = "INSERT INTO account VALUES ('" + Id + "', '" + Name + "','" + 1 + "','" + 0 + "')";
+                    boolean r1 = JdbcConnector.excuteUpdate(query);
+                    if (r1) {
+                        out.println("Add User to acct list successfully");
+                    }
                 }
             }
-
             Bean.UserInfoBean UserInfo = new Bean.UserInfoBean();
             UserInfo.setUserId(Id);
             UserInfo.setName(Name);
@@ -66,8 +51,6 @@ public class LoginServlet extends HttpServlet {
             UserInfo.setBalance(Balance);
             request.setAttribute("UserInfo",UserInfo);
             request.getRequestDispatcher("Game.jsp").forward(request, response);
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 

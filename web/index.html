@@ -77,20 +77,26 @@
 				</div>
 
 				<div class="button-container">
-					<form method="get" action="splash.html">
-						<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>Play as Guest</button>
-
+					<form method="post" action="/LoginServlet">
+						<input name="id" value="Guest" hidden/>
+						<input name="name" value="Guest" hidden/>
+						<button type="submit" class="btn btn-success">
+							<span class="glyphicon glyphicon-user"></span>Play as Guest</button>
 					</form>
 
-					<button id="signinButton" type="button" class="btn btn-success"><span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign in and Play</button>
 
-					<script>
-                        $('#signinButton').click(function() {
-                            auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+						<button id="signinButton" type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign in and Play</button>
 
-                        });
-                    </script>
-					
+						<script>
+							$('#signinButton').click(function() {
+								auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+							});
+						</script>
+
+
+
+
 				</div>
 			</div>
 			</div>
