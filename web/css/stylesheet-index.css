@@ -625,7 +625,8 @@ footer{
 .intro-subtitle{
 	font-family: 'Signika';
 	font-size: 30px;
-	color: #ff4d4d;
+	font-weight: bold;
+	color: #ff8080;
 	padding: 32px 0px 5px 0px;
 }
 
@@ -633,7 +634,8 @@ footer{
 .intro-subtitle2{
 	font-family: 'Signika';
 	font-size: 30px;
-	color: #ffa64d;
+	font-weight: bold;
+	color: #ffbf80;
 	padding: 30px 0px 5px 0px;
 }
 .tower-list{
