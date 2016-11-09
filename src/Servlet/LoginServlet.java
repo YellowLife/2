@@ -2,7 +2,6 @@ package Servlet;
 
 import Connector.JdbcConnector;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * Created by Rex on 10/26/16.
  */
-@WebServlet(name = "LoginServlet",urlPatterns = {"/LoginServlet"})
+
 public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException,SQLException {
