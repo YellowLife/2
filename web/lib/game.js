@@ -12,9 +12,14 @@ var thumbHeight = 60;
 // empty space between two thumbnails, in pixels
 var spacing = 20;
 // stars array
+// var stars = [];
+//*******************************************************************************
+// stars array
 var stars = [];
+
+//*******************************************************************************
 // local storage name
-var localStorageName = "star";
+var localStorageName = "stars";
 // level we are currently playing
 var level;
 var window_width = window.innerWidth;
@@ -47,10 +52,11 @@ mapBase.prototype.setImage = function(gameImage){
 };
 
 
-var towerObj = function(index, imageStr, windowSize , health, firerate, game ,bullets,positionX, positionY, target , bulletspeed ,mapBase){
+var towerObj = function(index, imageStr, windowSize , health, firerate, game ,bullets,positionX, positionY, target , bulletspeed ,mapBase , isHealing){
      this.positionX = positionX;
      this.positionY = positionY;
      this.health = health;
+     this.originalHealth = health;
      this.target = target;
      this.game = game;
      this.fireRate = firerate;
@@ -59,6 +65,7 @@ var towerObj = function(index, imageStr, windowSize , health, firerate, game ,bu
      this.bullets = bullets;
      this.bulletspeed = bulletspeed;
      this.mapBase = mapBase;
+     this.isHealing = isHealing;
 
      this.tower = game.add.sprite(positionX,positionY,imageStr);
      this.tower.scale.setTo(windowSize / 10 / 100, windowSize / 10 / 100);
@@ -75,6 +82,7 @@ towerObj.prototype.damage = function(damageAmount) {
 
      if (this.health <= 0)
      {
+          //alert("enter destory" + this.isHealing);
           this.alive = false;
 
           this.tower.kill();
@@ -98,50 +106,84 @@ towerObj.prototype.damage = function(damageAmount) {
 towerObj.prototype.update = function() {
 
 
-
-     /*search the enemy nearby*/
-     var nearestTarget = null;
-     var nearestDistance = 10000;
-     var aliveCounter = 0;
-     for(var i=0; i<this.target.length; i++){
+     if(this.isHealing === false){
+          /*search the enemy nearby*/
+          var nearestTarget = null;
+          var nearestDistance = 10000;
+          var aliveCounter = 0;
+          for(var i=0; i<this.target.length; i++){
           //alert('enter this');
-          if(this.target[i].alive===true) {
+           if(this.target[i].alive===true) {
                aliveCounter++;
-               var Distance = this.game.physics.arcade.distanceBetween(this.target[i].monster, this.tower);
-               //alert(Distance);
-               if (Distance < nearestDistance) {
+                var Distance = this.game.physics.arcade.distanceBetween(this.target[i].monster, this.tower);
+                    if (Distance < nearestDistance) {
                     nearestDistance = Distance;
                     nearestTarget = this.target[i];
+                    }
                }
           }
+
+
+          if (this.game.time.now > this.nextFire && nearestTarget!=null) {
+               this.nextFire = this.game.time.now + this.fireRate;
+               var bullet = this.bullets.getFirstDead();
+               bullet.reset(this.positionX + size/20, this.positionY+size/20);
+               bullet.rotation = this.game.physics.arcade.moveToXY(bullet,nearestTarget.monster.x+size/20,nearestTarget.monster.y+size/20,this.bulletspeed);
+
+          }
+     }else if (this.isHealing === true){
+
+          if (this.game.time.now > this.nextFire ) {
+               this.nextFire = this.game.time.now + this.fireRate;
+               var bullet = this.bullets.getFirstExists(false);
+               bullet.reset(this.positionX + size/20, this.positionY+size/20);
+               //this.game.add.image(this.positionX + size/20,this.positionY + size/20, bullet);
+
+               //bullet.play('healing', 12, false, true);
+
+               var bullet1 = this.bullets.getFirstExists(false);
+               bullet1.reset(this.positionX + size/20 - size/10, this.positionY+size/20);
+
+               var bullet2 = this.bullets.getFirstExists(false);
+               bullet2.reset(this.positionX + size/20  , this.positionY+size/20 - size/10);
+
+
+               var bullet3 = this.bullets.getFirstExists(false);
+               bullet3.reset(this.positionX + size/20 , this.positionY+size/20 + size/10);
+
+               var bullet4 = this.bullets.getFirstExists(false);
+               bullet4.reset(this.positionX + size/20 + size/10, this.positionY+size/20 );
+
+               //bullet1.play('healing', 12, false, true);
+
+               var animation = healingAnimationGroup.getFirstExists(false);
+               animation.reset(this.positionX + size/20, this.positionY+size/20);
+               animation.play('healing', 12, false, true);
+
+
+          }
+
      }
 
-
-     if (this.game.time.now > this.nextFire && nearestTarget!=null) {
-          this.nextFire = this.game.time.now + this.fireRate;
-          var bullet = this.bullets.getFirstDead();
-          bullet.reset(this.positionX + size/20, this.positionY+size/20);
-          //bullet.rotation = this.game.physics.arcade.moveToObject(bullet, this.target, 500);
-          bullet.rotation = this.game.physics.arcade.moveToXY(bullet,nearestTarget.monster.x+size/20,nearestTarget.monster.y+size/20,this.bulletspeed);
-
-     }
 };
 
-var eliteMonster = function(index, game ,bullets,positionX,positionY,target ,name){
+var eliteMonster = function(index, game ,bullets,positionX,positionY,target ,name , fireRate , health , speed ,bulletDirection ){
      this.positionX = positionX;
      this.positionY = positionY;
-     this.health = 100;
+     this.health = health;
      this.bullets = bullets;
      this.target = target;
      this.game = game;
-     this.fireRate = 5000;
+     this.fireRate = fireRate;
      this.nextFire = 0;
      this.alive = true;
      this.movingTowardX = null;
      this.movingTowardY = null;
-     this.speed = 100;
+     this.speed = speed;
      this.moveTo = null;
      this.currentOverlap = false;
+     this.bulletDirection =  bulletDirection;
+     this.name  = name;
 
 
      this.monster = game.add.sprite(positionX, positionY,name);
@@ -165,6 +207,20 @@ eliteMonster.prototype.damage = function(damageAmount) {
 
           this.monster.kill();
 
+          if(this.name === 'feiLian'){
+               money+=160;
+          }else if(this.name === 'eye'){
+               money+=80;
+          }else if(this.name === 'huoDou'){
+               money+=200;
+          }else if(this.name === 'qiLin'){
+               money+=240;
+          }else if(this.name === 'hong'){
+               money+=280;
+          }
+
+          console.log(money);
+
 
           return true;
      }
@@ -178,29 +234,49 @@ eliteMonster.prototype.update = function() {
 
      if (this.game.time.now > this.nextFire ) {
           this.nextFire = this.game.time.now + this.fireRate;
-          var bullet = this.bullets.getFirstExists(false);
-          bullet.reset(this.monster.x, this.monster.y);
-          bullet.rotation = this.game.physics.arcade.moveToXY(bullet, this.monster.x+1,this.monster.y,200);
+          if(this.bulletDirection === 1) {
+               var bullet = this.bullets.getFirstExists(false);
+               bullet.reset(this.monster.x, this.monster.y);
+               bullet.rotation = this.game.physics.arcade.moveToXY(bullet, this.monster.x + 1, this.monster.y+1, 200);
 
-          var bullet1 = this.bullets.getFirstExists(false);
-          bullet1.reset(this.monster.x, this.monster.y);
-          bullet1.rotation = this.game.physics.arcade.moveToXY(bullet1, this.monster.x,this.monster.y+1,200);
+               var bullet1 = this.bullets.getFirstExists(false);
+               bullet1.reset(this.monster.x, this.monster.y);
+               bullet1.rotation = this.game.physics.arcade.moveToXY(bullet1, this.monster.x-1, this.monster.y + 1, 200);
 
-          var bullet2 = this.bullets.getFirstExists(false);
-          bullet2.reset(this.monster.x, this.monster.y);
-          bullet2.rotation = this.game.physics.arcade.moveToXY(bullet2, this.monster.x-1,this.monster.y,200);
+               var bullet2 = this.bullets.getFirstExists(false);
+               bullet2.reset(this.monster.x, this.monster.y);
+               bullet2.rotation = this.game.physics.arcade.moveToXY(bullet2, this.monster.x - 1, this.monster.y-1, 200);
 
-          var bullet3 = this.bullets.getFirstExists(false);
-          bullet3.reset(this.monster.x, this.monster.y);
-          bullet3.rotation = this.game.physics.arcade.moveToXY(bullet3, this.monster.x,this.monster.y-1,200);
+               var bullet3 = this.bullets.getFirstExists(false);
+               bullet3.reset(this.monster.x, this.monster.y);
+               bullet3.rotation = this.game.physics.arcade.moveToXY(bullet3, this.monster.x+1, this.monster.y - 1, 200);
+
+          }else if(this.bulletDirection ===0){
+               var bullet = this.bullets.getFirstExists(false);
+               bullet.reset(this.monster.x, this.monster.y);
+               bullet.rotation = this.game.physics.arcade.moveToXY(bullet, this.monster.x + 1, this.monster.y, 200);
+          }
 
 
      }
 
+
+
      if(this.monster.body.velocity.x === 0){
           //alert("enter this clause");
-          this.monster.body.velocity.x +=50;
-          this.monster.body.velocity.y =50;
+          this.monster.body.velocity.x +=this.speed/10;
+          if(this.monster.body.velocity.y<this.speed) {
+               this.monster.body.velocity.y += this.speed / 10;
+          }
+     }else if(this.monster.body.velocity.y === 0){
+          if(this.monster.body.velocity.x<this.speed) {
+               this.monster.body.velocity.x += this.speed / 10;
+          }
+          this.monster.body.velocity.y +=this.speed/10;
+     }else if(this.monster.body.velocity.x < this.speed){
+          this.monster.body.velocity.x +=this.speed/10;
+     }else if(this.monster.body.velocity.y < this.speed){
+          this.monster.body.velocity.y +=this.speed/10;
      }
 
 
@@ -211,7 +287,7 @@ var platforms;
 var cursors;
 
 var stars;
-
+var healingBullets;
 var enemyBullets;
 var Bullets277;
 var selectedTower = 0;
@@ -219,6 +295,7 @@ var score = 0;
 var scoreText;
 var timerText;
 var timerKilled = false;
+var money = 1000;
 
 
 var towerButton1;
@@ -233,23 +310,29 @@ var size  = Math.min(window.innerHeight,window.innerWidth);
 
 
 
+
+
 var mapBaseArray = new Array();
 var gameIndexArray = new Array();
 gameIndexArray = [
-     1,1,0,0,0,0,0,1,
+     5,1,0,0,0,0,0,1,
      0,1,0,0,0,0,0,0,
      0,1,1,1,0,0,0,0,
      0,0,0,1,0,0,0,0,
      0,0,0,1,1,1,0,0,
      0,0,0,0,0,1,0,0,
-     0,0,0,0,0,1,1,0,
-     0,0,0,0,0,0,1,1,
+     0,0,0,0,0,1,0,0,
+     0,0,0,0,0,1,1,4,
 ];
 
 var monsterLoadArray = new Array();
 monsterLoadArray = [
-     4,1, 1,3 ,2,3,4,1,2,3,4,1,2,3,4,2,1,2,3,4,3,1,5
+     0,1,2,3,4,0,1,2,3,4
 ];
+
+
+var monsterRemaining = monsterLoadArray.length;
+console.log(monsterRemaining);
 
 
 
@@ -265,16 +348,18 @@ var countDown = 0;
 
 
 
-
+var home;
 var numberOfTowers = 0;
 var explosions;
+var healingAnimationGroup;
 var gameboradBounds;
 var lowerBound;
 var rightBound;
 var enemyArray = new Array();
 var towerArray = new Array();
-
+var windBullets;
 var enemyArrayIndex =0;
+
 
 function bulletHitWall (wall, bullet) {
 
@@ -314,17 +399,27 @@ function bullet227HitEnemy (enemy, bullet) {
      }
 }
 
+function windBulletsHitEnemy (enemy, bullet) {
+     bullet.kill();
+     enemyArray[enemy.name].monster.body.velocity.y = 0;
+     enemyArray[enemy.name].monster.body.velocity.x =0;
+    // console.log(enemyArray[enemy.name].monster.body.velocity.y);
+}
+
+
+
+
+
 
 function bullet74HitEnemy (enemy, bullet) {
      bullet.kill();
-     var destroyed = enemyArray[enemy.name].damage(1);
+     var destroyed = enemyArray[enemy.name].damage(0.5);
      if (destroyed)
      {
           var explosionAnimation = explosions.getFirstExists(false);
           explosionAnimation.reset(enemy.x, enemy.y);
           explosionAnimation.play('kaboom', 30, false, true);
           score += 10;
-          //scoreText.setText("Score: " + score);
      }
 }
 
@@ -337,26 +432,35 @@ function bullet224HitEnemy (enemy, bullet) {
           explosionAnimation.reset(enemy.x, enemy.y);
           explosionAnimation.play('kaboom', 30, false, true);
           score += 10;
-          //scoreText.setText("Score: " + score);
+
      }
 }
 
 
 function enemyBulletsHitTower (tower, bullet) {
      bullet.kill();
-
-
-     var destroyed = towerArray[tower.name].damage(100);
+     var destroyed = towerArray[tower.name].damage(20);
+     //console.log(towerArray[tower.name].name + " "+towerArray[tower.name].health);
      if (destroyed)
      {
+
           var explosionAnimation = explosions.getFirstExists(false);
           explosionAnimation.reset(tower.x, tower.y);
           explosionAnimation.play('kaboom', 30, false, true);
 
-
      }
+}
 
-
+function healingBulletsHitTower (tower, bullet) {
+     bullet.kill();
+     //console.log(towerArray[tower.name]);
+     if (typeof towerArray[tower.name] != 'undefined') {
+          towerArray[tower.name].damage(-11);
+          if (towerArray[tower.name].originalHealth < towerArray[tower.name].health) {
+               towerArray[tower.name].health = towerArray[tower.name].originalHealth;
+          }
+          //console.log(towerArray[tower.name].name + " "+towerArray[tower.name].health);
+     }
 }
 
 
@@ -411,36 +515,55 @@ function MapBaseListener(){
      j = this.param1.getPosition()[1];
 
      if(selectedTower === 0) {
-          this.param1.setImage(new towerObj(numberOfTowers,'eyetower', size, 20, 500, game, Bullets277,this.param1.getPosition()[0],this.param1.getPosition()[1],enemyArray,500,this.param1));
-          this.param1.isTowerSet = true;
-          towerArray.push(this.param1.getImage());
-          numberOfTowers++;
+          if(money>100) {
+               this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
+               this.param1.isTowerSet = true;
+               towerArray.push(this.param1.getImage());
+               numberOfTowers++;
+               money-=100;
+          }
      }else if(selectedTower === 1){
-          this.param1.setImage(new towerObj(numberOfTowers,'eyetower', size, 20, 500,game, Bullets277,this.param1.getPosition()[0],this.param1.getPosition()[1],enemyArray,500,this.param1));
-          this.param1.isTowerSet = true;
-          towerArray.push(this.param1.getImage());
-          numberOfTowers++;
+          if(money>100) {
+               this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
+               this.param1.isTowerSet = true;
+               towerArray.push(this.param1.getImage());
+               numberOfTowers++;
+               money-=100;
+          }
      }else if(selectedTower === 2){
-          this.param1.setImage(new towerObj(numberOfTowers,'xueyoutower', size, 20,1000, game, Bullets224,this.param1.getPosition()[0],this.param1.getPosition()[1],enemyArray,300,this.param1));
-          this.param1.isTowerSet = true;
-          towerArray.push(this.param1.getImage());
-          numberOfTowers++;
+          if(money>=150) {
+               this.param1.setImage(new towerObj(numberOfTowers, 'xueyoutower', size, 40, 1000, game, Bullets224, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 300, this.param1, false));
+               this.param1.isTowerSet = true;
+               towerArray.push(this.param1.getImage());
+               numberOfTowers++;
+               money-=150;
+          }
      }else if(selectedTower === 3) {
-          this.param1.setImage(new towerObj(numberOfTowers,'javatower', size, 20, 400, game, Bullets74,this.param1.getPosition()[0],this.param1.getPosition()[1],enemyArray,800,this.param1));
-          this.param1.isTowerSet = true;
-          towerArray.push(this.param1.getImage());
-          numberOfTowers++;
+          if(money>=80) {
+               this.param1.setImage(new towerObj(numberOfTowers, 'javatower', size, 100, 400, game, Bullets74, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 800, this.param1, false));
+               this.param1.isTowerSet = true;
+               towerArray.push(this.param1.getImage());
+               numberOfTowers++;
+               money-=80;
+          }
      }else if(selectedTower === 4){
-          this.param1.setImage(new towerObj(numberOfTowers,'javatower', size, 20, 400, game, enemyBullets,this.param1.getPosition()[0],this.param1.getPosition()[1],enemyArray,800,this.param1));
-          this.param1.isTowerSet = true;
-          towerArray.push(this.param1.getImage());
-          numberOfTowers++;
+          if(money>=200) {
+               this.param1.setImage(new towerObj(numberOfTowers, 'fantower', size, 20, 400, game, windBullets, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 800, this.param1, false));
+               this.param1.isTowerSet = true;
+               towerArray.push(this.param1.getImage());
+               numberOfTowers++;
+               money-=200;
+          }
      }else if(selectedTower === 5){
-          this.param1.setImage(new towerObj(numberOfTowers,'javatower', size, 20, 400, game, enemyBullets,this.param1.getPosition()[0],this.param1.getPosition()[1],enemyArray,800,this.param1));
-          this.param1.isTowerSet = true;
-          towerArray.push(this.param1.getImage());
-          numberOfTowers++;
+          if(money>=120) {
+               this.param1.setImage(new towerObj(numberOfTowers, 'geartower', size, 30, 3000, game, healingBullets, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 4000, this.param1, true));
+               this.param1.isTowerSet = true;
+               towerArray.push(this.param1.getImage());
+               numberOfTowers++;
+               money-=120;
+          }
      }
+     console.log(money);
 }
 
 
@@ -464,31 +587,49 @@ preload: function(){
 
      game.load.image('grid', 'assets/blank.png');
      game.load.image('blank', 'assets/blank.png');
-     game.load.image('path', 'assets/new_path.png');
+     game.load.image('path', 'assets/path/pathnew2.png');
+     game.load.image('start', 'assets/path/start_stage.png');
+
      game.load.image('xueyoutower', 'assets/towers/xueyou_tower.png');
-     //game.load.image('tower', 'assets/tower.png');
      game.load.image('eyetower', 'assets/towers/eye_tower.png');
      game.load.image('javatower', 'assets/towers/java_tower.png');
+     game.load.image('fantower', 'assets/towers/fan_tower.png');
+     game.load.image('geartower', 'assets/towers/gear_tower.png');
+
      game.load.image('bullet228', 'assets/bullets/bullet228.png');
      game.load.image('bullet74', 'assets/bullets/bullet74.png');
      game.load.image('bullet277', 'assets/bullets/bullet277.png');
      game.load.image('bullet224', 'assets/bullets/bullet224.png');
+     game.load.image('windbullet', 'assets/bullets/windbullet.png');
+
+
      game.load.spritesheet('eyetowerButton', 'assets/buttons/eye_tower.png', 200, 100);
      game.load.spritesheet('xueyoutowerButton', 'assets/buttons/xueyou_tower.png', 200, 100);
      game.load.spritesheet('javatowerButton', 'assets/buttons/java_tower.png', 200, 100);
-     //game.load.spritesheet('eyetowerButton', 'assets/buttons/eye_tower.png', 200, 100);
+     game.load.spritesheet('windtowerButton', 'assets/buttons/wind_tower.png', 200, 100);
+     game.load.spritesheet('geartowerButton', 'assets/buttons/gear_tower.png', 200, 100);
+
+
+
+     game.load.spritesheet('home', 'assets/path/home.png', 400, 400);
 
      game.load.spritesheet('kaboom', 'assets/explosion.png', 64, 64, 23);
+     game.load.spritesheet('healing', 'assets/bullets/healing_ani.png', 900, 900, 6);
      game.load.image('logo', 'assets/menu_button.png');
      //game.load.image('', 'assets/logo_final.png');
-     game.load.image('high_way','assets/highway.png');
+     //game.load.image('high_way','assets/highway.png');
+     game.load.image('high_way','assets/basic_map.png');
 
-     game.load.image('feiLian', 'assets/monsters/fei2.png');
-     game.load.image('huoDou', 'assets/monsters/dou2.png');
-     game.load.image('hong', 'assets/monsters/hong2.png');
-     game.load.image('qiLin', 'assets/monsters/qilin2.png');
-     game.load.image('tie', 'assets/monsters/tie2.png');
-     game.load.spritesheet('eye', 'assets/monsters/mob_mov.png', 600, 600, 5);
+
+     game.load.spritesheet('feiLian', 'assets/monsters/feiLian.png',600,600,7);
+     game.load.spritesheet('huoDou', 'assets/monsters/dou_ani.png',599,599,7);
+     game.load.spritesheet('hong', 'assets/monsters/hong_ani.png',599,599,7);
+     game.load.spritesheet('qiLin', 'assets/monsters/qilin_ani.png',599,599,7);
+     game.load.spritesheet('tie', 'assets/monsters/tie_ani.png',599,599,7);
+     //game.load.image('hong', 'assets/monsters/hong2.png');
+     //game.load.image('qiLin', 'assets/monsters/qilin2.png');
+     //game.load.image('tie', 'assets/monsters/tie2.png');
+     game.load.spritesheet('eye', 'assets/monsters/mob_mov_2.png', 300, 300, 5);
      game.load.spritesheet('bull','assets/bullets/BULL.png',70,70,4);
      game.load.image('victory','assets/victory.png');
      game.load.image('defeat','assets/Defeat.png');
@@ -528,7 +669,7 @@ create: function() {
 
      for(i=size/20*2;i<size/20*17;i=i+(size/10)){
           for(j=size/20*2;j<size/20*17;j=j+(size/10)) {
-               if(gameIndexArray[k]!= 1) {
+               if(gameIndexArray[k] ===0) {
 
 
 
@@ -549,6 +690,29 @@ create: function() {
                     mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
 
 
+               }else if(gameIndexArray[k]===5){
+
+
+                    mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'start'),'start');
+                    mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
+                    mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
+
+
+               }else if(gameIndexArray[k]===4){
+                    //alert("ture7");
+
+                    mapBaseArray[k] = new mapBase(j,i,game.add.sprite(j,i,'home'),'grid');
+                    mapBaseArray[k].getImage().frame = 1;
+                    mapBaseArray[k].getImage().scale.setTo(size/10/400,size/10/400);
+                    mapBaseArray[k].mapBaseBg.scale.setTo(size/10/400,size/10/400);
+                    mapBaseArray[k].getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
+                    mapBaseArray[k].getImage().animations.play('homeAnimation');
+                    home = mapBaseArray[k].getImage();
+
+                    game.physics.enable(home, Phaser.Physics.ARCADE);
+                    home.body.immovable = false;
+
+
                }
                k++;
           }
@@ -559,6 +723,7 @@ create: function() {
 
      gameboradBounds = game.add.group();
      gameboradBounds.enableBody = true;
+
 
      rightBound = gameboradBounds.create(size/20*18, size/20*2, 'ground');
      rightBound.scale.setTo(32/400, size/20*16/32);
@@ -588,9 +753,9 @@ create: function() {
 
      towerButton3 = game.add.button(size/20*19, size/3+300, 'javatowerButton', actionOnClick, {param1:3}, 0, 0, 0);
 
-     towerButton4 = game.add.button(window.innerWidth - 250,size/2+150, 'blank', actionOnClick, {param1:4}, 0, 0, 0);
+     towerButton4 = game.add.button(window.innerWidth - 250,size/2+150, 'windtowerButton', actionOnClick, {param1:4}, 0, 0, 0);
 
-     towerButton5 = game.add.button(size/20*19, size/2+300, 'blank', actionOnClick, {param1:5}, 0, 0, 0);
+     towerButton5 = game.add.button(size/20*19, size/2+300, 'geartowerButton', actionOnClick, {param1:5}, 0, 0, 0);
 
      towerButton1.scale.setTo(1,1);
      towerButton2.scale.setTo(1,1);
@@ -606,6 +771,28 @@ create: function() {
 
      timerText = game.add.text(size/20*19, size/20*5, 'timer: 0', { fontSize: '50px', fill: '#000' });
 
+
+
+
+     healingBullets = game.add.group();
+     healingBullets.enableBody = true;
+     healingBullets.physicsBodyType = Phaser.Physics.ARCADE;
+     healingBullets.createMultiple(1000, 'blank');
+     healingBullets.setAll('scale.x',size/60000);
+     healingBullets.setAll('scale.y',size/60000);
+     healingBullets.setAll('anchor.x', 0.5);
+     healingBullets.setAll('anchor.y', 0.5);
+
+
+     windBullets = game.add.group();
+     windBullets.enableBody = true;
+     windBullets.physicsBodyType = Phaser.Physics.ARCADE;
+     windBullets.createMultiple(1000, 'windbullet');
+     windBullets.setAll('scale.x',size/160/10);
+     windBullets.setAll('scale.y',size/160/10);
+     windBullets.setAll('anchor.x', 0.5);
+     windBullets.setAll('anchor.y', 0.5);
+     //windBullets.setAll('angle', 180);
 
 
 
@@ -664,34 +851,18 @@ create: function() {
      }
 
 
+     healingAnimationGroup = game.add.group();
+     healingAnimationGroup.enableBody = true;
+     healingAnimationGroup.physicsBodyType = Phaser.Physics.ARCADE;
 
-     /*
-      var initialPositionX = 0;
-      var initialPositionY = 0;
-      for(var i = 0 ; i<monsterLoadArray.length ; i++) {
-      if(monsterLoadArray[i] === 0) {
-      enemyArray[i] = new eliteMonster(i, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(),'feiLian');
-      initialPositionX+=20;
-      initialPositionY+=20;
-      }else if(monsterLoadArray[i] === 1){
-      enemyArray[i] = new eliteMonster(i, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(),'hong');
-      initialPositionX+=20;
-      initialPositionY+=20;
-      }else if(monsterLoadArray[i] === 2){
-      enemyArray[i] = new eliteMonster(i, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(),'huoDou');
-      initialPositionX+=20;
-      initialPositionY+=20;
-      }else if(monsterLoadArray[i] === 3){
-      enemyArray[i] = new eliteMonster(i, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(),'qiLin');
-      initialPositionX+=20;
-      initialPositionY+=20;
-      }else if(monsterLoadArray[i] === 4){
-      enemyArray[i] = new eliteMonster(i, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(),'eye');
-      initialPositionX+=20;
-      initialPositionY+=20;
-      }
-      }
-      */
+     for (var i = 0; i < 1000; i++)
+     {
+          var healingAnimation = healingAnimationGroup.create(0, 0, 'healing', [0], false);
+          healingAnimation.anchor.setTo(0.5, 0.5);
+          healingAnimation.scale.setTo(size/10/300,size/10/300);
+          healingAnimation.animations.add('healing');
+     }
+
 
      logo = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'logo');
      logo.anchor.setTo(0.5,0.5);
@@ -714,12 +885,14 @@ update: function() {
 
      var current_time = game.time.time;
 
+
      var countdownnumber = -(current_time - last_spawn_time - time_til_spawn);
      timer = Math.floor(countdownnumber/1000);
      if(timer<=0 ) {
           timerText.destroy();
           if(timerKilled === false) {
                scoreText = game.add.text(size / 20 * 19, size / 20 * 5, '', {fontSize: '50px', fill: '#000'});
+
                timerKilled = true;
           }
 
@@ -742,24 +915,24 @@ update: function() {
 
 
                if (popedValue === 0) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(), 'feiLian');
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'feiLian', 5000 , 50 , 20, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 1) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(), 'hong');
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'hong', 5000 , 30 , 100, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 2) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(), 'huoDou');
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'huoDou', 5000 , 100 , 20, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 3) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(), 'qiLin');
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'qiLin', 5000 , 30 , 100, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 4) {
                     //alert("reached"+enemyArrayIndex);
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX, initialPositionY, mapBaseArray[35].getImage(), 'eye');
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'eye', 5000 , 10 , 50, 0);
                     //alert("reached1"+enemyArrayIndex);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
@@ -780,13 +953,15 @@ update: function() {
           game.physics.arcade.overlap(Bullets277, enemyArray[i].monster, bullet227HitEnemy, null, this);
           game.physics.arcade.overlap(Bullets74, enemyArray[i].monster, bullet74HitEnemy, null, this);
           game.physics.arcade.overlap(Bullets224, enemyArray[i].monster, bullet224HitEnemy, null, this);
+          game.physics.arcade.overlap(windBullets, enemyArray[i].monster, windBulletsHitEnemy, null, this);
           game.physics.arcade.collide(enemyArray[i].monster, lowerBound);
-          game.physics.arcade.overlap(enemyArray[i].monster, rightBound,enemyReachDestination,null,this);
+          game.physics.arcade.overlap(enemyArray[i].monster, home,enemyReachDestination,null,this);
      }
 
      for(var i=0; i<mapBaseArray.length ; i++) {
           if(mapBaseArray[i].isTowerSet === true){
                game.physics.arcade.overlap(enemyBullets,mapBaseArray[i].getImage().tower,enemyBulletsHitTower,null,this);
+               game.physics.arcade.overlap(healingBullets,mapBaseArray[i].getImage().tower,healingBulletsHitTower,null,this);
           }
           //game.physics.arcade.overlap(enemyBullets, m)
 
@@ -795,7 +970,7 @@ update: function() {
 
      for(var i=0 ; i<enemyArray.length ; i++){
           for(var j=0 ; j<64; j++){
-               if(gameIndexArray[j]!=1){
+               if(gameIndexArray[j]===0){
                     game.physics.arcade.collide(enemyArray[i].monster, mapBaseArray[j].mapBaseBg);
                }
           }
@@ -851,6 +1026,10 @@ update: function() {
                         }
      }
 
+     monsterRemaining = monsterLoadArray.length+aliveenemy;
+
+     console.log(monsterRemaining);
+
 
 
 
@@ -874,6 +1053,22 @@ playGame.prototype = {
           game.load.image("background" ,"img/background.png" );
 
           game.load.image('menu', 'img/popup_menu_new.png', 600, 700);
+          var level1 = document.getElementsByName("level");
+
+          var stars = function(level1){
+               var stars1 =[];
+               for(var i=0; i<level1; i++){
+                    start1[i] = 1;
+               }
+               start1[level1] = 0;
+
+               for(var i = level1+1; i < 50; i++){
+                    star1[i] = -1;
+               }
+               return stars1;
+          }
+
+
 
      },
      create: function(){
