@@ -1502,9 +1502,9 @@ function hideSideBar(){
      document.getElementById("game-side-bar").style.display="none";
 }
 function updateMoneyText(num){
-     document.getElementById("money-text").innerHTML=num;
+     document.getElementById("money-text").innerHTML="none";
 }
 function updateRemainingMonstersText(num){
-     document.getElementById("remaining-monsters-text").innerHTML=num;
+     document.getElementById("remaining-monsters-text").innerHTML="none";
 }
 /***********************************add by lead designer*****************************************/

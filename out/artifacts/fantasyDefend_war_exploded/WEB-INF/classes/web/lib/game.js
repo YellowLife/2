@@ -339,10 +339,10 @@ gameIndexArray = [
      5,1,1,0,0,0,0,1,
      0,1,1,0,0,0,0,0,
      0,1,1,1,0,0,0,0,
-     0,0,1,1,0,0,0,0,
+     0,0,1,1,1,0,0,0,
      0,0,0,1,1,1,0,0,
-     0,0,0,0,0,1,0,0,
-     0,0,0,0,0,1,0,0,
+     0,0,0,0,1,1,1,0,
+     0,0,0,0,1,1,1,1,
      0,0,0,0,0,1,1,4,
 ];
 
@@ -1112,6 +1112,9 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
      }
 
      monsterRemaining = monsterLoadArray.length+aliveenemy;
+     updateRemainingMonstersText(monsterRemaining);
+
+     updateMoneyText(money);
 
      console.log(monsterRemaining);
 
@@ -1499,9 +1502,9 @@ function hideSideBar(){
      document.getElementById("game-side-bar").style.display="none";
 }
 function updateMoneyText(num){
-     document.getElementById("money-text").innerHTML="none";
+     document.getElementById("money-text").innerHTML=num;
 }
 function updateRemainingMonstersText(num){
-     document.getElementById("remaining-monsters-text").innerHTML="none";
+     document.getElementById("remaining-monsters-text").innerHTML=num;
 }
 /***********************************add by lead designer*****************************************/
