@@ -527,7 +527,7 @@ function removeTowerTips () {
 }
 
 function removeLogo1 () {
-
+     hideSideBar();
      game.input.onDown.remove(removeLogo1, this);
      winner.kill();
      game.paused = false;
@@ -536,7 +536,7 @@ function removeLogo1 () {
 }
 
 function removeLogo2 () {
-
+     hideSideBar();
      game.input.onDown.remove(removeLogo2, this);
      lose.kill();
      game.paused = false;
