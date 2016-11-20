@@ -23,8 +23,11 @@
 <body>
 
 
-<div class="game-side-bar">
-  <section class="game-status-container"><div>Level:</div><div>Score:</div></section>
+<div id="game-side-bar">
+  <section class="game-status-container">
+    <div>Money: <span id="money-text">0</span></div>
+    <div>Remaining Monsters: <span id="remaining-monsters-text"></span></div>
+  </section>
   <section class="game-button-container">
     <center>
     <button type="button" id="control-game-button1" class="btn control-game-button"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span><span id="game-control-span2">Stop The Game</span></button>

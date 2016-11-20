@@ -287,6 +287,8 @@ var player;
 var platforms;
 var cursors;
 
+var lose;
+
 var enteredTipsPause = false;
 var enteredTowerTipsPause = false;
 
@@ -378,7 +380,7 @@ var enemyArray = new Array();
 var towerArray = new Array();
 var windBullets;
 var enemyArrayIndex =0;
-
+var winner;
 
 function bulletHitWall (wall, bullet) {
 
@@ -388,7 +390,7 @@ function bulletHitWall (wall, bullet) {
 function enemyReachDestination(somethong, monster){
 
 
-     var lose = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'defeat');
+     lose = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'defeat');
      lose.anchor.setTo(0.5,0.5);
      game.paused = true;
      game.input.onDown.add(removeLogo2, this);
@@ -527,7 +529,7 @@ function removeTowerTips () {
 function removeLogo1 () {
 
      game.input.onDown.remove(removeLogo1, this);
-     logo.kill();
+     winner.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
 
@@ -536,7 +538,7 @@ function removeLogo1 () {
 function removeLogo2 () {
 
      game.input.onDown.remove(removeLogo2, this);
-     logo.kill();
+     lose.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
 
@@ -1096,7 +1098,7 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
 
      if(monsterLoadArray.length===0){
           if(aliveenemy===0){
-               var winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
+               winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
                winner.anchor.setTo(0.5,0.5);
                game.paused = true;
                game.input.onDown.add(removeLogo1, this);

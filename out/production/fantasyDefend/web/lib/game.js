@@ -196,6 +196,7 @@ var eliteMonster = function(index, game ,bullets,positionX,positionY,target ,nam
      this.monster.body.immovable = false;
 
 };
+//
 
 eliteMonster.prototype.damage = function(damageAmount) {
      //alert(this.health);
@@ -285,6 +286,8 @@ eliteMonster.prototype.update = function() {
 var player;
 var platforms;
 var cursors;
+
+var lose;
 
 var enteredTipsPause = false;
 var enteredTowerTipsPause = false;
@@ -377,7 +380,7 @@ var enemyArray = new Array();
 var towerArray = new Array();
 var windBullets;
 var enemyArrayIndex =0;
-
+var winner;
 
 function bulletHitWall (wall, bullet) {
 
@@ -387,10 +390,13 @@ function bulletHitWall (wall, bullet) {
 function enemyReachDestination(somethong, monster){
 
 
-     var lose = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'defeat');
+     lose = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'defeat');
      lose.anchor.setTo(0.5,0.5);
      game.paused = true;
      game.input.onDown.add(removeLogo2, this);
+/***********************************add by lead designer*****************************************/
+     //hideSideBar();
+/***********************************add by lead designer*****************************************/
      game.state.start("LevelSelect");
 
 /*
@@ -523,7 +529,7 @@ function removeTowerTips () {
 function removeLogo1 () {
 
      game.input.onDown.remove(removeLogo1, this);
-     logo.kill();
+     winner.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
 
@@ -532,7 +538,7 @@ function removeLogo1 () {
 function removeLogo2 () {
 
      game.input.onDown.remove(removeLogo2, this);
-     logo.kill();
+     lose.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
 
@@ -1092,7 +1098,7 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
 
      if(monsterLoadArray.length===0){
           if(aliveenemy===0){
-               var winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
+               winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
                winner.anchor.setTo(0.5,0.5);
                game.paused = true;
                game.input.onDown.add(removeLogo1, this);
@@ -1258,7 +1264,8 @@ playGame.prototype = {
                               if(this.scrollingMap.children[i].frame > 0){
                                    level = this.scrollingMap.children[i].levelNumber;
                                    /***********************************add by lead designer*****************************************/
-                                   
+                                   resetControlGameButton1();
+                                   showSideBar();
                                    /***********************************add by lead designer*****************************************/
                                    game.state.start("gameScreen", Phaser.Plugin.StateTransition.Out.SlideLeft, Phaser.Plugin.StateTransition.In.SlideLeft);
                               }
@@ -1485,5 +1492,16 @@ document.getElementById("java-tower-button").addEventListener('click',function()
 document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4)});
 document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5)});
 
-
+function showSideBar(){
+     document.getElementById("game-side-bar").style.display="block";
+}
+function hideSideBar(){
+     document.getElementById("game-side-bar").style.display="none";
+}
+function updateMoneyText(num){
+     document.getElementById("money-text").innerHTML="none";
+}
+function updateRemainingMonstersText(num){
+     document.getElementById("remaining-monsters-text").innerHTML="none";
+}
 /***********************************add by lead designer*****************************************/

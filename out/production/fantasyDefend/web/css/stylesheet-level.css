@@ -42,21 +42,22 @@ body{
 
 
 /*******game side bar*******/
-.game-side-bar{
-	width: 300px;
+#game-side-bar{
+	width: 370px;
 	height: 100%;
 	position: fixed;
 	right: 0px;
 	top: 0px;
+	display: none;
 }
 .game-status-container{
 	width: 100%;
 	height: 20%;
 	background: rgba(33, 40, 43, 0.9);/*129, 24, 24*/
 	/*font*/
-	font-family: 'Alegreya Sans';/*can use different font later*/
+	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	color: white;
 }
 .game-button-container{
@@ -66,30 +67,35 @@ body{
 	text-align: left;
 }
 .game-button-container .control-game-button{
-	width: 180px;
+	width: 200px;
 	height: 30px;
 	/*font*/
-	font-family: 'Alegreya Sans';/*can use different font later*/
+	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 }
 .tower-button-list{
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
-
-	
 }
 .tower-button-list img{
 	width: 50px;
 	height: 50px;
+	padding: 0px 10px 0px 20px;
 }
 .tower-button-list button{
 	/*font*/
-	font-family: 'Alegreya Sans';/*can use different font later*/
-	font-size: 16px;
+	font-family: 'Roboto';/*can use different font later*/
+	font-size: 14px;
 	font-weight: bold;
-	width: 180px;
+	width: 200px;
 	text-align: left;
+}
+.tower-button-list button div{
+	width: 180px;
+}
+.glyphicon{
+	padding-right: 5px;
 }
 /*******game side bar*******/
