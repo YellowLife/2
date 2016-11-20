@@ -16,6 +16,7 @@
   <!--Google font-->
   <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Signika:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
   <!--all the custom css stylesheets-->
   <link rel="stylesheet" type="text/css" href="./css/stylesheet-level.css">
 </head>
@@ -31,19 +32,19 @@
 
     <ul class="tower-button-list">
       <li>
-        <button type="button" class="btn"><img src="./img/eye_tower.png">Eye Tower</button>
+        <button id="eye-tower-button" type="button" class="btn"><img src="./img/eye_tower.png">Eye Tower</button>
       </li>
       <li>
-        <button type="button" class="btn"><img src="./img/fan_tower.png">Fan Tower</button>
+        <button id="fan-tower-button" type="button" class="btn"><img src="./img/fan_tower.png">Fan Tower</button>
       </li>
       <li>
-        <button type="button" class="btn"><img src="./img/gear_tower.png">Gear Tower</button>
+        <button id="gear-tower-button" type="button" class="btn"><img src="./img/gear_tower.png">Gear Tower</button>
       </li>
       <li>
-        <button type="button" class="btn"><img src="./img/java_tower.png">Java Tower</button>
+        <button id="java-tower-button" type="button" class="btn"><img src="./img/java_tower.png">Java Tower</button>
       </li>
       <li>
-        <button type="button" class="btn"><img src="./img/xueyou_tower.png">Xueyou Tower</button>
+        <button id="xueyou-tower-button" type="button" class="btn"><img src="./img/xueyou_tower.png">Xueyou Tower</button>
       </li>
     </ul>
     </center>

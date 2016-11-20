@@ -196,6 +196,7 @@ var eliteMonster = function(index, game ,bullets,positionX,positionY,target ,nam
      this.monster.body.immovable = false;
 
 };
+//
 
 eliteMonster.prototype.damage = function(damageAmount) {
      //alert(this.health);
@@ -286,6 +287,21 @@ var player;
 var platforms;
 var cursors;
 
+var enteredTipsPause = false;
+var enteredTowerTipsPause = false;
+
+var mons_start_position_x = 0;
+var mons_start_position_y = 0;
+var mons_end_position_x = 0;
+var mons_end_position_y = 0;
+var mons_start_tip;
+var mons_end_tip;
+
+
+var bannerWidth = 0;
+var tower_select_tip;
+var tower_place_tip;
+
 var stars;
 var healingBullets;
 var enemyBullets;
@@ -306,6 +322,9 @@ var towerButton5;
 
 var timer = 0;
 var size  = Math.min(window.innerHeight,window.innerWidth);
+
+
+
 
 
 
@@ -484,12 +503,23 @@ function monsterReach(enemy ,grid){
 function removeLogo () {
 
      game.input.onDown.remove(removeLogo, this);
-     logo.kill();
+     mons_end_tip.kill();
+     mons_start_tip.kill();
      game.paused = false;
+     enteredTipsPause = true;
      last_spawn_time = game.time.time;
 
 }
 
+function removeTowerTips () {
+
+     game.input.onDown.remove(removeTowerTips, this);
+     tower_place_tip.kill();
+     tower_select_tip.kill();
+     game.paused = false;
+     last_spawn_time = game.time.time;
+
+}
 
 function removeLogo1 () {
 
@@ -616,8 +646,12 @@ preload: function(){
      game.load.spritesheet('kaboom', 'assets/explosion.png', 64, 64, 23);
      game.load.spritesheet('healing', 'assets/bullets/healing_ani.png', 900, 900, 6);
      game.load.image('logo', 'assets/menu_button.png');
-     //game.load.image('', 'assets/logo_final.png');
-     //game.load.image('high_way','assets/highway.png');
+     /*edit by liwen fan*/
+     game.load.image('mons_end','assets/mons_end.png');
+     game.load.image('mons_start','assets/mons_start.png');
+     game.load.image('place_tower','assets/place_tower.png');
+     game.load.image('select_tower','assets/select_tower.png');
+     /*edit by liwen fan*/
      game.load.image('high_way','assets/basic_map.png');
 
 
@@ -692,7 +726,8 @@ create: function() {
 
                }else if(gameIndexArray[k]===5){
 
-
+                    mons_start_position_x = j;
+                    mons_start_position_y = i;
                     mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'start'),'start');
                     mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
                     mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
@@ -700,6 +735,9 @@ create: function() {
 
                }else if(gameIndexArray[k]===4){
                     //alert("ture7");
+
+                    mons_end_position_x = j;
+                    mons_end_position_y = i;
 
                     mapBaseArray[k] = new mapBase(j,i,game.add.sprite(j,i,'home'),'grid');
                     mapBaseArray[k].getImage().frame = 1;
@@ -864,21 +902,63 @@ create: function() {
      }
 
 
-     logo = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'logo');
-     logo.anchor.setTo(0.5,0.5);
-     logo.scale.setTo(0.5,0.5);
-     game.input.onDown.add(removeLogo, this);
-     game.paused = true;
+
+     /*Edit by Liwen Fan*/
+     //var mons_start = game.add.sprite(window.innerHeight/2,window.innerHeight/2,'mons_start');
+    // mons_start.anchor.setTo(0.5,0.5);
+    // mons_start.scale.setTo(0.5,0.5);
 
 
 
-     //last_spawn_time = game.time.time;
-     //alert(last_spawn_time);
+     /*Edit by Liwen Fan*/
+
+
+
+
+
+
 
 
 },
 
 update: function() {
+     /*Edit by Liwen Fan*/
+if(enteredTipsPause === false) {
+     mons_start_tip = game.add.sprite(mons_start_position_x+size/10, mons_start_position_y+size/20, 'mons_start');
+     mons_start_tip.anchor.setTo(0, 0.5);
+     mons_start_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+
+
+     mons_end_tip = game.add.sprite(mons_end_position_x, mons_end_position_y+size/20, 'mons_end');
+     mons_end_tip.anchor.setTo(1, 0.5);
+     mons_end_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+
+     game.input.onDown.add(removeLogo, this);
+     game.paused = true;
+     //enteredTipsPause = true;
+}
+
+if(enteredTowerTipsPause === false && enteredTipsPause === true){
+     tower_select_tip = game.add.sprite(window.innerWidth,window.innerHeight/2,'select_tower');
+     tower_select_tip.anchor.setTo(1, 0.5);
+     tower_select_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+     tower_place_tip = game.add.sprite(size/2,size/2,'place_tower');
+     tower_place_tip.anchor.setTo(0, 0.5);
+     tower_place_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+     game.input.onDown.add(removeTowerTips, this);
+     game.paused = true;
+     enteredTowerTipsPause = true;
+
+
+
+}
+
+     /*Edit by Liwen Fan*/
+
      var initialPositionX = 0;
      var initialPositionY = 0;
 
