@@ -1178,6 +1178,9 @@ playGame.prototype = {
                          if(bounds.contains(pointer.x, pointer.y)){
                               if(this.scrollingMap.children[i].frame > 0){
                                    level = this.scrollingMap.children[i].levelNumber;
+                                   /***********************************add by lead designer*****************************************/
+                                   
+                                   /***********************************add by lead designer*****************************************/
                                    game.state.start("gameScreen", Phaser.Plugin.StateTransition.Out.SlideLeft, Phaser.Plugin.StateTransition.In.SlideLeft);
                               }
                               // if the level is locked, then shake the button
