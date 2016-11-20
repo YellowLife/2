@@ -1397,6 +1397,14 @@ function resetControlGameButton1(){
      //document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
      //document.getElementById("game-control-span2").innerHTML="Start The Game";
 }
-document.getElementById("control-game-button2").addEventListener('click',resetControlGameButton1);
+function clickTowerButton(num){
+     selectedTower = num;
+}
+document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1)});
+document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2)});
+document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3)});
+document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4)});
+document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5)});
+
 
 /***********************************add by lead designer*****************************************/
