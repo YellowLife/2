@@ -336,10 +336,10 @@ var size  = Math.min(window.innerHeight,window.innerWidth);
 var mapBaseArray = new Array();
 var gameIndexArray = new Array();
 gameIndexArray = [
-     5,1,0,0,0,0,0,1,
-     0,1,0,0,0,0,0,0,
+     5,1,1,0,0,0,0,1,
+     0,1,1,0,0,0,0,0,
      0,1,1,1,0,0,0,0,
-     0,0,0,1,0,0,0,0,
+     0,0,1,1,0,0,0,0,
      0,0,0,1,1,1,0,0,
      0,0,0,0,0,1,0,0,
      0,0,0,0,0,1,0,0,
@@ -1000,24 +1000,24 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
 
 
                if (popedValue === 0) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'feiLian', 5000 , 50 , 20, 1);
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'feiLian', 5000 , 50 , 20, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 1) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'hong', 5000 , 30 , 100, 1);
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'hong', 5000 , 30 , 100, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 2) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'huoDou', 5000 , 100 , 20, 1);
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'huoDou', 5000 , 100 , 20, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 3) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'qiLin', 5000 , 30 , 100, 1);
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'qiLin', 5000 , 30 , 100, 1);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
                } else if (popedValue === 4) {
                     //alert("reached"+enemyArrayIndex);
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, initialPositionX+size/20, initialPositionY+size/20, home, 'eye', 5000 , 10 , 50, 0);
+                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'eye', 5000 , 10 , 50, 0);
                     //alert("reached1"+enemyArrayIndex);
                     //initialPositionX += 20;
                     //initialPositionY += 20;
