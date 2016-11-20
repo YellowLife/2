@@ -392,6 +392,9 @@ function enemyReachDestination(somethong, monster){
      lose.anchor.setTo(0.5,0.5);
      game.paused = true;
      game.input.onDown.add(removeLogo2, this);
+/***********************************add by lead designer*****************************************/
+     //hideSideBar();
+/***********************************add by lead designer*****************************************/
      game.state.start("LevelSelect");
 
 /*
@@ -1259,7 +1262,8 @@ playGame.prototype = {
                               if(this.scrollingMap.children[i].frame > 0){
                                    level = this.scrollingMap.children[i].levelNumber;
                                    /***********************************add by lead designer*****************************************/
-                                   
+                                   resetControlGameButton1();
+                                   showSideBar();
                                    /***********************************add by lead designer*****************************************/
                                    game.state.start("gameScreen", Phaser.Plugin.StateTransition.Out.SlideLeft, Phaser.Plugin.StateTransition.In.SlideLeft);
                               }
@@ -1486,5 +1490,16 @@ document.getElementById("java-tower-button").addEventListener('click',function()
 document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4)});
 document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5)});
 
-
+function showSideBar(){
+     document.getElementById("game-side-bar").style.display="block";
+}
+function hideSideBar(){
+     document.getElementById("game-side-bar").style.display="none";
+}
+function updateMoneyText(num){
+     document.getElementById("money-text").innerHTML="none";
+}
+function updateRemainingMonstersText(num){
+     document.getElementById("remaining-monsters-text").innerHTML="none";
+}
 /***********************************add by lead designer*****************************************/
