@@ -374,7 +374,7 @@ function enemyReachDestination(somethong, monster){
      game.paused = true;
      game.input.onDown.add(removeLogo2, this);
 /***********************************add by lead designer*****************************************/
-     hideSideBar();
+     //hideSideBar();
 /***********************************add by lead designer*****************************************/
      game.state.start("LevelSelect");
 
