@@ -1348,3 +1348,52 @@ playLevel.prototype = {
 
      }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************add by lead designer*****************************************/
+//var isGameStarted = false;
+//var isGameStop = false;
+function controlGameButton1(){
+     /*if(!isGameStarted){
+          document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+          document.getElementById("game-control-span2").innerHTML="Stop The Game";
+          isGameStarted = true;
+     }
+     else{*/
+          if(!game.paused){
+               document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
+               document.getElementById("game-control-span2").innerHTML="Continue The Game";
+               //isGameStop = true;
+               game.paused = true;
+          }
+          else{
+               document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+               document.getElementById("game-control-span2").innerHTML="Stop The Game";
+               //isGameStop = false;
+               game.paused = false;
+          }
+     /*}*/
+}
+document.getElementById("control-game-button1").addEventListener('click',controlGameButton1);
+
+function resetControlGameButton1(){
+     //isGameStarted = false;
+     //isGameStop = false;
+     document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+     document.getElementById("game-control-span2").innerHTML="Stop The Game";
+     //document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
+     //document.getElementById("game-control-span2").innerHTML="Start The Game";
+}
+document.getElementById("control-game-button2").addEventListener('click',resetControlGameButton1);
+
+/***********************************add by lead designer*****************************************/

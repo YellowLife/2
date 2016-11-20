@@ -22,7 +22,33 @@
 <body>
 
 
+<div class="game-side-bar">
+  <section class="game-status-container"><div>Level:</div><div>Score:</div></section>
+  <section class="game-button-container">
+    <center>
+    <button type="button" id="control-game-button1" class="btn control-game-button"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span><span id="game-control-span2">Stop The Game</span></button>
+    <button type="button" id="control-game-button2" class="btn control-game-button"><span class="glyphicon glyphicon-log-out"></span>Back to Chapter</button>
 
+    <ul class="tower-button-list">
+      <li>
+        <button type="button" class="btn"><img src="./img/eye_tower.png">Eye Tower</button>
+      </li>
+      <li>
+        <button type="button" class="btn"><img src="./img/fan_tower.png">Fan Tower</button>
+      </li>
+      <li>
+        <button type="button" class="btn"><img src="./img/gear_tower.png">Gear Tower</button>
+      </li>
+      <li>
+        <button type="button" class="btn"><img src="./img/java_tower.png">Java Tower</button>
+      </li>
+      <li>
+        <button type="button" class="btn"><img src="./img/xueyou_tower.png">Xueyou Tower</button>
+      </li>
+    </ul>
+    </center>
+  </section>
+</div>
 
 
 
