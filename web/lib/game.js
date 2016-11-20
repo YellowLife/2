@@ -187,7 +187,7 @@ var eliteMonster = function(index, game ,bullets,positionX,positionY,target ,nam
 
 
      this.monster = game.add.sprite(positionX, positionY,name);
-     this.monster.scale.setTo(size/10.3/600,size/10.3/600);
+     this.monster.scale.setTo(size/11/600,size/11/600);
      this.monster.anchor.setTo(0.5,0.5);
      var walk = this.monster.animations.add('walk');
      this.monster.animations.play('walk', 8, true);

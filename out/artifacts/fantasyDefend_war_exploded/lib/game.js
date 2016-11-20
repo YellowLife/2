@@ -16,24 +16,10 @@ var spacing = 20;
 //*******************************************************************************
 // stars array
 var stars = [];
-// var level1 = document.getElementsByName("level");
-//
-// var stars = function(level1){
-//      var stars1 =[];
-//      for(var i=0; i<level1; i++){
-//           start1[i] = 1;
-//      }
-//      start1[level1] = 0;
-//
-//      for(var i = level1+1; i < 50; i++){
-//           star1[i] = -1;
-//      }
-//      return stars1;
-// }
 
 //*******************************************************************************
 // local storage name
-var localStorageName = "qwe";
+var localStorageName = "stars";
 // level we are currently playing
 var level;
 var window_width = window.innerWidth;
@@ -201,7 +187,7 @@ var eliteMonster = function(index, game ,bullets,positionX,positionY,target ,nam
 
 
      this.monster = game.add.sprite(positionX, positionY,name);
-     this.monster.scale.setTo(size/10.3/600,size/10.3/600);
+     this.monster.scale.setTo(size/11/600,size/11/600);
      this.monster.anchor.setTo(0.5,0.5);
      var walk = this.monster.animations.add('walk');
      this.monster.animations.play('walk', 8, true);
@@ -1067,6 +1053,22 @@ playGame.prototype = {
           game.load.image("background" ,"img/background.png" );
 
           game.load.image('menu', 'img/popup_menu_new.png', 600, 700);
+          var level1 = document.getElementsByName("level");
+
+          var stars = function(level1){
+               var stars1 =[];
+               for(var i=0; i<level1; i++){
+                    start1[i] = 1;
+               }
+               start1[level1] = 0;
+
+               for(var i = level1+1; i < 50; i++){
+                    star1[i] = -1;
+               }
+               return stars1;
+          }
+
+
 
      },
      create: function(){
@@ -1346,3 +1348,52 @@ playLevel.prototype = {
 
      }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************add by lead designer*****************************************/
+//var isGameStarted = false;
+//var isGameStop = false;
+function controlGameButton1(){
+     /*if(!isGameStarted){
+          document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+          document.getElementById("game-control-span2").innerHTML="Stop The Game";
+          isGameStarted = true;
+     }
+     else{*/
+          if(!game.paused){
+               document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
+               document.getElementById("game-control-span2").innerHTML="Continue The Game";
+               //isGameStop = true;
+               game.paused = true;
+          }
+          else{
+               document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+               document.getElementById("game-control-span2").innerHTML="Stop The Game";
+               //isGameStop = false;
+               game.paused = false;
+          }
+     /*}*/
+}
+document.getElementById("control-game-button1").addEventListener('click',controlGameButton1);
+
+function resetControlGameButton1(){
+     //isGameStarted = false;
+     //isGameStop = false;
+     document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+     document.getElementById("game-control-span2").innerHTML="Stop The Game";
+     //document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
+     //document.getElementById("game-control-span2").innerHTML="Start The Game";
+}
+document.getElementById("control-game-button2").addEventListener('click',resetControlGameButton1);
+
+/***********************************add by lead designer*****************************************/
