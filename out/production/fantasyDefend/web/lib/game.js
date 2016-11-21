@@ -394,9 +394,6 @@ function enemyReachDestination(somethong, monster){
      lose.anchor.setTo(0.5,0.5);
      game.paused = true;
      game.input.onDown.add(removeLogo2, this);
-/***********************************add by lead designer*****************************************/
-     //hideSideBar();
-/***********************************add by lead designer*****************************************/
      game.state.start("LevelSelect");
 
 /*
@@ -527,7 +524,9 @@ function removeTowerTips () {
 }
 
 function removeLogo1 () {
-
+/***********************************add by lead designer*****************************************/
+     hideSideBar();
+/***********************************add by lead designer*****************************************/
      game.input.onDown.remove(removeLogo1, this);
      winner.kill();
      game.paused = false;
@@ -536,7 +535,9 @@ function removeLogo1 () {
 }
 
 function removeLogo2 () {
-
+/***********************************add by lead designer*****************************************/
+     hideSideBar();
+/***********************************add by lead designer*****************************************/
      game.input.onDown.remove(removeLogo2, this);
      lose.kill();
      game.paused = false;
@@ -789,7 +790,7 @@ create: function() {
      lowerBound.body.immovable = true;
 
 
-
+/*
      towerButton1 = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:1}, 0, 0, 0);
 
      towerButton2 = game.add.button(size/20*19 , size/3+150, 'xueyoutowerButton', actionOnClick, {param1:2}, 0, 0, 0);
@@ -805,6 +806,7 @@ create: function() {
      towerButton3.scale.setTo(1,1);
      towerButton4.scale.setTo(1,1);
      towerButton5.scale.setTo(1,1);
+     */
 
      timer = game.time.create(false);
 
@@ -946,11 +948,11 @@ if(enteredTipsPause === false) {
 }
 
 if(enteredTowerTipsPause === false && enteredTipsPause === true){
-     tower_select_tip = game.add.sprite(window.innerWidth,window.innerHeight/2,'select_tower');
+     tower_select_tip = game.add.sprite(window.innerWidth-370,window.innerHeight/2,'select_tower');
      tower_select_tip.anchor.setTo(1, 0.5);
      tower_select_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
-     tower_place_tip = game.add.sprite(size/2,size/2,'place_tower');
+     tower_place_tip = game.add.sprite(size/2,size/4,'place_tower');
      tower_place_tip.anchor.setTo(0, 0.5);
      tower_place_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
@@ -1107,7 +1109,7 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
                     stars[level + 1] = 0;
                }
                localStorage.setItem(localStorageName, stars.toString());
-               game.state.start("LevelSelect", Phaser.Plugin.StateTransition.Out.SlideRight, Phaser.Plugin.StateTransition.In.SlideRight);
+               game.state.start("LevelSelect");
                         }
      }
 
@@ -1270,7 +1272,7 @@ playGame.prototype = {
                                    resetControlGameButton1();
                                    showSideBar();
                                    /***********************************add by lead designer*****************************************/
-                                   game.state.start("gameScreen", Phaser.Plugin.StateTransition.Out.SlideLeft, Phaser.Plugin.StateTransition.In.SlideLeft);
+                                   game.state.start("gameScreen");
                               }
                               // if the level is locked, then shake the button
                               else{
@@ -1387,7 +1389,7 @@ playLevel.prototype = {
                          choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
 
                          if (choise == 1){
-                              game.state.start("LevelSelect", Phaser.Plugin.StateTransition.Out.SlideLeft, Phaser.Plugin.StateTransition.In.SlideLeft);
+                              game.state.start("LevelSelect");
                               menu.destroy();
                               choiseLabel.destroy();
 
@@ -1418,7 +1420,7 @@ playLevel.prototype = {
           });
           failLevel.inputEnabled = true;
           failLevel.events.onInputDown.add(function(){
-               game.state.start("LevelSelect", Phaser.Plugin.StateTransition.Out.SlideRight, Phaser.Plugin.StateTransition.In.SlideRight);
+               game.state.start("LevelSelect");
           }, this)
           // if we complete the level with one star, we set star item to 1 if it was less than 1
           // at the same time, if next level exists and it's locked (-1) we unlock it (0)
@@ -1434,7 +1436,7 @@ playLevel.prototype = {
                     stars[level + 1] = 0;
                }
                localStorage.setItem(localStorageName, stars.toString());
-               game.state.start("LevelSelect", Phaser.Plugin.StateTransition.Out.SlideRight, Phaser.Plugin.StateTransition.In.SlideRight);
+               game.state.start("LevelSelect");
           }, this)
 
 
@@ -1507,4 +1509,9 @@ function updateMoneyText(num){
 function updateRemainingMonstersText(num){
      document.getElementById("remaining-monsters-text").innerHTML=num;
 }
+function backToChapter(){
+     hideSideBar();
+     game.state.start("LevelSelect");
+}
+document.getElementById("control-game-button2").addEventListener('click',backToChapter);
 /***********************************add by lead designer*****************************************/

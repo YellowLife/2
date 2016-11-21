@@ -42,6 +42,9 @@ body{
 
 
 /*******game side bar*******/
+#game-side-bar button{
+	margin-bottom: 5px;
+}
 #game-side-bar{
 	width: 370px;
 	height: 100%;
@@ -57,7 +60,7 @@ body{
 	/*font*/
 	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 22px;
 	color: white;
 }
 .game-button-container{
@@ -68,11 +71,12 @@ body{
 }
 .game-button-container .control-game-button{
 	width: 200px;
-	height: 30px;
+	height: 50px;
+	background: #e2e6e9;
 	/*font*/
 	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 18px;
 }
 .tower-button-list{
 	list-style-type: none;
@@ -80,20 +84,29 @@ body{
 	margin: 0;
 }
 .tower-button-list img{
-	width: 50px;
-	height: 50px;
-	padding: 0px 10px 0px 20px;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	padding: 10px 15px 10px 15px;
+	background: rgba(178, 34, 34, 0.9);
+	/*box-shadow: -2px 0px 15px 0px rgba(178, 34, 34, 0.9);*/
+	border-radius: 8px 0px 0px 8px;
+}
+.tower-button-list div{
+	display: inline-block;
+	width: 140px;
+	height: 37px;
 }
 .tower-button-list button{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 8px 8px 8px 8px;
+	background: #e2e6e9;
 	/*font*/
 	font-family: 'Roboto';/*can use different font later*/
-	font-size: 14px;
+	font-size: 26px;
 	font-weight: bold;
-	width: 200px;
-	text-align: left;
-}
-.tower-button-list button div{
-	width: 180px;
 }
 .glyphicon{
 	padding-right: 5px;

@@ -790,7 +790,7 @@ create: function() {
      lowerBound.body.immovable = true;
 
 
-
+/*
      towerButton1 = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:1}, 0, 0, 0);
 
      towerButton2 = game.add.button(size/20*19 , size/3+150, 'xueyoutowerButton', actionOnClick, {param1:2}, 0, 0, 0);
@@ -806,6 +806,7 @@ create: function() {
      towerButton3.scale.setTo(1,1);
      towerButton4.scale.setTo(1,1);
      towerButton5.scale.setTo(1,1);
+     */
 
      timer = game.time.create(false);
 
@@ -947,11 +948,11 @@ if(enteredTipsPause === false) {
 }
 
 if(enteredTowerTipsPause === false && enteredTipsPause === true){
-     tower_select_tip = game.add.sprite(window.innerWidth,window.innerHeight/2,'select_tower');
+     tower_select_tip = game.add.sprite(window.innerWidth-370,window.innerHeight/2,'select_tower');
      tower_select_tip.anchor.setTo(1, 0.5);
      tower_select_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
-     tower_place_tip = game.add.sprite(size/2,size/2,'place_tower');
+     tower_place_tip = game.add.sprite(size/2,size/4,'place_tower');
      tower_place_tip.anchor.setTo(0, 0.5);
      tower_place_tip.scale.setTo(size*6/10/600, size*2/10/200);
 
