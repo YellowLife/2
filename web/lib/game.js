@@ -1501,11 +1501,11 @@ function resetControlGameButton1(){
 function clickTowerButton(num){
      selectedTower = num;
 }
-document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1)});
-document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2)});
-document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3)});
-document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4)});
-document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5)});
+document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1);updateTowerInfo("1","1","1","1","1");});
+document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2);updateTowerInfo("2","2","2","2","2");});
+document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3);updateTowerInfo("3","3","3","3","3");});
+document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4);updateTowerInfo("4","4","4","4","4");});
+document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5);updateTowerInfo("5","5","5","5","5");});
 
 function showSideBar(){
      document.getElementById("game-side-bar").style.display="block";
@@ -1525,4 +1525,19 @@ function backToChapter(){
      game.state.start("LevelSelect");
 }
 document.getElementById("control-game-button2").addEventListener('click',backToChapter);
+
+function updateTowerInfo(name,hp,attack,effect,description){
+     document.getElementById("tower-name-text").innerHTML=name;
+     document.getElementById("tower-hp-text").innerHTML=hp;
+     document.getElementById("tower-attack-text").innerHTML=attack;
+     document.getElementById("tower-effect-text").innerHTML=effect;
+     document.getElementById("tower-description-text").innerHTML=description;
+}
+
+function disableGameButton(){
+     document.getElementById("control-game-button1").disabled = true;
+}
+function enableGameButton(){
+     document.getElementById("control-game-button1").disabled = false;
+}
 /***********************************add by lead designer*****************************************/
