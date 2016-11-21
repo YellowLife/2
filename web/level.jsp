@@ -25,7 +25,7 @@
 <%--data set --%>
 <jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="session"/>
 <input id="level" value="<%=UserInfo.getLevel()%>" hidden/>
-<input id="currentLevel" value="0" />
+<input id="currentLevel" value="0" hidden/>
 <%--data set--%>
 
 
