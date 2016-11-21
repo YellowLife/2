@@ -1,11 +1,33 @@
 package Bean;
 import java.io.Serializable;
+import java.lang.String;
 
 public class UserInfoBean implements Serializable{
     private String userId ="Guest";
     private String name = "Guest";
     private int level = 1;
-    private int balance = 0;
+    private int [] balanceArray = {100,500,600,700,800,900,1000,1000,800,800};
+    private String[] monsterArray= { "4,4", "4,4,4,4,0","4,4,4,4,0,0,0","4,4,4,4,0,0,0,2,4,4",
+            "4,3,1,4,0,0,0,2,4,4","4,4,1,1,0,0,4,4","4,4,1,1,3,3,0,0,4,4","4,4,4,1,1,0,0,2,2,4,4,4",
+            "4,4,4,1,1,0,0,2,2","4,4,4,1,1,0,0,2,2,4,4,4"
+    };
+
+    private String[] MapArray={
+            "5,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+            "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4"
+
+    };
+
+
+
     public String getUserId(){
         return userId;
     }
@@ -15,9 +37,20 @@ public class UserInfoBean implements Serializable{
     public int getLevel(){
         return level;
     }
-    public int getBalance(){
+    public int getBalance(int current_Level){
+        int balance = balanceArray[current_Level-1];
         return balance;
     }
+
+    public String getMonster(int current_Level){
+        String monster = monsterArray[current_Level-1];
+        return monster;
+    }
+    public String getMapArray(int current_Level){
+        String map = MapArray[current_Level-1];
+        return map;
+    }
+
     public void setUserId(String userId){
         this.userId = userId;
     }
@@ -26,8 +59,5 @@ public class UserInfoBean implements Serializable{
     }
     public void setLevel(int level){
         this.level = level;
-    }
-    public void setBalance(int balance){
-        this.balance = balance;
     }
 }

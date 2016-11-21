@@ -31,7 +31,7 @@
     <source src="/sounds/btn_click.mp3" type="audio/mpeg">
 </audio>
 
-<jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="request"/>
+<jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="session"/>
 <div class="splash-container">
     <div class="game-title-container">
         <div class="title-logo-div"><img src="./img/logo_final.png">Fantasy Defense</div>

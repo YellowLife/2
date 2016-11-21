@@ -26,13 +26,11 @@ public class LoginServlet extends HttpServlet {
             String Id = request.getParameter("id");
             String Name= request.getParameter("name");
             int Level = 1;
-            int Balance = 0;
             if(!(Id.equalsIgnoreCase("Guest"))){
                 String query = "select * from account where Id = '" + Id + "'";
                 ResultSet rs = JdbcConnector.excuteQuery(query);
                 if (rs.first()) {
                     Level = rs.getInt("Level");
-                    Balance = rs.getInt("Balance");
                     JdbcConnector.closeDatabase();
                 } else {
                     JdbcConnector.closeDatabase();
@@ -47,8 +45,7 @@ public class LoginServlet extends HttpServlet {
             UserInfo.setUserId(Id);
             UserInfo.setName(Name);
             UserInfo.setLevel(Level);
-            UserInfo.setBalance(Balance);
-            request.setAttribute("UserInfo",UserInfo);
+            request.getSession().setAttribute("UserInfo",UserInfo);
             request.getRequestDispatcher("Game.jsp").forward(request, response);
         }
     }
