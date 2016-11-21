@@ -1,9 +1,13 @@
 /**
  * Created by Leo on 11/21/16.
  */
+
+var game;
 var customizeMap;
 var defaultMap;
-
+var size;
+var window_width = window.innerWidth;
+var window_height = window.innerHeight;
 
 var mapBase = function(positionX, positionY, gameImage ,bgimage){
     this.positionX = positionX;

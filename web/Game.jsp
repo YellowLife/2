@@ -49,7 +49,7 @@
                     </form >
 
                     <form method = "get" action ="/customize.jsp">
-                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Customize</button>
+                        <button type="button" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Customize</button>
                     </form>
 
                     <form method="get" action="index.html">

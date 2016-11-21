@@ -11,6 +11,8 @@
     <title>Customize</title>
 </head>
 <body>
+    <script src="lib/phaser.min.js"> </script>
+    <script src="lib/phaser-state-transition.js"></script>
     <script src="lib/customize.js"></script>
 </body>
 </html>
