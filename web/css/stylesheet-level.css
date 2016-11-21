@@ -42,6 +42,9 @@ body{
 
 
 /*******game side bar*******/
+#game-side-bar button{
+	margin-bottom: 5px;
+}
 #game-side-bar{
 	width: 370px;
 	height: 100%;

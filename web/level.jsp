@@ -25,7 +25,7 @@
 
 <div id="game-side-bar">
   <section class="game-status-container">
-    <div>Money: <span id="money-text">0</span></div>
+    <div>Money: $<span id="money-text">0</span></div>
     <div>Monsters: <span id="remaining-monsters-text">0</span></div>
   </section>
   <section class="game-button-container">
@@ -35,19 +35,19 @@
 
     <ul class="tower-button-list">
       <li>
-        <button id="eye-tower-button" type="button" class="btn"><img src="./img/eye_tower.png"><div><center>100</center></div></button>
+        <button id="eye-tower-button" type="button" class="btn"><img src="./img/eye_tower.png"><div><center>$100</center></div></button>
       </li>
       <li>
-        <button id="fan-tower-button" type="button" class="btn"><img src="./img/fan_tower.png"><div><center>200</center></div></button>
+        <button id="fan-tower-button" type="button" class="btn"><img src="./img/fan_tower.png"><div><center>$200</center></div></button>
       </li>
       <li>
-        <button id="gear-tower-button" type="button" class="btn"><img src="./img/gear_tower.png"><div><center>120</center></div></button>
+        <button id="gear-tower-button" type="button" class="btn"><img src="./img/gear_tower.png"><div><center>$120</center></div></button>
       </li>
       <li>
-        <button id="java-tower-button" type="button" class="btn"><img src="./img/java_tower.png"><div><center>80</center></div></button>
+        <button id="java-tower-button" type="button" class="btn"><img src="./img/java_tower.png"><div><center>$80</center></div></button>
       </li>
       <li>
-        <button id="xueyou-tower-button" type="button" class="btn"><img src="./img/xueyou_tower.png"><div><center>150</center></div></button>
+        <button id="xueyou-tower-button" type="button" class="btn"><img src="./img/xueyou_tower.png"><div><center>$150</center></div></button>
       </li>
     </ul>
     </center>
