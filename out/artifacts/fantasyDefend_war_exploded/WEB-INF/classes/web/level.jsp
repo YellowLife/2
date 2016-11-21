@@ -25,7 +25,7 @@
 <%--data set --%>
 <jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="session"/>
 <input id="level" value="<%=UserInfo.getLevel()%>" hidden/>
-<input id="currentLevel" value="0" />
+<input id="currentLevel" value="0" hidden/>
 <%--data set--%>
 
 
@@ -34,6 +34,19 @@
   <section class="game-status-container">
     <div>Money: $<span id="money-text">0</span></div>
     <div>Monsters: <span id="remaining-monsters-text">0</span></div>
+    <table class="tower-table">
+      <tr>
+        <td>Name: <span id="tower-name-text"></span></td>
+        <td>HP: <span id="tower-hp-text"></span></td>
+      </tr>
+      <tr>
+        <td>Attack: <span id="tower-attack-text"></span></td>
+        <td>Effect: <span id="tower-effect-text"></span></td>
+      </tr>
+      <tr>
+        <td>Description: <span id="tower-description-text"></span></td>
+      </tr>
+    </table>
   </section>
   <section class="game-button-container">
     <center>

@@ -32,11 +32,11 @@ body{
 	height: 100%;
 	width: 100%;
 
-	background: url(../img/bg_base.png);
+	/*background: url(../img/bg_base.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-position: center center;
+	background-position: center center;*/
 }
 /*******all the containers*******/
 
@@ -60,7 +60,14 @@ body{
 	/*font*/
 	font-family: 'Roboto';/*can use different font later*/
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 19px;
+	color: white;
+}
+.game-status-container .tower-table td{
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-weight: bold;
+	font-size: 19px;
 	color: white;
 }
 .game-button-container{

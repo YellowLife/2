@@ -46,8 +46,12 @@
                 <div class="button-container">
                     <form  method="get" action="/level.jsp">
                         <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Chapter</button>
-                    </form>
+                    </form >
+
+                    <form method = "get" action ="/customize.jsp">
                     <button type="button" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Customize</button>
+                    </form>
+
                     <form method="get" action="index.html">
                         <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Quit</button>
                     </form>
