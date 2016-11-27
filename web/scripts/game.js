@@ -18,24 +18,15 @@ var defaultMap;
 //*************************************data set******************************************
 // stars array
 var stars = [];
-var balanceArray = [100,500,600,700,800,900,1000,1000,800,800];
+// set up all data from json file
+var dataFile = "./lib/gameDateSet.json";
+// load balance array from json file
+var balanceArray = dataFile.Balance;
+// load monster array from json file
+var monsterArray = dataFile.Monster;
+// load map array from json file
+var MapArray = dataFile.Map;
 
-var monsterArray= [[4,4], [4,4,4,4,0],[4,4,4,4,0,0,0],[4,4,4,4,0,0,0,2,4,4],
-     [4,3,1,4,0,0,0,2,4,4],[4,4,1,1,0,0,4,4],[4,4,1,1,3,3,0,0,4,4],[4,4,4,1,1,0,0,2,2,4,4,4],
-     [4,4,4,1,1,0,0,2,2],[4,4,4,1,1,0,0,2,2,4,4,4]];
-
-var MapArray=[
-     [5,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4]
-];
 
 //***************************************data set****************************************
 // local storage name
@@ -347,22 +338,8 @@ var size  = Math.min(window.innerHeight,window.innerWidth);
 var mapBaseArray = new Array();
 var gameIndexArray = new Array();
 gameIndexArray= MapArray[0];
-// gameIndexArray = [
-//      5,1,1,0,0,0,0,1,
-//      0,1,1,0,0,0,0,0,
-//      0,1,1,1,0,0,0,0,
-//      0,0,1,1,1,0,0,0,
-//      0,0,0,1,1,1,0,0,
-//      0,0,0,0,1,1,1,0,
-//      0,0,0,0,1,1,1,1,
-//      0,0,0,0,0,1,1,4,
-// ];
-
 var monsterLoadArray = monsterArray[0];
-// var monsterLoadArray = new Array();
-// monsterLoadArray = [
-//      0,1,2,3,4,0,1,2,3,4
-// ];
+
 
 
 var monsterRemaining = monsterLoadArray.length;
@@ -541,6 +518,11 @@ function removeLogo1 () {
      game.paused = false;
      last_spawn_time = game.time.time;
 
+     //***********************data set*****************************************
+     var levelMax = document.getElementById("level").getAttribute("value");
+     window.location.replace("/SaveServlet?level="+(level+1).toString());
+     //*************************data set ***************************************
+
 }
 
 function removeLogo2 () {
@@ -551,6 +533,9 @@ function removeLogo2 () {
      lose.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
+     //***********************data set*****************************************
+     window.location.replace("/SaveServlet?level=lose");
+     //*************************data set ***************************************
 
 }
 
@@ -656,13 +641,12 @@ window.onload = function() {
      game.state.add("LevelSelect", playGame);
      game.state.add("PlayLevel", playLevel);
      game.state.add("gameScreen", gameScreen);
-
      game.state.start("LevelSelect");
 }
 
 var gameScreen =  function (game){};
+var imageUrl = dataFile.image;
 gameScreen.prototype ={
-
 preload: function(){
      game.load.image('background', 'assets/background.png');
      game.load.image('ground', 'assets/platform.png');
@@ -692,8 +676,6 @@ preload: function(){
      game.load.spritesheet('windtowerButton', 'assets/buttons/wind_tower.png', 200, 100);
      game.load.spritesheet('geartowerButton', 'assets/buttons/gear_tower.png', 200, 100);
 
-
-
      game.load.spritesheet('home', 'assets/path/home.png', 400, 400);
 
      game.load.spritesheet('kaboom', 'assets/explosion.png', 64, 64, 23);
@@ -706,16 +688,11 @@ preload: function(){
      game.load.image('select_tower','assets/select_tower.png');
      /*edit by liwen fan*/
      game.load.image('high_way','assets/basic_map.png');
-
-
      game.load.spritesheet('feiLian', 'assets/monsters/feiLian.png',600,600,7);
      game.load.spritesheet('huoDou', 'assets/monsters/dou_ani.png',599,599,7);
      game.load.spritesheet('hong', 'assets/monsters/hong_ani.png',599,599,7);
      game.load.spritesheet('qiLin', 'assets/monsters/qilin_ani.png',599,599,7);
      game.load.spritesheet('tie', 'assets/monsters/tie_ani.png',599,599,7);
-     //game.load.image('hong', 'assets/monsters/hong2.png');
-     //game.load.image('qiLin', 'assets/monsters/qilin2.png');
-     //game.load.image('tie', 'assets/monsters/tie2.png');
      game.load.spritesheet('eye', 'assets/monsters/mob_mov_2.png', 300, 300, 5);
      game.load.spritesheet('bull','assets/bullets/BULL.png',70,70,4);
      game.load.image('victory','assets/victory.png');
@@ -1144,10 +1121,6 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
                     stars[level + 1] = 0;
                }
                localStorage.setItem(localStorageName, stars.toString());
-               //***********************data set*****************************************
-               var levelMax = document.getElementById("level").getAttribute("value");
-               window.location.replace("/SaveServlet?level="+(Number(levelMax)+1).toString());
-               //*************************data set ***************************************
                game.state.start("LevelSelect");
                         }
      }
@@ -1178,23 +1151,26 @@ playGame.prototype = {
           game.load.image('menu', 'img/popup_menu_new.png', 600, 700);
 
           //*****************************data set*******************************************
+          var levellocal = document.getElementById("level").getAttribute("value");
+          // if not guest player
+               if(levellocal != -1) {
+                    function getLevelString() {
+                         var levellocal = document.getElementById("level").getAttribute("value");
+                         var stars = "";
+                         for (var i = 1; i < levellocal; i++) {
+                              stars = stars + "1,";
+                         }
+                         stars = stars + "0,";
+                         for (var i = levellocal; i < 10; i++) {
+                              stars = stars + "-1,";
+                         }
+                         var starLevel = stars.substr(0, stars.length - 1);
+                         return starLevel;
+                    }
 
-          function getLevelString(){
-               var levellocal = document.getElementById("level").getAttribute("value");
-               var stars = "";
-               for(var i = 1; i< levellocal;i++){
-                    stars = stars+"1,";
-               }
-               stars = stars+"0,";
-               for(var i = levellocal; i< 10;i++){
-                    stars = stars+"-1,";
-               }
-               var starLevel = stars.substr(0, stars.length-1);
-               return starLevel;
+                    var star = getLevelString();
+                    localStorage.setItem(localStorageName, star);
           }
-          var star = getLevelString();
-          localStorage.setItem(localStorageName, star);
-
           //*****************************data set*******************************************
 
 
@@ -1511,16 +1487,18 @@ customizeScreen.prototype ={
           var monsterStack = new Array();
            customizeMap = new Array();
 
-           defaultMap =[
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0
-          ];
+           defaultMap = dataFile.DefaultMap[0];
+
+          //      [
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0,
+          //      0,0,0,0,0,0,0,0
+          // ];
 
           var bg = game.add.sprite(0, 0, 'background');
           bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)

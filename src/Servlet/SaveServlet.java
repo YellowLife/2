@@ -25,15 +25,25 @@ public class SaveServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin","*");
         try (PrintWriter out = response.getWriter()) {
             String level = request.getParameter("level");
-            int newlevel = Integer.parseInt(level);
-            System.out.println("1");
-            UserInfoBean userinfo = (UserInfoBean) request.getSession().getAttribute("UserInfo");
-            userinfo.setLevel(newlevel);
-            request.getSession().setAttribute("UserInfo",userinfo);
-            String query = "UPDATE qixchen.account SET Level='"+ newlevel +"' WHERE Id='"+ userinfo.getUserId()+"'";
-            JdbcConnector.excuteUpdate(query);
+            if( level.equalsIgnoreCase("lose")){
+                System.out.println("lose");
+                request.getRequestDispatcher("level.jsp").forward(request, response);
+            }else {
+                System.out.println("small");
+                int newlevel = Integer.parseInt(level)+1;
+                UserInfoBean userinfo = (UserInfoBean) request.getSession().getAttribute("UserInfo");
+                if((newlevel  <= userinfo.getLevel())){
+                    request.getRequestDispatcher("level.jsp").forward(request, response);
+                }else{
+                    System.out.println("up");
+                    userinfo.setLevel(newlevel);
+                    request.getSession().setAttribute("UserInfo", userinfo);
+                    String query = "UPDATE qixchen.account SET Level='" + newlevel + "' WHERE Id='" + userinfo.getUserId() + "'";
+                    JdbcConnector.excuteUpdate(query);
+                    request.getRequestDispatcher("level.jsp").forward(request, response);
+                }
 
-            request.getRequestDispatcher("level.jsp").forward(request, response);
+            }
         }
     }
 

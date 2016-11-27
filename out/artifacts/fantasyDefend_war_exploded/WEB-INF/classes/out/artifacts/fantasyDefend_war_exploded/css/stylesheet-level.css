@@ -1,0 +1,121 @@
+/*******overwrite boostrap for body*******/
+body{
+	line-height:normal;
+}
+*{
+	box-sizing: content-box;
+}
+.btn{
+	outline: none !important;
+}
+.btn:focus{
+	outline: none !important;
+}
+.btn:active{
+	outline: none !important;
+}
+.glyphicon{
+	top: 2px;
+}
+/*******overwrite boostrap for body*******/
+
+
+
+/*******all the containers*******/
+html{
+	height: 100%;
+	width: 100%;
+}
+body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+
+	/*background: url(../img/bg_base.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;*/
+}
+/*******all the containers*******/
+
+
+/*******game side bar*******/
+#game-side-bar button{
+	margin-bottom: 5px;
+}
+#game-side-bar{
+	width: 370px;
+	height: 100%;
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	display: none;
+}
+.game-status-container{
+	width: 100%;
+	height: 20%;
+	background: rgba(33, 40, 43, 0.9);/*129, 24, 24*/
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-weight: bold;
+	font-size: 19px;
+	color: white;
+}
+.game-status-container .tower-table td{
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-weight: bold;
+	font-size: 19px;
+	color: white;
+}
+.game-button-container{
+	width: 100%;
+	height: 80%;
+	background: rgba(78, 93, 101, 0.9);/*178, 34, 34*/
+	text-align: left;
+}
+.game-button-container .control-game-button{
+	width: 200px;
+	height: 50px;
+	background: #e2e6e9;
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-weight: bold;
+	font-size: 18px;
+}
+.tower-button-list{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+.tower-button-list img{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	padding: 10px 15px 10px 15px;
+	background: rgba(178, 34, 34, 0.9);
+	/*box-shadow: -2px 0px 15px 0px rgba(178, 34, 34, 0.9);*/
+	border-radius: 8px 0px 0px 8px;
+}
+.tower-button-list div{
+	display: inline-block;
+	width: 140px;
+	height: 37px;
+}
+.tower-button-list button{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 8px 8px 8px 8px;
+	background: #e2e6e9;
+	/*font*/
+	font-family: 'Roboto';/*can use different font later*/
+	font-size: 26px;
+	font-weight: bold;
+}
+.glyphicon{
+	padding-right: 5px;
+}
+/*******game side bar*******/
