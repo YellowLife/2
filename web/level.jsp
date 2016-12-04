@@ -81,9 +81,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!--game scripts-->
-  <script src="lib/phaser.min.js"> </script>
-  <script src="lib/phaser-state-transition.js"></script>
-  <script src = "lib/game.js"></script>
+  <script src="scripts/phaser.min.js"> </script>
+  <script src="scripts/phaser-state-transition.js"></script>
+  <script src = "scripts/game.js"></script>
   <!--<script src = "lib/pause.js"></script>-->
 </body>
 </html>

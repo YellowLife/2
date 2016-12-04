@@ -16,17 +16,27 @@ var customizeMap;
 var defaultMap;
 
 //*************************************data set******************************************
+//*************************************data set******************************************
 // stars array
 var stars = [];
-// set up all data from json file
-var dataFile = "./scripts/gameDateSet.json";
-// load balance array from json file
-var balanceArray = dataFile.Balance;
-// load monster array from json file
-var monsterArray = dataFile.Monster;
-// load map array from json file
-var MapArray = dataFile.Map;
+var balanceArray = [100,500,600,700,800,900,1000,1000,800,800];
 
+var monsterArray= [[4,4], [4,4,4,4,0],[4,4,4,4,0,0,0],[4,4,4,4,0,0,0,2,4,4],
+     [4,3,1,4,0,0,0,2,4,4],[4,4,1,1,0,0,4,4],[4,4,1,1,3,3,0,0,4,4],[4,4,4,1,1,0,0,2,2,4,4,4],
+     [4,4,4,1,1,0,0,2,2],[4,4,4,1,1,0,0,2,2,4,4,4]];
+
+var MapArray=[
+     [5,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4]
+];
 
 //***************************************data set****************************************
 // local storage name
@@ -545,7 +555,7 @@ function MapBaseListener(){
      j = this.param1.getPosition()[1];
 
      if(selectedTower === 0) {
-          if(money>100) {
+          if(money>=100) {
                this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
                this.param1.isTowerSet = true;
                towerArray.push(this.param1.getImage());
@@ -553,7 +563,7 @@ function MapBaseListener(){
                money-=100;
           }
      }else if(selectedTower === 1){
-          if(money>100) {
+          if(money>=100) {
                this.param1.setImage(new towerObj(numberOfTowers, 'eyetower', size, 20, 500, game, Bullets277, this.param1.getPosition()[0], this.param1.getPosition()[1], enemyArray, 500, this.param1, false));
                this.param1.isTowerSet = true;
                towerArray.push(this.param1.getImage());
@@ -645,7 +655,6 @@ window.onload = function() {
 }
 
 var gameScreen =  function (game){};
-var imageUrl = dataFile.image;
 gameScreen.prototype ={
      preload: function(){
           game.load.image('background', 'assets/background.png');
@@ -1487,7 +1496,7 @@ customizeScreen.prototype ={
           var monsterStack = new Array();
           customizeMap = new Array();
 
-          defaultMap = dataFile.DefaultMap[0];
+          defaultMap = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 
           var bg = game.add.sprite(0, 0, 'background');

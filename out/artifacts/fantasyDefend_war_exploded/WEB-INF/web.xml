@@ -6,6 +6,7 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlet.LoginServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -14,6 +15,7 @@
     <servlet>
         <servlet-name>SaveServlet</servlet-name>
         <servlet-class>Servlet.SaveServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>SaveServlet</servlet-name>
