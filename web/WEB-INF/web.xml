@@ -6,10 +6,6 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Servlet.LoginServlet</servlet-class>
-        <!--<init-param>-->
-            <!--<param-name>Guest</param-name>-->
-            <!--<param-value>Guest</param-value>-->
-        <!--</init-param>-->
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>

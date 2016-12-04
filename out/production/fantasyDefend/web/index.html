@@ -12,114 +12,115 @@
 	<!--all the custom css stylesheets-->
 	<link rel="stylesheet" type="text/css" href="./css/stylesheet-index.css">
 	<!--Google sigin-->
-	<meta name="google-signin-scope" content="profile email">
-	<meta name="google-signin-client_id" content="988977465903-4kmoa98jvcbi98ool9runutkohh6u52h.apps.googleusercontent.com">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
-	<script src="/scripts/main.js"></script>
-	<script>
-		function start() {
-			gapi.load('auth2', function() {
-				auth2 = gapi.auth2.init({
-					client_id: '988977465903-4kmoa98jvcbi98ool9runutkohh6u52h.apps.googleusercontent.com',
-					// Scopes to request in addition to 'profile' and 'email'
-					//scope: 'additional_scope'
-				});
-			});
-		}
-	</script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="60574168678-0k19n27a2eqnpa5cv7dtfabr0ugbcoeg.apps.googleusercontent.com">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+    <script src="/scripts/main.js"></script>
+	    <script>
+        function start() {
+            gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                    client_id: '60574168678-0k19n27a2eqnpa5cv7dtfabr0ugbcoeg.apps.googleusercontent.com',
+                    // Scopes to request in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+            });
+        }
+    </script>
 </head>
 <body>
 
-<!--super container for the home page-->
-<div class="home-container">
+	<!--super container for the home page-->
+	<div class="home-container">
 
-	<!--top nav bar-->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#game"><img class="logo" src="./img/logo_final.png">Fire Brick Life</a>
-			<button type="button" class="btn btn-danger home-navbar-button">
-				<span class="glyphicon glyphicon-menu-hamburger home-nav-text"></span>
-			</button>
-		</div>
+		<!--top nav bar-->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#game"><img class="logo" src="./img/logo_final.png">Fire Brick Life</a>
+				<button type="button" class="btn btn-danger home-navbar-button">
+					<span class="glyphicon glyphicon-menu-hamburger home-nav-text"></span>
+				</button>
+			</div>
 
-		<ul class="nav navbar-nav">
-			<!-- <li class="empty-li"><a href="#">.</a></li> -->
-			<li class="nonempty-li"><a href="#game">Game</a></li>
-			<li class="nonempty-li"><a href="#introduction">Introduction</a></li>
-			<li class="nonempty-li"><a href="#contact">Contact</a></li>
-		</ul>
+			<ul class="nav navbar-nav">
+				<!-- <li class="empty-li"><a href="#">.</a></li> -->
+				<li class="nonempty-li"><a href="#game">Game</a></li>
+				<li class="nonempty-li"><a href="#introduction">Introduction</a></li>
+				<li class="nonempty-li"><a href="#contact">Contact</a></li>
+			</ul>
 
-	</nav>
+		</nav>
 
-	<a name="game"></a>
-	<div class="section-space"></div>
-
-	<!--game section-->
-	<section class="section-game">
-		<center>
+		<a name="game"></a>
+		<div class="section-space"></div>
+		
+		<!--game section-->
+		<section class="section-game">
+			<center>
 			<div class="game-super-container">
-				<div class="game-title-container">
-					<div class="title-logo-div"><img src="./img/logo_final.png"></div>
-					<div class="title-div">Fire Brick Life</div>
-				</div>
-				<div class="game-description"><span>Fire Brick Life</span> is a <div>game that enbales you to enjoy </div>defending against attacks from <div> the Chinese mythology monsters!</div></div>
-				<div class="game-right">
-					<div class="play-container">
-						<div class="monster-container"><img src="./img/ppl_FeiLian.png"></div>
+			<div class="game-title-container">
+				<div class="title-logo-div"><img src="./img/logo_final.png"></div>
+				<div class="title-div">Fire Brick Life</div>
+			</div>
+			<div class="game-description"><span>Fire Brick Life</span> is a <div>game that enbales you to enjoy </div>defending against attacks from <div> the Chinese mythology monsters!</div></div>
+			<div class="game-right">
+			<div class="play-container">
+				<div class="monster-container"><img src="./img/ppl_FeiLian.png"></div>
 
-						<div class="button-description-contianer">
-							<div class="button-description-contianer2">
-								<div class="button-description1"><span>Play as Guest: </span>Play the game without signing in</div>
-								<div><span>Sign in and Play: </span>Sign in with Google to save your game progress</div>
-								<div class="color-grey"></div>
-							</div>
-						</div>
-
-						<div class="button-container">
-							<form method="post" action="/Game.jsp">
-								<button type="submit" class="btn btn-success">
-									<span class="glyphicon glyphicon-user"></span>Play as Guest</button>
-							</form>
-
-
-							<button id="signinButton" type="button" class="btn btn-success">
-								<span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign in and Play</button>
-
-							<script>
-
-								$('#signinButton').click(function(){
-									auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
-								});
-							</script>
-
-
-
-
-						</div>
+				<div class="button-description-contianer">
+					<div class="button-description-contianer2">
+					<div class="button-description1"><span>Play as Guest: </span>Play the game without signing in</div>
+					<div><span>Sign in and Play: </span>Sign in with Google to save your game progress</div>
+					<div class="color-grey"></div>
 					</div>
 				</div>
 
+				<div class="button-container">
+					<form method="post" action="/LoginServlet">
+						<input name="id" value="Guest" hidden/>
+						<input name="name" value="Guest" hidden/>
+						<button type="submit" class="btn btn-success">
+							<span class="glyphicon glyphicon-user"></span>Play as Guest</button>
+					</form>
+
+
+						<button id="signinButton" type="button" class="btn btn-success">
+							<span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign in and Play</button>
+
+						<script>
+							$('#signinButton').click(function() {
+								auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+							});
+						</script>
+
+
+
+
+				</div>
 			</div>
-		</center>
+			</div>
 
-	</section>
+			</div>
+			</center>	
+			
+		</section>
 
 
-	<a name="introduction"></a>
-	<div class="section-space2"></div>
-	<!--introduction section-->
-	<section class="section-introduction">
+		<a name="introduction"></a>
+		<div class="section-space2"></div>
+		<!--introduction section-->
+		<section class="section-introduction">
 
-		<center>
+			<center>
 			<div class="section-name">Introduction</div>
 			<div class="story">The Chinese mythology monsters come out from the books! They are invading your Desktop. Kill them all before they disappear by building turret to shoot Game of Life particles.</div>
 			<div class="intro-subtitle">Five Boss Characters</div>
 			<ul class="monster-list">
 				<li class="mo ml">
 					<center>
-						<img src="./img/ppl_FeiLian.png">
-						<div>Fei Lian</div></center>
+					<img src="./img/ppl_FeiLian.png">
+					<div>Fei Lian</div></center>
 				</li>
 				<li class="mo mr">
 					<img src="./img/ppl_HongHaier.png">
@@ -138,13 +139,13 @@
 					<center><div>Kirin</div></center>
 				</li>
 			</ul>
-
+			
 			<div class="intro-subtitle2">Five Tower Elements</div>
 			<ul class="tower-list">
 				<li class="to tl">
 					<center>
-						<img src="./img/eye_tower.png">
-						<div>Eye Tower</div></center>
+					<img src="./img/eye_tower.png">
+					<div>Eye Tower</div></center>
 				</li>
 				<li class="to tr">
 					<img src="./img/fan_tower.png">
@@ -163,17 +164,17 @@
 					<center><div>Xueyou Tower</div></center>
 				</li>
 			</ul>
-		</center>
-		<div class="section-space"></div>
-		<div class="color-container-black"></div>
-	</section>
+			</center>
+			<div class="section-space"></div>
+			<div class="color-container-black"></div>
+		</section>
+		
+		
 
-
-
-	<a name="contact"></a>
-	<div class="section-space2"></div>
-	<!--contact section-->
-	<section class="section-contact">
+		<a name="contact"></a>
+		<div class="section-space2"></div>
+		<!--contact section-->
+		<section class="section-contact">
 		<center>
 			<div class="section-name">Contact</div>
 			<div class="contact-text">Fire Brick Life was developed by Team Fire Brick Life</div>
@@ -211,53 +212,28 @@
 				<a href="mailto:firebricklife@gmail.com">firebricklife@gmail.com</a>
 			</div>
 		</center>
-	</section>
-
-</div>
-
-
+		</section>
+		
+	</div>
 
 
 
-<!--footer-->
-<footer>
-	<center>
+
+
+	<!--footer-->
+	<footer>
+		<center>
 		<div class="copyright">© 2016 Fire Brick Life. All rights reserved</div>
-	</center>
-</footer>
+		</center>
+	</footer>
 
 
 
 
-<!--jQuery and Bootstrap scripts-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!--all the custom scripts-->
-<script src="./scripts/script-index.js"></script>
-<script>
-	function signInCallback(authResult) {
-		if (authResult['code']) {
-
-			// Hide the sign-in button now that the user is authorized, for example:
-//			$('#signinButton').attr('style', 'display: none');
-             var profile = auth2.currentUser.get().getBasicProfile();
-             var info = "id="+ profile.getId()+"&name="+profile.getName();
-			// Send the code to the server
-			$.ajax({
-				type: 'POST',
-				url: '/LoginServlet?'+info,
-				contentType: 'application/octet-stream; charset=utf-8',
-				success: function(result) {
-					window.location.replace("/LoginServlet?"+info);
-					// Handle or verify the server response.
-				},
-				processData: false,
-				data: authResult['code']
-			});
-		} else {
-			// There was an error.
-		}
-	}
-</script>
+	<!--jQuery and Bootstrap scripts-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--all the custom scripts-->
+	<script src="./scripts/script-index.js"></script>
 </body>
 </html>

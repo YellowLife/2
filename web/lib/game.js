@@ -19,7 +19,7 @@ var defaultMap;
 // stars array
 var stars = [];
 // set up all data from json file
-var dataFile = "./lib/gameDateSet.json";
+var dataFile = "./scripts/gameDateSet.json";
 // load balance array from json file
 var balanceArray = dataFile.Balance;
 // load monster array from json file
@@ -119,13 +119,13 @@ towerObj.prototype.update = function() {
           var nearestDistance = 10000;
           var aliveCounter = 0;
           for(var i=0; i<this.target.length; i++){
-          //alert('enter this');
-           if(this.target[i].alive===true) {
-               aliveCounter++;
-                var Distance = this.game.physics.arcade.distanceBetween(this.target[i].monster, this.tower);
+               //alert('enter this');
+               if(this.target[i].alive===true) {
+                    aliveCounter++;
+                    var Distance = this.game.physics.arcade.distanceBetween(this.target[i].monster, this.tower);
                     if (Distance < nearestDistance) {
-                    nearestDistance = Distance;
-                    nearestTarget = this.target[i];
+                         nearestDistance = Distance;
+                         nearestTarget = this.target[i];
                     }
                }
           }
@@ -386,12 +386,12 @@ function enemyReachDestination(somethong, monster){
      game.input.onDown.add(removeLogo2, this);
      game.state.start("LevelSelect");
 
-/*
-     game.paused = true;
-     game.input.onDown.add(removeLogo1, this);
-     game.state.start("LevelSelect");          }
-     //game.paused = false;
-     */
+     /*
+      game.paused = true;
+      game.input.onDown.add(removeLogo1, this);
+      game.state.start("LevelSelect");          }
+      //game.paused = false;
+      */
 
 }
 
@@ -414,7 +414,7 @@ function windBulletsHitEnemy (enemy, bullet) {
      bullet.kill();
      enemyArray[enemy.name].monster.body.velocity.y = 0;
      enemyArray[enemy.name].monster.body.velocity.x =0;
-    // console.log(enemyArray[enemy.name].monster.body.velocity.y);
+     // console.log(enemyArray[enemy.name].monster.body.velocity.y);
 }
 
 
@@ -510,9 +510,9 @@ function removeTowerTips () {
 }
 
 function removeLogo1 () {
-/***********************************add by lead designer*****************************************/
+     /***********************************add by lead designer*****************************************/
      hideSideBar();
-/***********************************add by lead designer*****************************************/
+     /***********************************add by lead designer*****************************************/
      game.input.onDown.remove(removeLogo1, this);
      winner.kill();
      game.paused = false;
@@ -526,9 +526,9 @@ function removeLogo1 () {
 }
 
 function removeLogo2 () {
-/***********************************add by lead designer*****************************************/
+     /***********************************add by lead designer*****************************************/
      hideSideBar();
-/***********************************add by lead designer*****************************************/
+     /***********************************add by lead designer*****************************************/
      game.input.onDown.remove(removeLogo2, this);
      lose.kill();
      game.paused = false;
@@ -593,11 +593,11 @@ function MapBaseListener(){
                money-=120;
           }
      }
-    
-    //******   add by Jun *****////
-    // this below is for customize
 
-         // 6 is start grid
+     //******   add by Jun *****////
+     // this below is for customize
+
+     // 6 is start grid
      else if (selectedTower === 6){
 
           this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'start'),'start');
@@ -614,7 +614,7 @@ function MapBaseListener(){
           defaultMap[this.param2] = 1;
      }
 
-    // 8 is end
+     // 8 is end
 
      else if (selectedTower === 8){
           this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.sprite(this.param1.getPosition()[0], this.param1.getPosition()[1],'home'),'grid');
@@ -629,8 +629,8 @@ function MapBaseListener(){
           home.body.immovable = false;
           defaultMap[this.param2] = 4;
      }
-    
-    //******   add by Jun *****////
+
+     //******   add by Jun *****////
      console.log(money);
 }
 
@@ -647,492 +647,492 @@ window.onload = function() {
 var gameScreen =  function (game){};
 var imageUrl = dataFile.image;
 gameScreen.prototype ={
-preload: function(){
-     game.load.image('background', 'assets/background.png');
-     game.load.image('ground', 'assets/platform.png');
-     game.load.image('star', 'assets/star.png');
+     preload: function(){
+          game.load.image('background', 'assets/background.png');
+          game.load.image('ground', 'assets/platform.png');
+          game.load.image('star', 'assets/star.png');
 
-     game.load.image('grid', 'assets/blank.png');
-     game.load.image('blank', 'assets/blank.png');
-     game.load.image('path', 'assets/path/pathnew2.png');
-     game.load.image('start', 'assets/path/start_stage.png');
+          game.load.image('grid', 'assets/blank.png');
+          game.load.image('blank', 'assets/blank.png');
+          game.load.image('path', 'assets/path/pathnew2.png');
+          game.load.image('start', 'assets/path/start_stage.png');
 
-     game.load.image('xueyoutower', 'assets/towers/xueyou_tower.png');
-     game.load.image('eyetower', 'assets/towers/eye_tower.png');
-     game.load.image('javatower', 'assets/towers/java_tower.png');
-     game.load.image('fantower', 'assets/towers/fan_tower.png');
-     game.load.image('geartower', 'assets/towers/gear_tower.png');
+          game.load.image('xueyoutower', 'assets/towers/xueyou_tower.png');
+          game.load.image('eyetower', 'assets/towers/eye_tower.png');
+          game.load.image('javatower', 'assets/towers/java_tower.png');
+          game.load.image('fantower', 'assets/towers/fan_tower.png');
+          game.load.image('geartower', 'assets/towers/gear_tower.png');
 
-     game.load.image('bullet228', 'assets/bullets/bullet228.png');
-     game.load.image('bullet74', 'assets/bullets/bullet74.png');
-     game.load.image('bullet277', 'assets/bullets/bullet277.png');
-     game.load.image('bullet224', 'assets/bullets/bullet224.png');
-     game.load.image('windbullet', 'assets/bullets/windbullet.png');
-
-
-     game.load.spritesheet('eyetowerButton', 'assets/buttons/eye_tower.png', 200, 100);
-     game.load.spritesheet('xueyoutowerButton', 'assets/buttons/xueyou_tower.png', 200, 100);
-     game.load.spritesheet('javatowerButton', 'assets/buttons/java_tower.png', 200, 100);
-     game.load.spritesheet('windtowerButton', 'assets/buttons/wind_tower.png', 200, 100);
-     game.load.spritesheet('geartowerButton', 'assets/buttons/gear_tower.png', 200, 100);
-
-     game.load.spritesheet('home', 'assets/path/home.png', 400, 400);
-
-     game.load.spritesheet('kaboom', 'assets/explosion.png', 64, 64, 23);
-     game.load.spritesheet('healing', 'assets/bullets/healing_ani.png', 900, 900, 6);
-     game.load.image('logo', 'assets/menu_button.png');
-     /*edit by liwen fan*/
-     game.load.image('mons_end','assets/mons_end.png');
-     game.load.image('mons_start','assets/mons_start.png');
-     game.load.image('place_tower','assets/place_tower.png');
-     game.load.image('select_tower','assets/select_tower.png');
-     /*edit by liwen fan*/
-     game.load.image('high_way','assets/basic_map.png');
-     game.load.spritesheet('feiLian', 'assets/monsters/feiLian.png',600,600,7);
-     game.load.spritesheet('huoDou', 'assets/monsters/dou_ani.png',599,599,7);
-     game.load.spritesheet('hong', 'assets/monsters/hong_ani.png',599,599,7);
-     game.load.spritesheet('qiLin', 'assets/monsters/qilin_ani.png',599,599,7);
-     game.load.spritesheet('tie', 'assets/monsters/tie_ani.png',599,599,7);
-     game.load.spritesheet('eye', 'assets/monsters/mob_mov_2.png', 300, 300, 5);
-     game.load.spritesheet('bull','assets/bullets/BULL.png',70,70,4);
-     game.load.image('victory','assets/victory.png');
-     game.load.image('defeat','assets/Defeat.png');
+          game.load.image('bullet228', 'assets/bullets/bullet228.png');
+          game.load.image('bullet74', 'assets/bullets/bullet74.png');
+          game.load.image('bullet277', 'assets/bullets/bullet277.png');
+          game.load.image('bullet224', 'assets/bullets/bullet224.png');
+          game.load.image('windbullet', 'assets/bullets/windbullet.png');
 
 
-},
+          game.load.spritesheet('eyetowerButton', 'assets/buttons/eye_tower.png', 200, 100);
+          game.load.spritesheet('xueyoutowerButton', 'assets/buttons/xueyou_tower.png', 200, 100);
+          game.load.spritesheet('javatowerButton', 'assets/buttons/java_tower.png', 200, 100);
+          game.load.spritesheet('windtowerButton', 'assets/buttons/wind_tower.png', 200, 100);
+          game.load.spritesheet('geartowerButton', 'assets/buttons/gear_tower.png', 200, 100);
+
+          game.load.spritesheet('home', 'assets/path/home.png', 400, 400);
+
+          game.load.spritesheet('kaboom', 'assets/explosion.png', 64, 64, 23);
+          game.load.spritesheet('healing', 'assets/bullets/healing_ani.png', 900, 900, 6);
+          game.load.image('logo', 'assets/menu_button.png');
+          /*edit by liwen fan*/
+          game.load.image('mons_end','assets/mons_end.png');
+          game.load.image('mons_start','assets/mons_start.png');
+          game.load.image('place_tower','assets/place_tower.png');
+          game.load.image('select_tower','assets/select_tower.png');
+          /*edit by liwen fan*/
+          game.load.image('high_way','assets/basic_map.png');
+          game.load.spritesheet('feiLian', 'assets/monsters/feiLian.png',600,600,7);
+          game.load.spritesheet('huoDou', 'assets/monsters/dou_ani.png',599,599,7);
+          game.load.spritesheet('hong', 'assets/monsters/hong_ani.png',599,599,7);
+          game.load.spritesheet('qiLin', 'assets/monsters/qilin_ani.png',599,599,7);
+          game.load.spritesheet('tie', 'assets/monsters/tie_ani.png',599,599,7);
+          game.load.spritesheet('eye', 'assets/monsters/mob_mov_2.png', 300, 300, 5);
+          game.load.spritesheet('bull','assets/bullets/BULL.png',70,70,4);
+          game.load.image('victory','assets/victory.png');
+          game.load.image('defeat','assets/Defeat.png');
+
+
+     },
 
 
 
 //var rightBound;
 
-create: function() {
+     create: function() {
 
-     monsterLoadArray.reverse();
+          monsterLoadArray.reverse();
 
 
-     //  We're going to be using physics, so enable the Arcade Physics system
-     game.physics.startSystem(Phaser.Physics.ARCADE);
+          //  We're going to be using physics, so enable the Arcade Physics system
+          game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
 
 
-     //  A simple background for our game
-     var bg = game.add.sprite(0, 0, 'background');
-     bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
-     var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
-     boardBg.scale.setTo(size/20*16/1000,size/20*16/1000);
+          //  A simple background for our game
+          var bg = game.add.sprite(0, 0, 'background');
+          bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
+          var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
+          boardBg.scale.setTo(size/20*16/1000,size/20*16/1000);
 
 
 
-     var k = 0;
-     var i = 0;
-     var j = 0;
+          var k = 0;
+          var i = 0;
+          var j = 0;
 
 
 
 
-     for(i=size/20*2;i<size/20*17;i=i+(size/10)){
-          for(j=size/20*2;j<size/20*17;j=j+(size/10)) {
-               if(gameIndexArray[k] ===0) {
+          for(i=size/20*2;i<size/20*17;i=i+(size/10)){
+               for(j=size/20*2;j<size/20*17;j=j+(size/10)) {
+                    if(gameIndexArray[k] ===0) {
 
-                    mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'grid'),'grid');
-                    mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
-                    mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-                    mapBaseArray[k].getImage().inputEnabled = true;
-                    mapBaseArray[k].getImage().events.onInputDown.add(MapBaseListener, {param1: mapBaseArray[k] , param2:k});
-                    //mapBaseArray[k]..events.onInputDown.add(MapBaseListener, {param1: mapBaseArray[k]});
-               }else if(gameIndexArray[k]===1){
+                         mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'grid'),'grid');
+                         mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
+                         mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
+                         mapBaseArray[k].getImage().inputEnabled = true;
+                         mapBaseArray[k].getImage().events.onInputDown.add(MapBaseListener, {param1: mapBaseArray[k] , param2:k});
+                         //mapBaseArray[k]..events.onInputDown.add(MapBaseListener, {param1: mapBaseArray[k]});
+                    }else if(gameIndexArray[k]===1){
 
-                    mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'path'),'path');
-                    mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
-                    mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
+                         mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'path'),'path');
+                         mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
+                         mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
 
 
-               }else if(gameIndexArray[k]===5){
+                    }else if(gameIndexArray[k]===5){
 
-                    mons_start_position_x = j;
-                    mons_start_position_y = i;
-                    mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'start'),'start');
-                    mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
-                    mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
+                         mons_start_position_x = j;
+                         mons_start_position_y = i;
+                         mapBaseArray[k] = new mapBase(j,i,game.add.image(j,i,'start'),'start');
+                         mapBaseArray[k].getImage().scale.setTo(size/10/100,size/10/100);
+                         mapBaseArray[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
 
 
-               }else if(gameIndexArray[k]===4){
-                    //alert("ture7");
+                    }else if(gameIndexArray[k]===4){
+                         //alert("ture7");
 
-                    mons_end_position_x = j;
-                    mons_end_position_y = i;
+                         mons_end_position_x = j;
+                         mons_end_position_y = i;
 
-                    mapBaseArray[k] = new mapBase(j,i,game.add.sprite(j,i,'home'),'grid');
-                    mapBaseArray[k].getImage().frame = 1;
-                    mapBaseArray[k].getImage().scale.setTo(size/10/400,size/10/400);
-                    mapBaseArray[k].mapBaseBg.scale.setTo(size/10/400,size/10/400);
-                    mapBaseArray[k].getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
-                    mapBaseArray[k].getImage().animations.play('homeAnimation');
-                    home = mapBaseArray[k].getImage();
+                         mapBaseArray[k] = new mapBase(j,i,game.add.sprite(j,i,'home'),'grid');
+                         mapBaseArray[k].getImage().frame = 1;
+                         mapBaseArray[k].getImage().scale.setTo(size/10/400,size/10/400);
+                         mapBaseArray[k].mapBaseBg.scale.setTo(size/10/400,size/10/400);
+                         mapBaseArray[k].getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
+                         mapBaseArray[k].getImage().animations.play('homeAnimation');
+                         home = mapBaseArray[k].getImage();
 
-                    game.physics.enable(home, Phaser.Physics.ARCADE);
-                    home.body.immovable = false;
+                         game.physics.enable(home, Phaser.Physics.ARCADE);
+                         home.body.immovable = false;
 
 
-               }
-               k++;
-          }
-     }
-
-
-
-
-     gameboradBounds = game.add.group();
-     gameboradBounds.enableBody = true;
-
-
-     rightBound = gameboradBounds.create(size/20*18, size/20*2, 'ground');
-     rightBound.scale.setTo(32/400, size/20*16/32);
-
-     rightBound.body.immovable = true;
-
-
-     var leftBound = gameboradBounds.create(size/20*2-32, size/20*2, 'ground');
-     leftBound.scale.setTo(32/400, size/20*16/32);
-
-     leftBound.body.immovable = true;
-
-     var upperBound = gameboradBounds.create(size/20*2-32,size/20*2-32, 'ground');
-     upperBound.scale.setTo((size/20*16+64)/400, 1);
-     upperBound.body.immovable = true;
-
-
-     lowerBound = gameboradBounds.create(size/20*2-32,size/20*18, 'ground');
-     lowerBound.scale.setTo((size/20*16+64)/400, 1);
-     lowerBound.body.immovable = true;
-
-
-/*
-     towerButton1 = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:1}, 0, 0, 0);
-
-     towerButton2 = game.add.button(size/20*19 , size/3+150, 'xueyoutowerButton', actionOnClick, {param1:2}, 0, 0, 0);
-
-     towerButton3 = game.add.button(size/20*19, size/3+300, 'javatowerButton', actionOnClick, {param1:3}, 0, 0, 0);
-
-     towerButton4 = game.add.button(window.innerWidth - 250,size/2+150, 'windtowerButton', actionOnClick, {param1:4}, 0, 0, 0);
-
-     towerButton5 = game.add.button(size/20*19, size/2+300, 'geartowerButton', actionOnClick, {param1:5}, 0, 0, 0);
-
-     towerButton1.scale.setTo(1,1);
-     towerButton2.scale.setTo(1,1);
-     towerButton3.scale.setTo(1,1);
-     towerButton4.scale.setTo(1,1);
-     towerButton5.scale.setTo(1,1);
-     */
-
-     timer = game.time.create(false);
-
-     timer.start();
-
-     //scoreText = game.add.text(size/20*19, size/20*5, 'score: 0', { fontSize: '50px', fill: '#000' });
-
-     timerText = game.add.text(size/20*19, size/20*5, 'timer: 0', { fontSize: '50px', fill: '#000' });
-
-
-
-
-     healingBullets = game.add.group();
-     healingBullets.enableBody = true;
-     healingBullets.physicsBodyType = Phaser.Physics.ARCADE;
-     healingBullets.createMultiple(1000, 'blank');
-     healingBullets.setAll('scale.x',size/60000);
-     healingBullets.setAll('scale.y',size/60000);
-     healingBullets.setAll('anchor.x', 0.5);
-     healingBullets.setAll('anchor.y', 0.5);
-
-
-     windBullets = game.add.group();
-     windBullets.enableBody = true;
-     windBullets.physicsBodyType = Phaser.Physics.ARCADE;
-     windBullets.createMultiple(1000, 'windbullet');
-     windBullets.setAll('scale.x',size/160/10);
-     windBullets.setAll('scale.y',size/160/10);
-     windBullets.setAll('anchor.x', 0.5);
-     windBullets.setAll('anchor.y', 0.5);
-     //windBullets.setAll('angle', 180);
-
-
-
-
-
-     enemyBullets = game.add.group();
-     enemyBullets.enableBody = true;
-     enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
-     enemyBullets.createMultiple(1000, 'bull');
-     enemyBullets.setAll('scale.x',1/3);
-     enemyBullets.setAll('scale.y',1/3);
-     enemyBullets.setAll('anchor.x', 0.5);
-     enemyBullets.setAll('anchor.y', 0.5);
-     enemyBullets.callAll('animations.add', 'animations', 'fire', [0,1,2,3], 5, true);enemyBullets.callAll('play', null, 'fire');
-
-
-     Bullets277 = game.add.group();
-     Bullets277.enableBody = true;
-     Bullets277.physicsBodyType = Phaser.Physics.ARCADE;
-     Bullets277.createMultiple(1000, 'bullet277');
-     Bullets277.setAll('scale.x',2);
-     Bullets277.setAll('scale.y',2);
-     Bullets277.setAll('anchor.x', 0.5);
-     Bullets277.setAll('anchor.y', 0.5);
-
-
-     Bullets74 = game.add.group();
-     Bullets74.enableBody = true;
-     Bullets74.physicsBodyType = Phaser.Physics.ARCADE;
-     Bullets74.createMultiple(1000, 'bullet74');
-     Bullets74.setAll('scale.x',2);
-     Bullets74.setAll('scale.y',2);
-     Bullets74.setAll('anchor.x', 0.5);
-     Bullets74.setAll('anchor.y', 0.5);
-
-
-     Bullets224 = game.add.group();
-     Bullets224.enableBody = true;
-     Bullets224.physicsBodyType = Phaser.Physics.ARCADE;
-     Bullets224.createMultiple(1000, 'bullet224');
-     Bullets224.setAll('scale.x',2);
-     Bullets224.setAll('scale.y',2);
-     Bullets224.setAll('anchor.x', 0.5);
-     Bullets224.setAll('anchor.y', 0.5);
-
-
-
-
-     explosions = game.add.group();
-
-     for (var i = 0; i < 1000; i++)
-     {
-          var explosionAnimation = explosions.create(0, 0, 'kaboom', [0], false);
-          explosionAnimation.anchor.setTo(0.5, 0.5);
-          explosionAnimation.animations.add('kaboom');
-     }
-
-
-     healingAnimationGroup = game.add.group();
-     healingAnimationGroup.enableBody = true;
-     healingAnimationGroup.physicsBodyType = Phaser.Physics.ARCADE;
-
-     for (var i = 0; i < 1000; i++)
-     {
-          var healingAnimation = healingAnimationGroup.create(0, 0, 'healing', [0], false);
-          healingAnimation.anchor.setTo(0.5, 0.5);
-          healingAnimation.scale.setTo(size/10/300,size/10/300);
-          healingAnimation.animations.add('healing');
-     }
-
-
-
-     /*Edit by Liwen Fan*/
-     //var mons_start = game.add.sprite(window.innerHeight/2,window.innerHeight/2,'mons_start');
-    // mons_start.anchor.setTo(0.5,0.5);
-    // mons_start.scale.setTo(0.5,0.5);
-
-
-
-     /*Edit by Liwen Fan*/
-
-
-},
-
-update: function() {
-     /*Edit by Liwen Fan*/
-if(enteredTipsPause === false) {
-     mons_start_tip = game.add.sprite(mons_start_position_x+size/10, mons_start_position_y+size/20, 'mons_start');
-     mons_start_tip.anchor.setTo(0, 0.5);
-     mons_start_tip.scale.setTo(size*6/10/600, size*2/10/200);
-
-
-
-     mons_end_tip = game.add.sprite(mons_end_position_x, mons_end_position_y+size/20, 'mons_end');
-     mons_end_tip.anchor.setTo(1, 0.5);
-     mons_end_tip.scale.setTo(size*6/10/600, size*2/10/200);
-
-
-     game.input.onDown.add(removeLogo, this);
-     game.paused = true;
-     //enteredTipsPause = true;
-}
-
-if(enteredTowerTipsPause === false && enteredTipsPause === true){
-     tower_select_tip = game.add.sprite(window.innerWidth-370,window.innerHeight/2,'select_tower');
-     tower_select_tip.anchor.setTo(1, 0.5);
-     tower_select_tip.scale.setTo(size*6/10/600, size*2/10/200);
-
-     tower_place_tip = game.add.sprite(size/2,size/4,'place_tower');
-     tower_place_tip.anchor.setTo(0, 0.5);
-     tower_place_tip.scale.setTo(size*6/10/600, size*2/10/200);
-
-     game.input.onDown.add(removeTowerTips, this);
-     game.paused = true;
-     enteredTowerTipsPause = true;
-
-
-
-}
-
-     /*Edit by Liwen Fan*/
-
-     var initialPositionX = 0;
-     var initialPositionY = 0;
-
-
-     var current_time = game.time.time;
-
-
-     var countdownnumber = -(current_time - last_spawn_time - time_til_spawn);
-     timer = Math.floor(countdownnumber/1000);
-     if(timer<=0 ) {
-          timerText.destroy();
-          if(timerKilled === false) {
-               scoreText = game.add.text(size / 20 * 19, size / 20 * 5, '', {fontSize: '50px', fill: '#000'});
-
-               timerKilled = true;
-          }
-
-     }else{
-
-          timerText.text = 'enemies coming in : ' + timer;
-     }
-
-     if(current_time - last_spawn_time > time_til_spawn) {
-
-          time_til_spawn = 2000;
-          last_spawn_time = current_time;
-          //spawnCustomer();
-          if (monsterLoadArray.length != 0) {
-
-               var popedValue = monsterLoadArray.pop();
-               initialPositionX = size/20*2;
-               initialPositionY = size/20*2;
-
-
-
-               if (popedValue === 0) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'feiLian', 5000 , 50 , 20, 1);
-                    //initialPositionX += 20;
-                    //initialPositionY += 20;
-               } else if (popedValue === 1) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'hong', 5000 , 30 , 100, 1);
-                    //initialPositionX += 20;
-                    //initialPositionY += 20;
-               } else if (popedValue === 2) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'huoDou', 5000 , 100 , 20, 1);
-                    //initialPositionX += 20;
-                    //initialPositionY += 20;
-               } else if (popedValue === 3) {
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'qiLin', 5000 , 30 , 100, 1);
-                    //initialPositionX += 20;
-                    //initialPositionY += 20;
-               } else if (popedValue === 4) {
-                    //alert("reached"+enemyArrayIndex);
-                    enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'eye', 5000 , 10 , 50, 0);
-                    //alert("reached1"+enemyArrayIndex);
-                    //initialPositionX += 20;
-                    //initialPositionY += 20;
-               }
-               enemyArrayIndex++;
-
-          }
-     }
-
-
-
-     //make diffenet types of bullets overlap event
-     game.physics.arcade.overlap(gameboradBounds, enemyBullets, bulletHitWall, null ,this);
-     game.physics.arcade.overlap(gameboradBounds, Bullets277, bulletHitWall, null ,this);
-
-     //let each enemy has overlap property with bullets
-     for(var i=0; i<enemyArray.length ; i++) {
-          game.physics.arcade.overlap(Bullets277, enemyArray[i].monster, bullet227HitEnemy, null, this);
-          game.physics.arcade.overlap(Bullets74, enemyArray[i].monster, bullet74HitEnemy, null, this);
-          game.physics.arcade.overlap(Bullets224, enemyArray[i].monster, bullet224HitEnemy, null, this);
-          game.physics.arcade.overlap(windBullets, enemyArray[i].monster, windBulletsHitEnemy, null, this);
-          game.physics.arcade.collide(enemyArray[i].monster, lowerBound);
-          game.physics.arcade.overlap(enemyArray[i].monster, home,enemyReachDestination,null,this);
-     }
-
-     for(var i=0; i<mapBaseArray.length ; i++) {
-          if(mapBaseArray[i].isTowerSet === true){
-               game.physics.arcade.overlap(enemyBullets,mapBaseArray[i].getImage().tower,enemyBulletsHitTower,null,this);
-               game.physics.arcade.overlap(healingBullets,mapBaseArray[i].getImage().tower,healingBulletsHitTower,null,this);
-          }
-          //game.physics.arcade.overlap(enemyBullets, m)
-
-     }
-
-
-     for(var i=0 ; i<enemyArray.length ; i++){
-          for(var j=0 ; j<64; j++){
-               if(gameIndexArray[j]===0){
-                    game.physics.arcade.collide(enemyArray[i].monster, mapBaseArray[j].mapBaseBg);
+                    }
+                    k++;
                }
           }
+
+
+
+
+          gameboradBounds = game.add.group();
+          gameboradBounds.enableBody = true;
+
+
+          rightBound = gameboradBounds.create(size/20*18, size/20*2, 'ground');
+          rightBound.scale.setTo(32/400, size/20*16/32);
+
+          rightBound.body.immovable = true;
+
+
+          var leftBound = gameboradBounds.create(size/20*2-32, size/20*2, 'ground');
+          leftBound.scale.setTo(32/400, size/20*16/32);
+
+          leftBound.body.immovable = true;
+
+          var upperBound = gameboradBounds.create(size/20*2-32,size/20*2-32, 'ground');
+          upperBound.scale.setTo((size/20*16+64)/400, 1);
+          upperBound.body.immovable = true;
+
+
+          lowerBound = gameboradBounds.create(size/20*2-32,size/20*18, 'ground');
+          lowerBound.scale.setTo((size/20*16+64)/400, 1);
+          lowerBound.body.immovable = true;
+
 
           /*
-           if(enemyArray[i].moveTo != null ) {
-           alert("enter the moveTo != null");
+           towerButton1 = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:1}, 0, 0, 0);
 
-           game.physics.arcade.overlap( enemyArray[i].moveTo,enemyArray[i].monster,  monsterReach , null, this);
+           towerButton2 = game.add.button(size/20*19 , size/3+150, 'xueyoutowerButton', actionOnClick, {param1:2}, 0, 0, 0);
 
-           }
+           towerButton3 = game.add.button(size/20*19, size/3+300, 'javatowerButton', actionOnClick, {param1:3}, 0, 0, 0);
+
+           towerButton4 = game.add.button(window.innerWidth - 250,size/2+150, 'windtowerButton', actionOnClick, {param1:4}, 0, 0, 0);
+
+           towerButton5 = game.add.button(size/20*19, size/2+300, 'geartowerButton', actionOnClick, {param1:5}, 0, 0, 0);
+
+           towerButton1.scale.setTo(1,1);
+           towerButton2.scale.setTo(1,1);
+           towerButton3.scale.setTo(1,1);
+           towerButton4.scale.setTo(1,1);
+           towerButton5.scale.setTo(1,1);
            */
 
-     }
+          timer = game.time.create(false);
+
+          timer.start();
+
+          //scoreText = game.add.text(size/20*19, size/20*5, 'score: 0', { fontSize: '50px', fill: '#000' });
+
+          timerText = game.add.text(size/20*19, size/20*5, 'timer: 0', { fontSize: '50px', fill: '#000' });
 
 
-     //update all towerObject on the tower base
-     for(var i = 0; i < mapBaseArray.length;i++){
-          if(mapBaseArray[i].getImage().alive === true) {
-               mapBaseArray[i].getImage().update();
+
+
+          healingBullets = game.add.group();
+          healingBullets.enableBody = true;
+          healingBullets.physicsBodyType = Phaser.Physics.ARCADE;
+          healingBullets.createMultiple(1000, 'blank');
+          healingBullets.setAll('scale.x',size/60000);
+          healingBullets.setAll('scale.y',size/60000);
+          healingBullets.setAll('anchor.x', 0.5);
+          healingBullets.setAll('anchor.y', 0.5);
+
+
+          windBullets = game.add.group();
+          windBullets.enableBody = true;
+          windBullets.physicsBodyType = Phaser.Physics.ARCADE;
+          windBullets.createMultiple(1000, 'windbullet');
+          windBullets.setAll('scale.x',size/160/10);
+          windBullets.setAll('scale.y',size/160/10);
+          windBullets.setAll('anchor.x', 0.5);
+          windBullets.setAll('anchor.y', 0.5);
+          //windBullets.setAll('angle', 180);
+
+
+
+
+
+          enemyBullets = game.add.group();
+          enemyBullets.enableBody = true;
+          enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
+          enemyBullets.createMultiple(1000, 'bull');
+          enemyBullets.setAll('scale.x',1/3);
+          enemyBullets.setAll('scale.y',1/3);
+          enemyBullets.setAll('anchor.x', 0.5);
+          enemyBullets.setAll('anchor.y', 0.5);
+          enemyBullets.callAll('animations.add', 'animations', 'fire', [0,1,2,3], 5, true);enemyBullets.callAll('play', null, 'fire');
+
+
+          Bullets277 = game.add.group();
+          Bullets277.enableBody = true;
+          Bullets277.physicsBodyType = Phaser.Physics.ARCADE;
+          Bullets277.createMultiple(1000, 'bullet277');
+          Bullets277.setAll('scale.x',2);
+          Bullets277.setAll('scale.y',2);
+          Bullets277.setAll('anchor.x', 0.5);
+          Bullets277.setAll('anchor.y', 0.5);
+
+
+          Bullets74 = game.add.group();
+          Bullets74.enableBody = true;
+          Bullets74.physicsBodyType = Phaser.Physics.ARCADE;
+          Bullets74.createMultiple(1000, 'bullet74');
+          Bullets74.setAll('scale.x',2);
+          Bullets74.setAll('scale.y',2);
+          Bullets74.setAll('anchor.x', 0.5);
+          Bullets74.setAll('anchor.y', 0.5);
+
+
+          Bullets224 = game.add.group();
+          Bullets224.enableBody = true;
+          Bullets224.physicsBodyType = Phaser.Physics.ARCADE;
+          Bullets224.createMultiple(1000, 'bullet224');
+          Bullets224.setAll('scale.x',2);
+          Bullets224.setAll('scale.y',2);
+          Bullets224.setAll('anchor.x', 0.5);
+          Bullets224.setAll('anchor.y', 0.5);
+
+
+
+
+          explosions = game.add.group();
+
+          for (var i = 0; i < 1000; i++)
+          {
+               var explosionAnimation = explosions.create(0, 0, 'kaboom', [0], false);
+               explosionAnimation.anchor.setTo(0.5, 0.5);
+               explosionAnimation.animations.add('kaboom');
           }
-     }
 
-     //update all alive enemies
 
-     var aliveenemy = 0;
-     for(var i = 0;i<enemyArray.length;i++) {
-          if (enemyArray[i].alive === true) {
-               if(enemyArray[i].moveTo === null) {
-                    enemyArray[i].moveTo = mapBaseArray[3].mapBaseBg;
+          healingAnimationGroup = game.add.group();
+          healingAnimationGroup.enableBody = true;
+          healingAnimationGroup.physicsBodyType = Phaser.Physics.ARCADE;
 
-               }
-               enemyArray[i].update();
-               aliveenemy++;
-
+          for (var i = 0; i < 1000; i++)
+          {
+               var healingAnimation = healingAnimationGroup.create(0, 0, 'healing', [0], false);
+               healingAnimation.anchor.setTo(0.5, 0.5);
+               healingAnimation.scale.setTo(size/10/300,size/10/300);
+               healingAnimation.animations.add('healing');
           }
-     }
 
 
 
-     if(monsterLoadArray.length===0){
-          if(aliveenemy===0){
-               winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
-               winner.anchor.setTo(0.5,0.5);
+          /*Edit by Liwen Fan*/
+          //var mons_start = game.add.sprite(window.innerHeight/2,window.innerHeight/2,'mons_start');
+          // mons_start.anchor.setTo(0.5,0.5);
+          // mons_start.scale.setTo(0.5,0.5);
+
+
+
+          /*Edit by Liwen Fan*/
+
+
+     },
+
+     update: function() {
+          /*Edit by Liwen Fan*/
+          if(enteredTipsPause === false) {
+               mons_start_tip = game.add.sprite(mons_start_position_x+size/10, mons_start_position_y+size/20, 'mons_start');
+               mons_start_tip.anchor.setTo(0, 0.5);
+               mons_start_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+
+
+               mons_end_tip = game.add.sprite(mons_end_position_x, mons_end_position_y+size/20, 'mons_end');
+               mons_end_tip.anchor.setTo(1, 0.5);
+               mons_end_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+
+               game.input.onDown.add(removeLogo, this);
                game.paused = true;
-               game.input.onDown.add(removeLogo1, this);
-               stars[level] = Math.max(stars[level], 1);
-               if(stars[level + 1] != undefined && stars[level + 1] == -1){
-                    stars[level + 1] = 0;
+               //enteredTipsPause = true;
+          }
+
+          if(enteredTowerTipsPause === false && enteredTipsPause === true){
+               tower_select_tip = game.add.sprite(window.innerWidth-370,window.innerHeight/2,'select_tower');
+               tower_select_tip.anchor.setTo(1, 0.5);
+               tower_select_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+               tower_place_tip = game.add.sprite(size/2,size/4,'place_tower');
+               tower_place_tip.anchor.setTo(0, 0.5);
+               tower_place_tip.scale.setTo(size*6/10/600, size*2/10/200);
+
+               game.input.onDown.add(removeTowerTips, this);
+               game.paused = true;
+               enteredTowerTipsPause = true;
+
+
+
+          }
+
+          /*Edit by Liwen Fan*/
+
+          var initialPositionX = 0;
+          var initialPositionY = 0;
+
+
+          var current_time = game.time.time;
+
+
+          var countdownnumber = -(current_time - last_spawn_time - time_til_spawn);
+          timer = Math.floor(countdownnumber/1000);
+          if(timer<=0 ) {
+               timerText.destroy();
+               if(timerKilled === false) {
+                    scoreText = game.add.text(size / 20 * 19, size / 20 * 5, '', {fontSize: '50px', fill: '#000'});
+
+                    timerKilled = true;
                }
-               localStorage.setItem(localStorageName, stars.toString());
-               game.state.start("LevelSelect");
-                        }
+
+          }else{
+
+               timerText.text = 'enemies coming in : ' + timer;
+          }
+
+          if(current_time - last_spawn_time > time_til_spawn) {
+
+               time_til_spawn = 2000;
+               last_spawn_time = current_time;
+               //spawnCustomer();
+               if (monsterLoadArray.length != 0) {
+
+                    var popedValue = monsterLoadArray.pop();
+                    initialPositionX = size/20*2;
+                    initialPositionY = size/20*2;
+
+
+
+                    if (popedValue === 0) {
+                         enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'feiLian', 5000 , 50 , 20, 1);
+                         //initialPositionX += 20;
+                         //initialPositionY += 20;
+                    } else if (popedValue === 1) {
+                         enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'hong', 5000 , 30 , 100, 1);
+                         //initialPositionX += 20;
+                         //initialPositionY += 20;
+                    } else if (popedValue === 2) {
+                         enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'huoDou', 5000 , 100 , 20, 1);
+                         //initialPositionX += 20;
+                         //initialPositionY += 20;
+                    } else if (popedValue === 3) {
+                         enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'qiLin', 5000 , 30 , 100, 1);
+                         //initialPositionX += 20;
+                         //initialPositionY += 20;
+                    } else if (popedValue === 4) {
+                         //alert("reached"+enemyArrayIndex);
+                         enemyArray[enemyArrayIndex] = new eliteMonster(enemyArrayIndex, game, enemyBullets, mons_start_position_x+size/20, mons_start_position_y+size/20, home, 'eye', 5000 , 10 , 50, 0);
+                         //alert("reached1"+enemyArrayIndex);
+                         //initialPositionX += 20;
+                         //initialPositionY += 20;
+                    }
+                    enemyArrayIndex++;
+
+               }
+          }
+
+
+
+          //make diffenet types of bullets overlap event
+          game.physics.arcade.overlap(gameboradBounds, enemyBullets, bulletHitWall, null ,this);
+          game.physics.arcade.overlap(gameboradBounds, Bullets277, bulletHitWall, null ,this);
+
+          //let each enemy has overlap property with bullets
+          for(var i=0; i<enemyArray.length ; i++) {
+               game.physics.arcade.overlap(Bullets277, enemyArray[i].monster, bullet227HitEnemy, null, this);
+               game.physics.arcade.overlap(Bullets74, enemyArray[i].monster, bullet74HitEnemy, null, this);
+               game.physics.arcade.overlap(Bullets224, enemyArray[i].monster, bullet224HitEnemy, null, this);
+               game.physics.arcade.overlap(windBullets, enemyArray[i].monster, windBulletsHitEnemy, null, this);
+               game.physics.arcade.collide(enemyArray[i].monster, lowerBound);
+               game.physics.arcade.overlap(enemyArray[i].monster, home,enemyReachDestination,null,this);
+          }
+
+          for(var i=0; i<mapBaseArray.length ; i++) {
+               if(mapBaseArray[i].isTowerSet === true){
+                    game.physics.arcade.overlap(enemyBullets,mapBaseArray[i].getImage().tower,enemyBulletsHitTower,null,this);
+                    game.physics.arcade.overlap(healingBullets,mapBaseArray[i].getImage().tower,healingBulletsHitTower,null,this);
+               }
+               //game.physics.arcade.overlap(enemyBullets, m)
+
+          }
+
+
+          for(var i=0 ; i<enemyArray.length ; i++){
+               for(var j=0 ; j<64; j++){
+                    if(gameIndexArray[j]===0){
+                         game.physics.arcade.collide(enemyArray[i].monster, mapBaseArray[j].mapBaseBg);
+                    }
+               }
+
+               /*
+                if(enemyArray[i].moveTo != null ) {
+                alert("enter the moveTo != null");
+
+                game.physics.arcade.overlap( enemyArray[i].moveTo,enemyArray[i].monster,  monsterReach , null, this);
+
+                }
+                */
+
+          }
+
+
+          //update all towerObject on the tower base
+          for(var i = 0; i < mapBaseArray.length;i++){
+               if(mapBaseArray[i].getImage().alive === true) {
+                    mapBaseArray[i].getImage().update();
+               }
+          }
+
+          //update all alive enemies
+
+          var aliveenemy = 0;
+          for(var i = 0;i<enemyArray.length;i++) {
+               if (enemyArray[i].alive === true) {
+                    if(enemyArray[i].moveTo === null) {
+                         enemyArray[i].moveTo = mapBaseArray[3].mapBaseBg;
+
+                    }
+                    enemyArray[i].update();
+                    aliveenemy++;
+
+               }
+          }
+
+
+
+          if(monsterLoadArray.length===0){
+               if(aliveenemy===0){
+                    winner = game.add.sprite(window.innerWidth/2,window.innerHeight/2, 'victory')
+                    winner.anchor.setTo(0.5,0.5);
+                    game.paused = true;
+                    game.input.onDown.add(removeLogo1, this);
+                    stars[level] = Math.max(stars[level], 1);
+                    if(stars[level + 1] != undefined && stars[level + 1] == -1){
+                         stars[level + 1] = 0;
+                    }
+                    localStorage.setItem(localStorageName, stars.toString());
+                    game.state.start("LevelSelect");
+               }
+          }
+
+          monsterRemaining = monsterLoadArray.length+aliveenemy;
+          updateRemainingMonstersText(monsterRemaining);
+
+          updateMoneyText(money);
+
+          console.log(monsterRemaining);
+
      }
-
-     monsterRemaining = monsterLoadArray.length+aliveenemy;
-     updateRemainingMonstersText(monsterRemaining);
-
-     updateMoneyText(money);
-
-     console.log(monsterRemaining);
-
-}
 
 
 }
@@ -1147,29 +1147,29 @@ playGame.prototype = {
           // transparent background used to scroll
           game.load.image("transp", "img/transp.png");
           game.load.image("background" ,"img/background.png" );
-
           game.load.image('menu', 'img/popup_menu_new.png', 600, 700);
+          game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
 
           //*****************************data set*******************************************
           var levellocal = document.getElementById("level").getAttribute("value");
           // if not guest player
-               if(levellocal != -1) {
-                    function getLevelString() {
-                         var levellocal = document.getElementById("level").getAttribute("value");
-                         var stars = "";
-                         for (var i = 1; i < levellocal; i++) {
-                              stars = stars + "1,";
-                         }
-                         stars = stars + "0,";
-                         for (var i = levellocal; i < 10; i++) {
-                              stars = stars + "-1,";
-                         }
-                         var starLevel = stars.substr(0, stars.length - 1);
-                         return starLevel;
+          if(levellocal != -1) {
+               function getLevelString() {
+                    var levellocal = document.getElementById("level").getAttribute("value");
+                    var stars = "";
+                    for (var i = 1; i < levellocal; i++) {
+                         stars = stars + "1,";
                     }
+                    stars = stars + "0,";
+                    for (var i = levellocal; i < 10; i++) {
+                         stars = stars + "-1,";
+                    }
+                    var starLevel = stars.substr(0, stars.length - 1);
+                    return starLevel;
+               }
 
-                    var star = getLevelString();
-                    localStorage.setItem(localStorageName, star);
+               var star = getLevelString();
+               localStorage.setItem(localStorageName, star);
           }
           //*****************************data set*******************************************
 
@@ -1485,20 +1485,10 @@ customizeScreen.prototype ={
      create: function(){
           size  = Math.min(window.innerHeight,window.innerWidth);
           var monsterStack = new Array();
-           customizeMap = new Array();
+          customizeMap = new Array();
 
-           defaultMap = dataFile.DefaultMap[0];
+          defaultMap = dataFile.DefaultMap[0];
 
-          //      [
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0,
-          //      0,0,0,0,0,0,0,0
-          // ];
 
           var bg = game.add.sprite(0, 0, 'background');
           bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
@@ -1553,9 +1543,9 @@ customizeScreen.prototype ={
                }
           }
 
-         var cstartButton = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:6}, 0, 0, 0);
-         var cpathButton = game.add.button(size/20*18, size/3, 'eyetowerButton', actionOnClick, {param1:7}, 0, 0, 0);
-         var cendButton = game.add.button(size/20*17, size/3, 'eyetowerButton', actionOnClick, {param1:8}, 0, 0, 0);
+          var cstartButton = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:6}, 0, 0, 0);
+          var cpathButton = game.add.button(size/20*18, size/3, 'eyetowerButton', actionOnClick, {param1:7}, 0, 0, 0);
+          var cendButton = game.add.button(size/20*17, size/3, 'eyetowerButton', actionOnClick, {param1:8}, 0, 0, 0);
 
           save_label = game.add.text(w - 100, 20, 'Save map', { font: '24px Arial', fill: '#fff' });
           save_label.inputEnabled = true;
@@ -1585,23 +1575,23 @@ customizeScreen.prototype ={
 //var isGameStop = false;
 function controlGameButton1(){
      /*if(!isGameStarted){
+      document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
+      document.getElementById("game-control-span2").innerHTML="Stop The Game";
+      isGameStarted = true;
+      }
+      else{*/
+     if(!game.paused){
+          document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
+          document.getElementById("game-control-span2").innerHTML="Continue The Game";
+          //isGameStop = true;
+          game.paused = true;
+     }
+     else{
           document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
           document.getElementById("game-control-span2").innerHTML="Stop The Game";
-          isGameStarted = true;
+          //isGameStop = false;
+          game.paused = false;
      }
-     else{*/
-          if(!game.paused){
-               document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
-               document.getElementById("game-control-span2").innerHTML="Continue The Game";
-               //isGameStop = true;
-               game.paused = true;
-          }
-          else{
-               document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
-               document.getElementById("game-control-span2").innerHTML="Stop The Game";
-               //isGameStop = false;
-               game.paused = false;
-          }
      /*}*/
 }
 document.getElementById("control-game-button1").addEventListener('click',controlGameButton1);

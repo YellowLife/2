@@ -18,14 +18,14 @@ var defaultMap;
 //*************************************data set******************************************
 // stars array
 var stars = [];
-var balanceArray = [200,500,600,700,800,900,1000,1000,800,800];
+var balanceArray = [100,500,600,700,800,900,1000,1000,800,800];
 
 var monsterArray= [[4,4], [4,4,4,4,0],[4,4,4,4,0,0,0],[4,4,4,4,0,0,0,2,4,4],
      [4,3,1,4,0,0,0,2,4,4],[4,4,1,1,0,0,4,4],[4,4,1,1,3,3,0,0,4,4],[4,4,4,1,1,0,0,2,2,4,4,4],
      [4,4,4,1,1,0,0,2,2],[4,4,4,1,1,0,0,2,2,4,4,4]];
 
 var MapArray=[
-     [5,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
+     [5,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
      [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
      [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
      [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
@@ -540,10 +540,6 @@ function removeLogo1 () {
      winner.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
-     //***********************data set*****************************************
-     var levelMax = document.getElementById("level").getAttribute("value");
-     window.location.replace("/SaveServlet?level="+(level+1).toString());
-     //*************************data set ***************************************
 
 }
 
@@ -555,9 +551,6 @@ function removeLogo2 () {
      lose.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
-     //***********************data set*****************************************
-     window.location.replace("/SaveServlet?level=lose");
-     //*************************data set ***************************************
 
 }
 
@@ -1152,8 +1145,8 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
                }
                localStorage.setItem(localStorageName, stars.toString());
                //***********************data set*****************************************
-               // var levelMax = document.getElementById("level").getAttribute("value");
-               // window.location.replace("/SaveServlet?level="+(level+1).toString());
+               var levelMax = document.getElementById("level").getAttribute("value");
+               window.location.replace("/SaveServlet?level="+(Number(levelMax)+1).toString());
                //*************************data set ***************************************
                game.state.start("LevelSelect");
                         }

@@ -8,7 +8,6 @@ var defaultMap;
 var size;
 var window_width = window.innerWidth;
 var window_height = window.innerHeight;
-var dataFile = "./lib/gameDateSet.json";
 
 var mapBase = function(positionX, positionY, gameImage ,bgimage){
     this.positionX = positionX;
@@ -167,7 +166,17 @@ customizeScreen.prototype ={
         var monsterStack = new Array();
         customizeMap = new Array();
 
-        defaultMap =dataFile.DefaultMap;
+        defaultMap =[
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0
+        ];
+
         var bg = game.add.sprite(0, 0, 'background');
         bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
         var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
@@ -229,9 +238,6 @@ customizeScreen.prototype ={
         save_label.inputEnabled = true;
         save_label.events.onInputUp.add(function(){
             defaultMap.toString();
-            //data set*****************
-
-
         });
         // textfield
         //monster array

@@ -12,29 +12,28 @@ var thumbHeight = 60;
 // empty space between two thumbnails, in pixels
 var spacing = 20;
 
-var customizeMap;
-var defaultMap;
+
 
 //*************************************data set******************************************
 // stars array
 var stars = [];
-var balanceArray = [300,500,600,700,800,900,1000,1000,800,800];
+var balanceArray = [100,500,600,700,800,900,1000,1000,800,800];
 
 var monsterArray= [[4,4], [4,4,4,4,0],[4,4,4,4,0,0,0],[4,4,4,4,0,0,0,2,4,4],
      [4,3,1,4,0,0,0,2,4,4],[4,4,1,1,0,0,4,4],[4,4,1,1,3,3,0,0,4,4],[4,4,4,1,1,0,0,2,2,4,4,4],
      [4,4,4,1,1,0,0,2,2],[4,4,4,1,1,0,0,2,2,4,4,4]];
 
 var MapArray=[
-     [5,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4],
-     [5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4]
+     "5,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4",
+     "5,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,4"
 ];
 
 //***************************************data set****************************************
@@ -329,7 +328,7 @@ var score = 0;
 var scoreText;
 var timerText;
 var timerKilled = false;
-var money = balanceArray[0];
+var money = 1000;
 
 
 var towerButton1;
@@ -340,23 +339,22 @@ var towerButton5;
 
 var timer = 0;
 var size  = Math.min(window.innerHeight,window.innerWidth);
-
+//var level1 = document.getElementById("currentLevel").getAttribute("value");
 //data set
 
 
 var mapBaseArray = new Array();
 var gameIndexArray = new Array();
-gameIndexArray= MapArray[0];
-// gameIndexArray = [
-//      5,1,1,0,0,0,0,1,
-//      0,1,1,0,0,0,0,0,
-//      0,1,1,1,0,0,0,0,
-//      0,0,1,1,1,0,0,0,
-//      0,0,0,1,1,1,0,0,
-//      0,0,0,0,1,1,1,0,
-//      0,0,0,0,1,1,1,1,
-//      0,0,0,0,0,1,1,4,
-// ];
+gameIndexArray = [
+     5,1,1,0,0,0,0,1,
+     0,1,1,0,0,0,0,0,
+     0,1,1,1,0,0,0,0,
+     0,0,1,1,1,0,0,0,
+     0,0,0,1,1,1,0,0,
+     0,0,0,0,1,1,1,0,
+     0,0,0,0,1,1,1,1,
+     0,0,0,0,0,1,1,4,
+];
 
 var monsterLoadArray = monsterArray[0];
 // var monsterLoadArray = new Array();
@@ -540,10 +538,6 @@ function removeLogo1 () {
      winner.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
-     //***********************data set*****************************************
-     var levelMax = document.getElementById("level").getAttribute("value");
-     window.location.replace("/SaveServlet?level="+(level+1).toString());
-     //*************************data set ***************************************
 
 }
 
@@ -555,9 +549,6 @@ function removeLogo2 () {
      lose.kill();
      game.paused = false;
      last_spawn_time = game.time.time;
-     //***********************data set*****************************************
-     window.location.replace("/SaveServlet?level=lose");
-     //*************************data set ***************************************
 
 }
 
@@ -615,44 +606,6 @@ function MapBaseListener(){
                money-=120;
           }
      }
-    
-    //******   add by Jun *****////
-    // this below is for customize
-
-         // 6 is start grid
-     else if (selectedTower === 6){
-
-          this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'start'),'start');
-          this.param1.getImage().scale.setTo(size/10/100,size/10/100);
-          this.param1.mapBaseBg.scale.setTo(size/10/100,size/10/100);
-          defaultMap[this.param2] = 5;
-
-     }
-     // 7 is path
-     else if (selectedTower === 7){
-          this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.image(this.param1.getPosition()[0], this.param1.getPosition()[1],'path'),'path');
-          this.param1.getImage().scale.setTo(size/10/100,size/10/100);
-          this.param1.mapBaseBg.scale.setTo(size/10/100,size/10/100);
-          defaultMap[this.param2] = 1;
-     }
-
-    // 8 is end
-
-     else if (selectedTower === 8){
-          this.param1 = new mapBase(this.param1.getPosition()[0], this.param1.getPosition()[1],game.add.sprite(this.param1.getPosition()[0], this.param1.getPosition()[1],'home'),'grid');
-          this.param1.getImage().frame = 1;
-          this.param1.getImage().scale.setTo(size/10/400,size/10/400);
-          this.param1.mapBaseBg.scale.setTo(size/10/400,size/10/400);
-          this.param1.getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
-          this.param1.getImage().animations.play('homeAnimation');
-          home = this.param1.getImage();
-
-          game.physics.enable(home, Phaser.Physics.ARCADE);
-          home.body.immovable = false;
-          defaultMap[this.param2] = 4;
-     }
-    
-    //******   add by Jun *****////
      console.log(money);
 }
 
@@ -1152,8 +1105,8 @@ if(enteredTowerTipsPause === false && enteredTipsPause === true){
                }
                localStorage.setItem(localStorageName, stars.toString());
                //***********************data set*****************************************
-               // var levelMax = document.getElementById("level").getAttribute("value");
-               // window.location.replace("/SaveServlet?level="+(level+1).toString());
+               var levelMax = document.getElementById("level").getAttribute("value");
+               window.location.replace("/SaveServlet?level="+(Number(levelMax)+1).toString());
                //*************************data set ***************************************
                game.state.start("LevelSelect");
                         }
@@ -1323,9 +1276,8 @@ playGame.prototype = {
                                    /***********data set*************/
                                    document.getElementById("currentLevel").setAttribute("value",level.toString());
                                    // gameIndexArray = MapArray[level].split(",");
-                                   money = balanceArray[level];
+                                   // money = balanceArray[level];
                                    monsterLoadArray = monsterArray[level];
-                                   gameIndexArray = MapArray[level];
 
                                    /***********data set*************/
                                    game.state.start("gameScreen");
@@ -1499,106 +1451,7 @@ playLevel.prototype = {
      }
 }
 
-var customizeScreen =  function (game){};
-customizeScreen.prototype ={
-     preload: function(){
 
-          game.load.image('background', 'assets/background.png');
-          game.load.image('ground', 'assets/platform.png');
-          game.load.image('high_way','assets/basic_map.png');
-          game.load.spritesheet('eyetowerButton', 'assets/buttons/eye_tower.png', 200, 100);
-          game.load.image('grid', 'assets/blank.png');
-          game.load.spritesheet('home', 'assets/path/home.png', 400, 400);
-          game.load.image('path', 'assets/path/pathnew2.png');
-          game.load.image('start', 'assets/path/start_stage.png');
-
-     },
-     create: function(){
-          size  = Math.min(window.innerHeight,window.innerWidth);
-          var monsterStack = new Array();
-           customizeMap = new Array();
-
-           defaultMap =[
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0,
-               0,0,0,0,0,0,0,0
-          ];
-
-          var bg = game.add.sprite(0, 0, 'background');
-          bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
-          var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
-          boardBg.scale.setTo(size/20*16/1000,size/20*16/1000);
-          var k = 0;
-          var i = 0;
-          var j = 0;
-
-          for(i=size/20*2;i<size/20*17;i=i+(size/10)){
-               for(j=size/20*2;j<size/20*17;j=j+(size/10)) {
-                    if(defaultMap[k] ===0) {
-                         customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'grid'),'grid');
-                         customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].getImage().inputEnabled = true;
-                         customizeMap[k].getImage().events.onInputDown.add(MapBaseListener, {param1: customizeMap[k] , param2:k});
-
-                    }else if(gameIndexArray[k]===1){
-
-
-                         customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'path'),'path');
-                         customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-
-
-                    }else if(gameIndexArray[k]===5){
-
-
-                         customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'start'),'start');
-                         customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-
-
-                    }else if(gameIndexArray[k]===4){
-
-
-                         customizeMap[k] = new mapBase(j,i,game.add.sprite(j,i,'home'),'grid');
-                         customizeMap[k].getImage().frame = 1;
-                         customizeMap[k].getImage().scale.setTo(size/10/400,size/10/400);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/400,size/10/400);
-                         customizeMap[k].getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
-                         customizeMap[k].getImage().animations.play('homeAnimation');
-                         home = customizeMap[k].getImage();
-
-                         game.physics.enable(home, Phaser.Physics.ARCADE);
-                         home.body.immovable = false;
-
-
-                    }
-                    k++;
-               }
-          }
-
-         var cstartButton = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:6}, 0, 0, 0);
-         var cpathButton = game.add.button(size/20*18, size/3, 'eyetowerButton', actionOnClick, {param1:7}, 0, 0, 0);
-         var cendButton = game.add.button(size/20*17, size/3, 'eyetowerButton', actionOnClick, {param1:8}, 0, 0, 0);
-
-          save_label = game.add.text(w - 100, 20, 'Save map', { font: '24px Arial', fill: '#fff' });
-          save_label.inputEnabled = true;
-          save_label.events.onInputUp.add(function(){
-               defaultMap.toString();
-          });
-          // textfield
-          //monster array
-
-
-     }// create end
-
-
-}
 
 
 
@@ -1646,11 +1499,11 @@ function resetControlGameButton1(){
 function clickTowerButton(num){
      selectedTower = num;
 }
-document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1);updateTowerInfo("1","1","1","1","1");});
-document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2);updateTowerInfo("2","2","2","2","2");});
-document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3);updateTowerInfo("3","3","3","3","3");});
-document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4);updateTowerInfo("4","4","4","4","4");});
-document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5);updateTowerInfo("5","5","5","5","5");});
+document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1)});
+document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2)});
+document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3)});
+document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4)});
+document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5)});
 
 function showSideBar(){
      document.getElementById("game-side-bar").style.display="block";
@@ -1670,19 +1523,4 @@ function backToChapter(){
      game.state.start("LevelSelect");
 }
 document.getElementById("control-game-button2").addEventListener('click',backToChapter);
-
-function updateTowerInfo(name,hp,attack,effect,description){
-     document.getElementById("tower-name-text").innerHTML=name;
-     document.getElementById("tower-hp-text").innerHTML=hp;
-     document.getElementById("tower-attack-text").innerHTML=attack;
-     document.getElementById("tower-effect-text").innerHTML=effect;
-     document.getElementById("tower-description-text").innerHTML=description;
-}
-
-function disableGameButton(){
-     document.getElementById("control-game-button1").disabled = true;
-}
-function enableGameButton(){
-     document.getElementById("control-game-button1").disabled = false;
-}
 /***********************************add by lead designer*****************************************/
