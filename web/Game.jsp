@@ -44,17 +44,9 @@
             <div class="splash-child-container2">
                 <div class="welcome-container">WELCOME</div>
                 <div class="button-container">
-                    <form  method="get" action="/level.jsp">
-                        <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Chapter</button>
-                    </form >
-
-                    <form method = "get" action ="/customize.jsp">
-                        <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Customize</button>
-                    </form>
-
-                    <form method="get" action="index.html">
-                        <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Quit</button>
-                    </form>
+                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','chapter')"  onmouseover = "playAudio('btn_press','none')">Chapter</button>
+                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','customize')"  onmouseover = "playAudio('btn_press','none')">Customize</button>
+                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','quit')"  onmouseover = "playAudio('btn_press','none')">Quit</button>
                 </div>
                 <div class="color-white"></div>
             </div>

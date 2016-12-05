@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -24,9 +25,10 @@ public class LoginServlet extends HttpServlet {
             //get user info from gogole assign
             String Id = request.getParameter("id");
             String Name= request.getParameter("name");
+            int Level = -1;
             if(!(Id.equalsIgnoreCase("Guest"))) {
                 //if user is not in the database, set level to 1
-                int Level = 1;
+                Level = 1;
                 // abtain user info from database
                 String query = "select * from account where Id = '" + Id + "'";
                 ResultSet rs = JdbcConnector.excuteQuery(query);
@@ -44,13 +46,17 @@ public class LoginServlet extends HttpServlet {
                         out.println("Add User to acct list successfully");
                     }
                 }
-                // create bean
-                Bean.UserInfoBean UserInfo = new Bean.UserInfoBean();
-                UserInfo.setUserId(Id);
-                UserInfo.setName(Name);
-                UserInfo.setLevel(Level);
-                request.getSession().setAttribute("UserInfo", UserInfo);
             }
+            // create bean
+            HttpSession session = request.getSession();
+            Bean.UserInfoBean UserInfo = (Bean.UserInfoBean) session.getAttribute("UserInfo");
+            if(UserInfo != null ){
+                
+            }
+            UserInfo.setUserId(Id);
+            UserInfo.setName(Name);
+            UserInfo.setLevel(Level);
+            request.getSession().setAttribute("UserInfo", UserInfo);
             /* test */
             request.getRequestDispatcher("Game.jsp").forward(request, response);
         }

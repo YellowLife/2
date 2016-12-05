@@ -25,9 +25,9 @@
 <%--data set --%>
 <jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="session"/>
 <input id="level" value="<%=UserInfo.getLevel()%>" hidden/>
+<input id="userId" value="<%=UserInfo.getUserId()%>" hidden/>
 <input id="currentLevel" value="0" hidden/>
 <%--data set--%>
-
 
 
 <div id="game-side-bar">
@@ -76,6 +76,17 @@
 
 
 
+<div id="level-button-container">
+  <form  method="post" action="/Game.jsp">
+    <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Back To Start</button>
+  </form >
+
+  <form method = "post" action ="/Game.jsp">
+    <button id = "savebtn" type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Save Status</button>
+  </form>
+</div>
+
+
   <!--jQuery and Bootstrap scripts-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -85,6 +96,13 @@
   <script src="scripts/phaser-state-transition.js"></script>
   <script src = "scripts/game.js"></script>
   <!--<script src = "lib/pause.js"></script>-->
+<script>
+  if(document.getElementById("userId").getAttribute("value") === "Guest"){
+    var child = document.getElementById("savebtn");
+    child.parentNode.removeChild(child);
+    document.getElementById("level-button-container").style.top="55%";
+  }
+</script>
 </body>
 </html>
 

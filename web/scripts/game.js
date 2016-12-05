@@ -15,6 +15,7 @@ var spacing = 20;
 var customizeMap;
 var defaultMap;
 
+
 //*************************************data set******************************************
 //*************************************data set******************************************
 // stars array
@@ -73,6 +74,9 @@ mapBase.prototype.setImage = function(gameImage){
      this.gameImage = gameImage;
 };
 
+function onclick () {
+     alert('hhhhh');
+}
 
 var towerObj = function(index, imageStr, windowSize , health, firerate, game ,bullets,positionX, positionY, target , bulletspeed ,mapBase , isHealing){
      this.positionX = positionX;
@@ -338,6 +342,7 @@ var towerButton2;
 var towerButton3;
 var towerButton4;
 var towerButton5;
+var backstart;
 
 var timer = 0;
 var size  = Math.min(window.innerHeight,window.innerWidth);
@@ -381,6 +386,7 @@ var towerArray = new Array();
 var windBullets;
 var enemyArrayIndex =0;
 var winner;
+
 
 function bulletHitWall (wall, bullet) {
 
@@ -481,12 +487,12 @@ function healingBulletsHitTower (tower, bullet) {
      }
 }
 
-
 function actionOnClick () {
 
      selectedTower = this.param1;
 
 }
+
 
 function monsterReach(enemy ,grid){
      //alert(enemy.name);
@@ -1149,6 +1155,8 @@ gameScreen.prototype ={
 var playGame = function(game){};
 playGame.prototype = {
      preload: function(){
+          /*data set show the level side bar*/
+          showLevelSideBar();
           // level thumbnail
           game.load.spritesheet("levelthumb", "img/level_lock.png", 60, 60);
           // level pages at the bottom
@@ -1157,7 +1165,7 @@ playGame.prototype = {
           game.load.image("transp", "img/transp.png");
           game.load.image("background" ,"img/background.png" );
           game.load.image('menu', 'img/popup_menu_new.png', 600, 700);
-          game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
+
 
           //*****************************data set*******************************************
           var levellocal = document.getElementById("level").getAttribute("value");
@@ -1205,7 +1213,6 @@ playGame.prototype = {
           game.stage.backgroundColor = "#222222";
 
           game.add.tileSprite(0, 0, window_width, window_height, 'background');
-
 
 
           // just a text placed on the top of the stage to show level page
@@ -1299,12 +1306,13 @@ playGame.prototype = {
 
 
                                    /***********data set*************/
+
                                    document.getElementById("currentLevel").setAttribute("value",level.toString());
                                    // gameIndexArray = MapArray[level].split(",");
                                    money = balanceArray[level];
                                    monsterLoadArray = monsterArray[level];
                                    gameIndexArray = MapArray[level];
-
+                                   hideLevelSideBar();
                                    /***********data set*************/
                                    game.state.start("gameScreen");
                               }
@@ -1571,14 +1579,6 @@ customizeScreen.prototype ={
 }
 
 
-
-
-
-
-
-
-
-
 /***********************************add by lead designer*****************************************/
 //var isGameStarted = false;
 //var isGameStop = false;
@@ -1656,3 +1656,12 @@ function enableGameButton(){
      document.getElementById("control-game-button1").disabled = false;
 }
 /***********************************add by lead designer*****************************************/
+
+
+
+function showLevelSideBar(){
+     document.getElementById("level-button-container").style.display="block";
+}
+function hideLevelSideBar(){
+     document.getElementById("level-button-container").style.display="none";
+}
