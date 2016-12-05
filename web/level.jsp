@@ -31,46 +31,76 @@
 
 
 <div id="game-side-bar">
-  <section class="game-status-container">
-    <div>Money: $<span id="money-text">0</span></div>
-    <div>Monsters: <span id="remaining-monsters-text">0</span></div>
-    <table class="tower-table">
-      <tr>
-        <td>Name: <span id="tower-name-text"></span></td>
-        <td>HP: <span id="tower-hp-text"></span></td>
-      </tr>
-      <tr>
-        <td>Attack: <span id="tower-attack-text"></span></td>
-        <td>Effect: <span id="tower-effect-text"></span></td>
-      </tr>
-      <tr>
-        <td>Description: <span id="tower-description-text"></span></td>
-      </tr>
-    </table>
-  </section>
-  <section class="game-button-container">
-    <center>
-    <button type="button" id="control-game-button1" class="btn control-game-button"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span><span id="game-control-span2">Stop The Game</span></button>
-    <button type="button" id="control-game-button2" class="btn control-game-button"><span class="glyphicon glyphicon-log-out"></span>Back to Chapter</button>
+  <section class="sidebar-super-container">
 
-    <ul class="tower-button-list">
-      <li>
-        <button id="eye-tower-button" type="button" class="btn"><img src="./img/eye_tower.png"><div><center>$100</center></div></button>
-      </li>
-      <li>
-        <button id="fan-tower-button" type="button" class="btn"><img src="./img/fan_tower.png"><div><center>$200</center></div></button>
-      </li>
-      <li>
-        <button id="gear-tower-button" type="button" class="btn"><img src="./img/gear_tower.png"><div><center>$120</center></div></button>
-      </li>
-      <li>
-        <button id="java-tower-button" type="button" class="btn"><img src="./img/java_tower.png"><div><center>$80</center></div></button>
-      </li>
-      <li>
-        <button id="xueyou-tower-button" type="button" class="btn"><img src="./img/xueyou_tower.png"><div><center>$150</center></div></button>
-      </li>
-    </ul>
+    <section class="top-status-container">
+    <center>
+      <table class="top-status">
+        <tr>
+          <td>Money</td>
+          <td>Enemies</td>
+        </tr>
+        <tr class="larger-text-tr">
+          <td id="money-text">$0</td>
+          <td id="remaining-monsters-text">0</td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td><button type="button" id="control-game-button1" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Pause/Continue"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span><span id="game-control-span2"></span></button></td>
+          <td><button type="button" id="control-game-button2" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Chapter"><span class="glyphicon glyphicon-log-out"></span></button></td>
+        </tr>
+      </table>
+    
+    <!-- <button type="button" id="control-game-button3" class="btn control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute"><span class="glyphicon glyphicon-volume-up"></span></button> -->
     </center>
+    </section>
+
+
+    <section class="tower-status-container">
+      <table class="tower-table">
+        <tr>
+          <td>Name: </td>
+          <td id="tower-name-text"></td>
+        </tr>
+        <tr>
+          <td>HP: </td>
+          <td id="tower-hp-text"></td>
+        </tr>
+        <tr>
+          <td>Attack: </td>
+          <td id="tower-attack-text"></td>
+        </tr>
+        <tr>
+          <td>Effect: </td>
+          <td id="tower-effect-text"></td>
+        </tr>
+      </table>
+    </section>
+
+
+    <center>
+      <ul class="tower-button-list">
+        <li>
+          <button id="eye-tower-button" type="button" class="btn"><img src="./img/eye_tower.png"><div>$100</div></button>
+        </li>
+        <li>
+          <button id="fan-tower-button" type="button" class="btn"><img src="./img/fan_tower.png"><div>$200</div></button>
+        </li>
+        <li>
+          <button id="gear-tower-button" type="button" class="btn"><img src="./img/gear_tower.png"><div>$120</div></button>
+        </li>
+        <li>
+          <button id="java-tower-button" type="button" class="btn"><img src="./img/java_tower.png"><div>$80</div></button>
+        </li>
+        <li>
+          <button id="xueyou-tower-button" type="button" class="btn"><img src="./img/xueyou_tower.png"><div>$150</div></button>
+        </li>
+      </ul>
+    </center>
+
+
   </section>
 </div>
 
@@ -95,7 +125,9 @@
   <script src="scripts/phaser.min.js"> </script>
   <script src="scripts/phaser-state-transition.js"></script>
   <script src = "scripts/game.js"></script>
+  <script src = "scripts/script-level.js"></script>
   <!--<script src = "lib/pause.js"></script>-->
+
 <script>
   if(document.getElementById("userId").getAttribute("value") === "Guest"){
     var child = document.getElementById("savebtn");

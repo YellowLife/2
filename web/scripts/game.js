@@ -1591,13 +1591,13 @@ function controlGameButton1(){
       else{*/
      if(!game.paused){
           document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
-          document.getElementById("game-control-span2").innerHTML="Continue The Game";
+          //document.getElementById("game-control-span1").setAttribute("title", "Continue");
           //isGameStop = true;
           game.paused = true;
      }
      else{
           document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
-          document.getElementById("game-control-span2").innerHTML="Stop The Game";
+          //document.getElementById("game-control-span1").setAttribute("title", "Pause");
           //isGameStop = false;
           game.paused = false;
      }
@@ -1609,21 +1609,24 @@ function resetControlGameButton1(){
      //isGameStarted = false;
      //isGameStop = false;
      document.getElementById("game-control-span1").className = "glyphicon glyphicon-pause";
-     document.getElementById("game-control-span2").innerHTML="Stop The Game";
      //document.getElementById("game-control-span1").className = "glyphicon glyphicon-play";
      //document.getElementById("game-control-span2").innerHTML="Start The Game";
 }
 function clickTowerButton(num){
      selectedTower = num;
 }
-document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1);updateTowerInfo("1","1","1","1","1");});
-document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2);updateTowerInfo("2","2","2","2","2");});
-document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3);updateTowerInfo("3","3","3","3","3");});
-document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4);updateTowerInfo("4","4","4","4","4");});
-document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5);updateTowerInfo("5","5","5","5","5");});
-
+document.getElementById("eye-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Eye","1","1","1");});
+document.getElementById("xueyou-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Xueyou","2","2","2");});
+document.getElementById("java-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Java","3","3","3");});
+document.getElementById("fan-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Fan","4","4","4");});
+document.getElementById("gear-tower-button").addEventListener('mouseover',function(){updateTowerInfo("Gear","5","5","5");});
+document.getElementById("eye-tower-button").addEventListener('click',function(){clickTowerButton(1);});
+document.getElementById("xueyou-tower-button").addEventListener('click',function(){clickTowerButton(2);});
+document.getElementById("java-tower-button").addEventListener('click',function(){clickTowerButton(3);});
+document.getElementById("fan-tower-button").addEventListener('click',function(){clickTowerButton(4);});
+document.getElementById("gear-tower-button").addEventListener('click',function(){clickTowerButton(5);});
 function showSideBar(){
-     document.getElementById("game-side-bar").style.display="block";
+     document.getElementById("game-side-bar").style.display="flex";
 }
 function hideSideBar(){
      document.getElementById("game-side-bar").style.display="none";
@@ -1641,12 +1644,11 @@ function backToChapter(){
 }
 document.getElementById("control-game-button2").addEventListener('click',backToChapter);
 
-function updateTowerInfo(name,hp,attack,effect,description){
+function updateTowerInfo(name,hp,attack,effect){
      document.getElementById("tower-name-text").innerHTML=name;
      document.getElementById("tower-hp-text").innerHTML=hp;
      document.getElementById("tower-attack-text").innerHTML=attack;
      document.getElementById("tower-effect-text").innerHTML=effect;
-     document.getElementById("tower-description-text").innerHTML=description;
 }
 
 function disableGameButton(){
