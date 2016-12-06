@@ -313,5 +313,5 @@ document.getElementById("remove-button").addEventListener('click',function(){cli
 
 document.getElementById("control-customize-button1").addEventListener('click',function(){});
 document.getElementById("control-customize-button2").addEventListener('click',function(){});
-document.getElementById("control-customize-button4").addEventListener('click',function(){});
+document.getElementById("control-customize-button4").addEventListener('click',function(){window.location.href="/Game.jsp"});
 /***********************************add by lead designer*****************************************/

@@ -17,6 +17,7 @@ var defaultMap;
 
 
 //*************************************data set******************************************
+var gameDateSet;
 //*************************************data set******************************************
 // stars array
 var stars = [];
@@ -729,8 +730,6 @@ gameScreen.prototype ={
           game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
-
-
           //  A simple background for our game
           var bg = game.add.sprite(0, 0, 'background');
           bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
@@ -1166,7 +1165,6 @@ playGame.prototype = {
           game.load.image("background" ,"img/background.png" );
           game.load.image('menu', 'img/popup_menu_new.png', 600, 700);
 
-
           //*****************************data set*******************************************
           var levellocal = document.getElementById("level").getAttribute("value");
           // if not guest player
@@ -1485,98 +1483,6 @@ playLevel.prototype = {
      }
 }
 
-var customizeScreen =  function (game){};
-customizeScreen.prototype ={
-     preload: function(){
-
-          game.load.image('background', 'assets/background.png');
-          game.load.image('ground', 'assets/platform.png');
-          game.load.image('high_way','assets/basic_map.png');
-          game.load.spritesheet('eyetowerButton', 'assets/buttons/eye_tower.png', 200, 100);
-          game.load.image('grid', 'assets/blank.png');
-          game.load.spritesheet('home', 'assets/path/home.png', 400, 400);
-          game.load.image('path', 'assets/path/pathnew2.png');
-          game.load.image('start', 'assets/path/start_stage.png');
-
-     },
-     create: function(){
-          size  = Math.min(window.innerHeight,window.innerWidth);
-          var monsterStack = new Array();
-          customizeMap = new Array();
-
-          defaultMap = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-
-
-          var bg = game.add.sprite(0, 0, 'background');
-          bg.scale.setTo(window.innerWidth/1800,window.innerHeight/1199)
-          var boardBg = game.add.sprite(size/20*2,size/20*2,'high_way');
-          boardBg.scale.setTo(size/20*16/1000,size/20*16/1000);
-          var k = 0;
-          var i = 0;
-          var j = 0;
-
-          for(i=size/20*2;i<size/20*17;i=i+(size/10)){
-               for(j=size/20*2;j<size/20*17;j=j+(size/10)) {
-                    if(defaultMap[k] ===0) {
-                         customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'grid'),'grid');
-                         customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].getImage().inputEnabled = true;
-                         customizeMap[k].getImage().events.onInputDown.add(MapBaseListener, {param1: customizeMap[k] , param2:k});
-
-                    }else if(gameIndexArray[k]===1){
-
-
-                         customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'path'),'path');
-                         customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-
-
-                    }else if(gameIndexArray[k]===5){
-
-
-                         customizeMap[k] = new mapBase(j,i,game.add.image(j,i,'start'),'start');
-                         customizeMap[k].getImage().scale.setTo(size/10/100,size/10/100);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/100,size/10/100);
-
-
-                    }else if(gameIndexArray[k]===4){
-
-
-                         customizeMap[k] = new mapBase(j,i,game.add.sprite(j,i,'home'),'grid');
-                         customizeMap[k].getImage().frame = 1;
-                         customizeMap[k].getImage().scale.setTo(size/10/400,size/10/400);
-                         customizeMap[k].mapBaseBg.scale.setTo(size/10/400,size/10/400);
-                         customizeMap[k].getImage().animations.add('homeAnimation',[0,1,2,3,4,5,6,7,8,9],10,true);
-                         customizeMap[k].getImage().animations.play('homeAnimation');
-                         home = customizeMap[k].getImage();
-
-                         game.physics.enable(home, Phaser.Physics.ARCADE);
-                         home.body.immovable = false;
-
-
-                    }
-                    k++;
-               }
-          }
-
-          var cstartButton = game.add.button(size/20*19, size/3, 'eyetowerButton', actionOnClick, {param1:6}, 0, 0, 0);
-          var cpathButton = game.add.button(size/20*18, size/3, 'eyetowerButton', actionOnClick, {param1:7}, 0, 0, 0);
-          var cendButton = game.add.button(size/20*17, size/3, 'eyetowerButton', actionOnClick, {param1:8}, 0, 0, 0);
-
-          save_label = game.add.text(w - 100, 20, 'Save map', { font: '24px Arial', fill: '#fff' });
-          save_label.inputEnabled = true;
-          save_label.events.onInputUp.add(function(){
-               defaultMap.toString();
-          });
-          // textfield
-          //monster array
-
-
-     }// create end
-
-
-}
 
 
 /***********************************add by lead designer*****************************************/

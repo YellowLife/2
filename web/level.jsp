@@ -129,7 +129,6 @@
   <script src = "scripts/game.js"></script>
   <script src = "scripts/script-level.js"></script>
   <script src="./scripts/main.js"></script>
-   <script  src="data.json"></script>
 
 
 <script>
