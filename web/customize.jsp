@@ -49,7 +49,7 @@
 	        <tr>
 	          <td><button type="button" id="control-customize-button1" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Play"><span class="glyphicon glyphicon-play-circle"></span></button></td>
 	          <td><button type="button" id="control-customize-button2" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button></td>
-	          <td><button type="button" id="control-customize-button3" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Quit"><span class="glyphicon glyphicon-log-out"></span></button></td>
+	          <td><button type="button" id="control-customize-button4" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Quit"><span class="glyphicon glyphicon-log-out"></span></button></td>
 
 	        </tr>
 	      </table>

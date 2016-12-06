@@ -283,11 +283,39 @@ customizeScreen.prototype ={
 
 
     },// create end
-    update: function(){
+    /*update: function(){
         if (addFeilian.input.onDown){
             game.add.sprite(100,200,"feiLian");
         }
-    }
+    }*/
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+/***********************************add by lead designer*****************************************/
+function clickCustomButton(num){
+     selectedTower = num;
+}
+document.getElementById("path-button").addEventListener('click',function(){clickCustomButton(7);});
+document.getElementById("origin-button").addEventListener('click',function(){clickCustomButton(6);});
+document.getElementById("end-button").addEventListener('click',function(){clickCustomButton(8);});
+document.getElementById("remove-button").addEventListener('click',function(){clickCustomButton(9);});
+
+document.getElementById("control-customize-button1").addEventListener('click',function(){});
+document.getElementById("control-customize-button2").addEventListener('click',function(){});
+document.getElementById("control-customize-button4").addEventListener('click',function(){});
+/***********************************add by lead designer*****************************************/
+
+
+
+
