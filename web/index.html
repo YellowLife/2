@@ -21,17 +21,7 @@
 	<script src="/scripts/main.js"></script>
 	<!-- add jquery lib-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>
-		function start() {
-			gapi.load('auth2', function() {
-				auth2 = gapi.auth2.init({
-					client_id: '988977465903-4kmoa98jvcbi98ool9runutkohh6u52h.apps.googleusercontent.com',
-					// Scopes to request in addition to 'profile' and 'email'
-					//scope: 'additional_scope'
-				});
-			});
-		}
-	</script>
+	<script>start();</script>
 </head>
 <body>
 
@@ -84,16 +74,14 @@
 							<form method="post" action="/LoginServlet">
 								<input name="id" value="Guest" hidden/>
 								<input name="name" value="Guest" hidden/>
-								<button type="submit" class="btn btn-success">
+								<button id="guestbtn" type="submit" class="btn btn-success">
 									<span class="glyphicon glyphicon-user"></span>Play as Guest</button>
 							</form>
 
 
 							<button id="signinButton" type="button" class="btn btn-success">
-								<span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign In with Google Account</button>
-
+								<span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign In with Google</button>
 							<script>
-
 								$('#signinButton').click(function(){
 									auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
 								});
@@ -232,36 +220,6 @@
 
 <!--all the custom scripts-->
 <script src="./scripts/script-index.js"></script>
-<script>
-	function signInCallback(authResult) {
-
-		if (authResult['code']) {
-			document.getElementById('signinButton').innerHTML = "Enter and Play";
-			// get user information and send it is url
-			var profile = auth2.currentUser.get().getBasicProfile();
-			var info = "id="+ profile.getId()+"&name="+profile.getName();
-
-
-			// Send the code to the server
-			$.ajax({
-				type: 'POST',
-				url: '/LoginServlet',
-				data: info,
-				contentType: 'application/html',
-				success: function(result) {
-
-					window.location.href = "/LoginServlet?"+info;
-					//window.location.replace("/LoginServlet?"+info);
-					// Handle or verify the server response.
-
-				},
-				processData: false,
-				data: authResult['code']
-			});
-		} else {
-			// There was an error.
-		}
-	}
-</script>
+<script src="./scripts/main.js"></script>
 </body>
 </html>

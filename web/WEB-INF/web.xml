@@ -21,4 +21,7 @@
         <servlet-name>SaveServlet</servlet-name>
         <url-pattern>/SaveServlet</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>6</session-timeout>
+    </session-config>
 </web-app>

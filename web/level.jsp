@@ -21,7 +21,12 @@
   <link rel="stylesheet" type="text/css" href="./css/stylesheet-level.css">
 </head>
 <body>
-
+<audio id="btn_press">
+  <source src="/sounds/btn_audio.mp3" type="audio/mpeg">
+</audio>
+<audio id="btn_click">
+  <source src="/sounds/btn_click.mp3" type="audio/mpeg">
+</audio>
 <%--data set --%>
 <jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="session"/>
 <input id="level" value="<%=UserInfo.getLevel()%>" hidden/>
@@ -29,32 +34,31 @@
 <input id="currentLevel" value="0" hidden/>
 <%--data set--%>
 
-
 <div id="game-side-bar">
   <section class="sidebar-super-container">
 
     <section class="top-status-container">
-    <center>
-      <table class="top-status">
-        <tr>
-          <td>Money</td>
-          <td>Enemies</td>
-        </tr>
-        <tr class="larger-text-tr">
-          <td id="money-text">$0</td>
-          <td id="remaining-monsters-text">0</td>
-        </tr>
-      </table>
+      <center>
+        <table class="top-status">
+          <tr>
+            <td>Money</td>
+            <td>Enemies</td>
+          </tr>
+          <tr class="larger-text-tr">
+            <td id="money-text">$0</td>
+            <td id="remaining-monsters-text">0</td>
+          </tr>
+        </table>
 
-      <table>
-        <tr>
-          <td><button type="button" id="control-game-button1" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Pause/Continue"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span><span id="game-control-span2"></span></button></td>
-          <td><button type="button" id="control-game-button2" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Chapter"><span class="glyphicon glyphicon-log-out"></span></button></td>
-        </tr>
-      </table>
-    
-    <!-- <button type="button" id="control-game-button3" class="btn control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute"><span class="glyphicon glyphicon-volume-up"></span></button> -->
-    </center>
+        <table>
+          <tr>
+            <td><button type="button" id="control-game-button1" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Pause/Continue"><span id="game-control-span1" class="glyphicon glyphicon-pause"></span><span id="game-control-span2"></span></button></td>
+            <td><button type="button" id="control-game-button2" class="control-game-button" data-toggle="tooltip" data-placement="bottom" title="Chapter"><span class="glyphicon glyphicon-log-out"></span></button></td>
+          </tr>
+        </table>
+
+        <!-- <button type="button" id="control-game-button3" class="btn control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute"><span class="glyphicon glyphicon-volume-up"></span></button> -->
+      </center>
     </section>
 
 
@@ -78,7 +82,6 @@
         </tr>
       </table>
     </section>
-
 
     <center>
       <ul class="tower-button-list">
@@ -106,12 +109,11 @@
 
 
 
-<div id="level-button-container">
-  <form  method="post" action="/Game.jsp">
-    <button type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Back To Start</button>
-  </form >
 
-  <form method = "post" action ="/Game.jsp">
+<div id="level-button-container">
+    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','game')"  onmouseover = "playAudio('btn_press')">Back To Start</button>
+  <form method = "post" action ="/SaveServlet">
+    <input name="level" value="save" hidden/>
     <button id = "savebtn" type="submit" class="btn btn-danger" onclick="playAudio('btn_click')"  onmouseover = "playAudio('btn_press')">Save Status</button>
   </form>
 </div>
@@ -126,7 +128,8 @@
   <script src="scripts/phaser-state-transition.js"></script>
   <script src = "scripts/game.js"></script>
   <script src = "scripts/script-level.js"></script>
-  <!--<script src = "lib/pause.js"></script>-->
+  <script src="./scripts/main.js"></script>
+
 
 <script>
   if(document.getElementById("userId").getAttribute("value") === "Guest"){

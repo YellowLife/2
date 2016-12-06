@@ -1,30 +1,30 @@
 /*******overwrite boostrap for body*******/
 body{
-	line-height:normal;
+    line-height:normal;
 }
 *{
-	box-sizing: content-box;
+    box-sizing: content-box;
 }
 .btn{
-	outline: none !important;
+    outline: none !important;
 }
 .btn:focus{
-	outline: none !important;
+    outline: none !important;
 }
 .btn:active{
-	outline: none !important;
+    outline: none !important;
 }
 button{
-	outline: none !important;
+    outline: none !important;
 }
 button:focus{
-	outline: none !important;
+    outline: none !important;
 }
 button:active{
-	outline: none !important;
+    outline: none !important;
 }
 .glyphicon{
-	top: 2px;
+    top: 2px;
 }
 /*******overwrite boostrap for body*******/
 
@@ -32,20 +32,20 @@ button:active{
 
 /*******all the containers*******/
 html{
-	height: 100%;
-	width: 100%;
+    height: 100%;
+    width: 100%;
 }
 body{
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 
-	background: url(../img/bg_base.png);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center center;
+    background: url(../img/bg_base.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
 }
 /*******all the containers*******/
 
@@ -54,20 +54,20 @@ body{
 
 /*******game side bar*******/
 #game-side-bar{
-	position: fixed;
-	right: 0px;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    position: fixed;
+    right: 0px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .sidebar-super-container{
-	background: rgba(67, 80, 86, 0.9);/*#4e5d65*/
-	border-radius: 8px 8px 8px 8px;
-	box-shadow: 0px 0px 12px 2px rgba(67, 80, 86, 0.9);
+    background: rgba(67, 80, 86, 0.9);/*#4e5d65*/
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0px 0px 12px 2px rgba(67, 80, 86, 0.9);
 }
 .top-status-container{
-	color: white;
+    color: white;
 }
 
 
@@ -75,179 +75,179 @@ body{
 
 
 .top-status-container .control-customize-button{
-	display: inline-block;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: #B63436;
-	background-color: transparent;
-	color: white;
-	/*font*/
-	font-family: 'Roboto';/*can use different font later*/
-	font-weight: bold;
-	font-size: 37px;
-	height: 65px;
-	width: 65px;
-	border-radius: 65px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #B63436;
+    background-color: transparent;
+    color: white;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 37px;
+    height: 65px;
+    width: 65px;
+    border-radius: 65px;
 }
 .top-status-container .all-custom-button{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: #B63436;
-	padding: 10px 10px 10px 10px;
-	/*font*/
-	font-family: 'Roboto';/*can use different font later*/
-	font-weight: bold;
-	font-size: 20px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #B63436;
+    padding: 10px 10px 10px 10px;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 20px;
 }
 .top-status-container button:hover{
-	color: #7e909a;
+    color: #7e909a;
 }
 .top-status-container button.all-custom-button:hover{
-	color: white;
+    color: white;
 }
 @media screen and (max-width: 1200px){
-.top-status-container .control-customize-button{
-	background: #B63436;
-	background-color: transparent;
-	font-size: 28px;
-	height: 55px;
-	width: 55px;
-	border-radius: 55px;
-}
-.top-status-container .all-custom-button{
-	margin: 5px 0px 0px 0px;
-	padding: 10px 10px 10px 10px;
-	font-size: 15px;
-}
+    .top-status-container .control-customize-button{
+        background: #B63436;
+        background-color: transparent;
+        font-size: 28px;
+        height: 55px;
+        width: 55px;
+        border-radius: 55px;
+    }
+    .top-status-container .all-custom-button{
+        margin: 5px 0px 0px 0px;
+        padding: 10px 10px 10px 10px;
+        font-size: 15px;
+    }
 }
 @media screen and (max-width: 900px){
-.top-status-container .control-customize-button{
-	background: #B63436;
-	background-color: transparent;
-	font-size: 20px;
-	height: 40px;
-	width: 40px;
-	border-radius: 40px;
-}
-.top-status-container .all-custom-button{
-	padding: 5px 5px 5px 5px;
-	font-size: 12px;
-}
+    .top-status-container .control-customize-button{
+        background: #B63436;
+        background-color: transparent;
+        font-size: 20px;
+        height: 40px;
+        width: 40px;
+        border-radius: 40px;
+    }
+    .top-status-container .all-custom-button{
+        padding: 5px 5px 5px 5px;
+        font-size: 12px;
+    }
 }
 
 
 
 
 .map-button-list{
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	width: 195px;
-	padding: 15px 15px 0px 15px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 195px;
+    padding: 15px 15px 0px 15px;
 }
 .map-button-list li{
-	display: inline-block;
-	padding: 5px 5px 10px 5px;
+    display: inline-block;
+    padding: 5px 5px 10px 5px;
 }
 .map-button-list img{
-	width: 55px;
-	height: 55px;
-	padding: 10px 15px 10px 15px;
-	background: rgba(178, 34, 34, 0.9);
-	/*box-shadow: -2px 0px 15px 0px rgba(178, 34, 34, 0.9);*/
-	border-radius: 0px 0px 0px 0px;/*8px 0px 0px 8px*/
+    width: 55px;
+    height: 55px;
+    padding: 10px 15px 10px 15px;
+    background: rgba(178, 34, 34, 0.9);
+    /*box-shadow: -2px 0px 15px 0px rgba(178, 34, 34, 0.9);*/
+    border-radius: 0px 0px 0px 0px;/*8px 0px 0px 8px*/
 }
 .map-button-list button{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	border-radius: 0px 0px 0px 0px;
-	background: #e2e6e9;
-	/*font*/
-	font-family: 'Roboto';/*can use different font later*/
-	font-size: 18px;
-	font-weight: bold;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0px 0px 0px 0px;
+    background: #e2e6e9;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-size: 18px;
+    font-weight: bold;
 }
 .map-button-list div{
-	padding: 2px 0px 2px 0px;
+    padding: 2px 0px 2px 0px;
 }
 .map-button-list button:hover{
-	background: #7e909a;
-	color: white;
+    background: #7e909a;
+    color: white;
 }
 
 
 @media screen and (max-width: 1200px){
-.map-button-list li{
-	padding: 2px 2px 5px 2px;
-}
-.map-button-list{
-	width: 140px;
-	padding: 10px 0px 0px 0px;
-}
-.map-button-list img{
-	width: 40px;
-	height: 40px;
-	padding: 7px 12px 7px 12px;
-	background: rgba(178, 34, 34, 0.9);
-	border-radius: 0px 0px 0px 0px;/*8px 0px 0px 8px*/
-}
-.map-button-list button{
-	font-size: 16px;
-}
-.map-button-list div{
-	padding: 0px 0px 0px 0px;
-}
+    .map-button-list li{
+        padding: 2px 2px 5px 2px;
+    }
+    .map-button-list{
+        width: 140px;
+        padding: 10px 0px 0px 0px;
+    }
+    .map-button-list img{
+        width: 40px;
+        height: 40px;
+        padding: 7px 12px 7px 12px;
+        background: rgba(178, 34, 34, 0.9);
+        border-radius: 0px 0px 0px 0px;/*8px 0px 0px 8px*/
+    }
+    .map-button-list button{
+        font-size: 16px;
+    }
+    .map-button-list div{
+        padding: 0px 0px 0px 0px;
+    }
 }
 
 
 
 @media screen and (max-width: 900px){
-.map-button-list li{
-	padding: 2px 1px 3px 1px;
-}
-.map-button-list{
-	width: 115px;
-	padding: 5px 5px 0px 5px;
-}
-.map-button-list img{
-	width: 30px;
-	height: 30px;
-	padding: 5px 10px 5px 10px;
-	background: rgba(178, 34, 34, 0.9);
-	border-radius: 0px 0px 0px 0px;/*8px 0px 0px 8px*/
-}
-.map-button-list button{
-	font-size: 12px;
-}
-.map-button-list div{
-	padding: 0px 0px 0px 0px;
-}
+    .map-button-list li{
+        padding: 2px 1px 3px 1px;
+    }
+    .map-button-list{
+        width: 115px;
+        padding: 5px 5px 0px 5px;
+    }
+    .map-button-list img{
+        width: 30px;
+        height: 30px;
+        padding: 5px 10px 5px 10px;
+        background: rgba(178, 34, 34, 0.9);
+        border-radius: 0px 0px 0px 0px;/*8px 0px 0px 8px*/
+    }
+    .map-button-list button{
+        font-size: 12px;
+    }
+    .map-button-list div{
+        padding: 0px 0px 0px 0px;
+    }
 }
 
 
 
 .glyphicon{
-	padding: 0px;
+    padding: 0px;
 }
 
 
 .tooltip-inner{
-	padding: 10px;
-	font-size: 20px;
+    padding: 10px;
+    font-size: 20px;
 }
 @media screen and (max-width: 1200px){
-.tooltip-inner{
-	padding: 7px;
-	font-size: 15px;
-}
+    .tooltip-inner{
+        padding: 7px;
+        font-size: 15px;
+    }
 }
 @media screen and (max-width: 900px){
-.tooltip-inner{
-	padding: 5px;
-	font-size: 12px;
-}
+    .tooltip-inner{
+        padding: 5px;
+        font-size: 12px;
+    }
 }
 /*******game side bar*******/
