@@ -56,7 +56,7 @@
     <section class="top-status-container">
     <center>
       <button type="button" id="control-customize-button6" class="all-custom-button select-monsters-button" data-toggle="modal" data-target="#select-monsters-popup"><span>Select Monsters</span></button>
-      <button type="button" id="control-customize-button3" class="all-custom-button"><span>All Custom Levels</span></button>
+      <button type="button" id="control-customize-button3" class="all-custom-button" data-toggle="modal" data-target="#load-popup"><span>All Custom Levels</span></button>
       
       <table>
         <tr>
@@ -117,8 +117,12 @@
     </div>
   </center>
 </div>
-
-
+<div class="modal fade" id="load-popup" role="dialog">
+  <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
+  <center>
+    
+  </center>
+</div>
 
 <!--jQuery and Bootstrap scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
