@@ -112,7 +112,7 @@
   <center>
     <div class="save-container form-group">
       <div>Please provide a unique name</div>
-      <input type="text" class="form-control">
+      <input id="levelname" type="text" class="form-control" value="Test">
       <button data-dismiss="modal" id="control-customize-button2">Save</button>
     </div>
   </center>

@@ -308,6 +308,15 @@ customizeScreen.prototype ={
 function clickCustomButton(num){
     selectedTower = num;
 }
+
+function getLevelName(){
+    //window.alert(document.getElementById("levelname").value);
+    return document.getElementById("levelname").value;
+}
+function getCustomMoney(){
+    window.alert(document.getElementById("money-text").innerHTML);
+    return document.getElementById("money-text").innerHTML;
+}
 document.getElementById("path-button").addEventListener('click',function(){clickCustomButton(7);});
 document.getElementById("origin-button").addEventListener('click',function(){clickCustomButton(6);});
 document.getElementById("end-button").addEventListener('click',function(){clickCustomButton(8);});
