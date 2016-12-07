@@ -5,7 +5,7 @@
 var game;
 var customizeMap;
 var defaultMap;
-var monsterStack;
+var monsterStack=[4,4];
 var money = 100;
 var size;
 var stackIndex = 19;
@@ -134,7 +134,7 @@ function saveAction(){
 
 
 
-function addMonster(){
+function addMonster(num){
 
 
     if (this.monster ===0){
@@ -157,7 +157,9 @@ function addMonster(){
         monsterStack.push(4);
     }
 }
-
+function remove(num){
+    monsterStack.splice(num,1);
+}
 
 
 window.onload = function() {
