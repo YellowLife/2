@@ -158,7 +158,6 @@ function addMonster(num){
     }
 }
 function remove(num){
-    window.alert(num);
     monsterStack.splice(num,1);
 }
 
