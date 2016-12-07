@@ -5,7 +5,7 @@
 var game;
 var customizeMap;
 var defaultMap;
-var monsterStack=[4,4];
+var monsterStack;
 var money = 100;
 var size;
 var stackIndex = 19;
@@ -137,27 +137,28 @@ function saveAction(){
 function addMonster(num){
 
 
-    if (this.monster ===0){
+    if (num ===0){
         monsterStack.push(0);
 
 
 
 
     }
-    else if (this.monster ===1){
+    else if (num ===1){
         monsterStack.push(1);
     }
-    else if (this.monster ===2){
+    else if (num ===2){
         monsterStack.push(2);
     }
-    else if (this.monster ===3){
+    else if (num ===3){
         monsterStack.push(3);
     }
-    else if (this.monster ===4){
+    else if (num ===4){
         monsterStack.push(4);
     }
 }
 function remove(num){
+    window.alert(num);
     monsterStack.splice(num,1);
 }
 
@@ -198,7 +199,7 @@ customizeScreen.prototype ={
         size  = Math.min(window.innerHeight,window.innerWidth);
         monsterStack = new Array();
         customizeMap = new Array();
-
+        monsterStack =[4,4];
         defaultMap =[
             0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,
@@ -339,9 +340,11 @@ var button1 = document.getElementById("monster-row-button1");
 var button2 = document.getElementById("monster-row-button2");
 var row1 = document.getElementById("monster-row-1");
 var row2 = document.getElementById("monster-row-2");
-button1.addEventListener('click',function(){removeMonster(row1);});
-button2.addEventListener('click',function(){removeMonster(row2);});
-function addMonster(name){
+var indextemp1=row1.rowIndex;
+var indextemp2=row2.rowIndex;
+button1.addEventListener('click',function(){removeMonster(row1);remove(indextemp1);});
+button2.addEventListener('click',function(){removeMonster(row2);remove(indextemp2);});
+function addMonsterUI(name){
 
 var table = document.getElementById("selected-monster-table");
 if(table.rows.length<50){
@@ -352,8 +355,8 @@ if(table.rows.length<50){
   col2.className = "delete-monster";
   col1.innerHTML = name;
   var button = document.createElement("BUTTON");
-
-  button.addEventListener('click',function(){removeMonster(row);});
+  var indextemp3 = row.rowIndex;
+  button.addEventListener('click',function(){removeMonster(row);remove(indextemp3);});
   var span = document.createElement("SPAN");
   span.className = "glyphicon glyphicon-remove";
   col2.appendChild(button);
@@ -369,10 +372,10 @@ if(table.rows.length>2){
 }
 }
 
-document.getElementById("feilian-button").addEventListener('click',function(){addMonster("Fei Lian");});
-document.getElementById("citie-button").addEventListener('click',function(){addMonster("Ci Tie");});
-document.getElementById("kirin-button").addEventListener('click',function(){addMonster("Kirin");});
-document.getElementById("redboy-button").addEventListener('click',function(){addMonster("Red Boy");});
-document.getElementById("huodou-button").addEventListener('click',function(){addMonster("Huo Dou");});
-document.getElementById("mob-button").addEventListener('click',function(){addMonster("Mob");});
+document.getElementById("feilian-button").addEventListener('click',function(){addMonsterUI("Fei Lian");addMonster(0);});
+document.getElementById("citie-button").addEventListener('click',function(){addMonsterUI("Ci Tie");addMonster(5);});
+document.getElementById("kirin-button").addEventListener('click',function(){addMonsterUI("Kirin");addMonster(3);});
+document.getElementById("redboy-button").addEventListener('click',function(){addMonsterUI("Red Boy");addMonster(1);});
+document.getElementById("huodou-button").addEventListener('click',function(){addMonsterUI("Huo Dou");addMonster(2);});
+document.getElementById("mob-button").addEventListener('click',function(){addMonsterUI("Mob");addMonster(4);});
 /***********************************add by lead designer*****************************************/
