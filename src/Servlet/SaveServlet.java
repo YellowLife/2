@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 /**
  * Created by Rex on 11/20/16.
  */
@@ -22,34 +23,32 @@ public class SaveServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException,SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin","*");
+
         try (PrintWriter out = response.getWriter()) {
             String level = request.getParameter("level");
-            Bean.UserInfoBean userinfo = (UserInfoBean) request.getSession().getAttribute("UserInfo");
             /*response to save button*/
-            if(level.equalsIgnoreCase("save")){
+            if(Integer.parseInt(level)>1000){
                 /*get current max level from userinfobean*/
-                String maxLevel = Integer.toString(userinfo.getLevel());
                 /* update database with current level*/
-                out.print("Please,wait saving data...");
-                String query = "UPDATE qixchen.account SET Level='" + maxLevel + "' WHERE Id='" + userinfo.getUserId() + "'";
-                JdbcConnector.excuteUpdate(query);
 
+                String query = "UPDATE qixchen.account SET Level='" + Integer.toString(Integer.parseInt(level)-1000) + "' WHERE Id='" + ((Bean.UserInfoBean)request.getSession().getAttribute("UserInfo")).getUserId() + "'";
+                JdbcConnector.excuteUpdate(query);
+                ((UserInfoBean) request.getSession().getAttribute("UserInfo")).setLevel(Integer.parseInt(level)-1000);
                 request.getRequestDispatcher("level.jsp").forward(request, response);
             }else {
                 /*if user lost the game, back to orignal level without change*/
-                if (level.equalsIgnoreCase("lose")) {
-                    System.out.println("lose");
+                if (Integer.parseInt(level)>100) {
+                    ((UserInfoBean) request.getSession().getAttribute("UserInfo")).setLevel(Integer.parseInt(level)-100);
                     request.getRequestDispatcher("level.jsp").forward(request, response);
+
                     /* if user win the game, check the current level*/
-                } else {
-                    System.out.println("level: " + level);
+                }else {
+
                     /*check the next level number*/
                     int newlevel = Integer.parseInt(level) + 1;
 
                     /*if next level greater than current level, then updata the userinfobean level record*/
-                    if (newlevel > userinfo.getLevel()) {
+                    if (newlevel > ((Bean.UserInfoBean)request.getSession().getAttribute("UserInfo")).getLevel()) {
                         ((UserInfoBean) request.getSession().getAttribute("UserInfo")).setLevel(newlevel);
                     }
 
