@@ -314,4 +314,63 @@ document.getElementById("remove-button").addEventListener('click',function(){cli
 document.getElementById("control-customize-button1").addEventListener('click',function(){});
 document.getElementById("control-customize-button2").addEventListener('click',function(){});
 document.getElementById("control-customize-button4").addEventListener('click',function(){window.location.href="/Game.jsp"});
+
+function moneyText(isIncrement){
+var s = document.getElementById("money-text").textContent;
+var s2 = parseInt(s);
+if(isIncrement){
+  if(s2<1000){
+    s2=s2+100;
+    document.getElementById("money-text").innerHTML=s2;
+  }
+}
+else{
+  if(s2>100){
+    s2=s2-100;
+    document.getElementById("money-text").innerHTML=s2;
+  }
+}
+}
+document.getElementById("plus-button").addEventListener('click',function(){moneyText(true);});
+document.getElementById("minus-button").addEventListener('click',function(){moneyText(false);});
+var button1 = document.getElementById("monster-row-button1");
+var button2 = document.getElementById("monster-row-button2");
+var row1 = document.getElementById("monster-row-1");
+var row2 = document.getElementById("monster-row-2");
+button1.addEventListener('click',function(){removeMonster(row1);});
+button2.addEventListener('click',function(){removeMonster(row2);});
+function addMonster(name){
+
+var table = document.getElementById("selected-monster-table");
+if(table.rows.length<50){
+  var row = table.insertRow(-1);
+  var col1 = row.insertCell(0);
+  var col2 = row.insertCell(1);
+  col1.className = "monster-name";
+  col2.className = "delete-monster";
+  col1.innerHTML = name;
+  var button = document.createElement("BUTTON");
+
+  button.addEventListener('click',function(){removeMonster(row);});
+  var span = document.createElement("SPAN");
+  span.className = "glyphicon glyphicon-remove";
+  col2.appendChild(button);
+  button.appendChild(span);
+}
+}
+
+function removeMonster(row){
+var table = document.getElementById("selected-monster-table");
+if(table.rows.length>2){
+  var rowIndex = row.rowIndex;
+  table.deleteRow(rowIndex);
+}
+}
+
+document.getElementById("feilian-button").addEventListener('click',function(){addMonster("Fei Lian");});
+document.getElementById("citie-button").addEventListener('click',function(){addMonster("Ci Tie");});
+document.getElementById("kirin-button").addEventListener('click',function(){addMonster("Kirin");});
+document.getElementById("redboy-button").addEventListener('click',function(){addMonster("Red Boy");});
+document.getElementById("huodou-button").addEventListener('click',function(){addMonster("Huo Dou");});
+document.getElementById("mob-button").addEventListener('click',function(){addMonster("Mob");});
 /***********************************add by lead designer*****************************************/

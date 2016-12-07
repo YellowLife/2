@@ -23,41 +23,89 @@
 <body>
 
 <div id="game-side-bar">
-    <section class="sidebar-super-container">
-        <center>
-            <ul class="map-button-list">
-                <li>
-                    <button id="path-button" type="button" class="btn"><img src="./img/pathnew2.png"><div>Path</div></button>
-                </li>
-                <li>
-                    <button id="origin-button" type="button" class="btn"><img src="./img/start_stage.png"><div>Origin</div></button>
-                </li>
-                <li>
-                    <button id="end-button" type="button" class="btn"><img src="./img/home_5.png"><div>End</div></button>
-                </li>
-                <li>
-                    <button id="remove-button" type="button" class="btn"><img src="./img/remove.png"><div>Remove</div></button>
-                </li>
-            </ul>
-        </center>
+  <section class="sidebar-super-container">
+    <center>
+      <div class="money-container">
+        <table>
+          <tr>
+            <td><span class="glyphicon glyphicon-usd"></span></td>
+            <td class="money-text-conatiner"><span id="money-text">100</span></td>
+            <td><button id="plus-button" type="button" class="money-control-button"><span class="glyphicon glyphicon-plus"></span></button></td>
+            <td><button id="minus-button" type="button" class="money-control-button"><span class="glyphicon glyphicon-minus"></span></button></td>
+          </tr>
+        </table>
 
-        <section class="top-status-container">
-            <center>
-                <button type="button" id="control-customize-button3" class="all-custom-button"><span>All Custom Levels</span></button>
+      </div>
+      
+      <ul class="map-button-list">
+        <li>
+          <button id="path-button" type="button" class="btn"><img src="./img/pathnew2.png"><div>Path</div></button>
+        </li>
+        <li>
+          <button id="origin-button" type="button" class="btn"><img src="./img/start_stage.png"><div>Origin</div></button>
+        </li>
+        <li>
+          <button id="end-button" type="button" class="btn"><img src="./img/home_5.png"><div>End</div></button>
+        </li>
+        <li>
+          <button id="remove-button" type="button" class="btn"><img src="./img/remove.png"><div>Remove</div></button>
+        </li>
+      </ul>
+    </center>
 
-                <table>
-                    <tr>
-                        <td><button type="button" id="control-customize-button1" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Play"><span class="glyphicon glyphicon-play-circle"></span></button></td>
-                        <td><button type="button" id="control-customize-button2" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button></td>
-                        <td><button type="button" id="control-customize-button4" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Quit"><span class="glyphicon glyphicon-log-out"></span></button></td>
+    <section class="top-status-container">
+    <center>
+      <button type="button" id="control-customize-button6" class="all-custom-button select-monsters-button" data-toggle="modal" data-target="#select-monsters-popup"><span>Select Monsters</span></button>
+      <button type="button" id="control-customize-button3" class="all-custom-button"><span>All Custom Levels</span></button>
+      
+      <table>
+        <tr>
+          <td><button type="button" id="control-customize-button1" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Play"><span class="glyphicon glyphicon-play-circle"></span></button></td>
+          <td><button type="button" id="control-customize-button2" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button></td>
+          <td><button type="button" id="control-customize-button4" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Quit"><span class="glyphicon glyphicon-log-out"></span></button></td>
 
-                    </tr>
-                </table>
-
-                <!-- <button type="button" id="control-game-button3" class="btn control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute"><span class="glyphicon glyphicon-volume-up"></span></button> -->
-            </center>
-        </section>
+        </tr>
+      </table>
+    
+    <!-- <button type="button" id="control-game-button3" class="btn control-game-button" data-toggle="tooltip" data-placement="bottom" title="Mute"><span class="glyphicon glyphicon-volume-up"></span></button> -->
+    </center>
     </section>
+  </section>
+</div>
+
+<div class="modal fade" id="select-monsters-popup" role="dialog">
+  <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
+    <center>
+    <div class="select-monsters-container">
+
+      
+      <div class="monsters-list-text"><div>Click monsters to add them into the list</div><div class="monsters-list-text2">(Min:2 Max:50)</div></div>
+      <div class="monsters-list-container">
+          
+          <div class="selected-monster-list">
+          <table id="selected-monster-table">
+            <tr id="monster-row-1"><td class="monster-name">Mob</td><td class="delete-monster"><button id="monster-row-button1"><span class="glyphicon glyphicon-remove"></span></button></td></tr>
+            <tr id="monster-row-2"><td class="monster-name">Mob</td><td class="delete-monster"><button id="monster-row-button2"><span class="glyphicon glyphicon-remove"></span></button></td></tr>
+          </table>
+          </div>
+
+          <table class="monster-button-container">
+            <tr>
+              <td><button id="feilian-button" type="button" class="btn"><img src="./img/ppl_FeiLian.png"><div>Fei Lian</div></button></td>
+              <td><button id="citie-button" type="button" class="btn"><img src="./img/ppl_CiTie.png"><div>Ci Tie</div></button></td>
+              <td><button id="kirin-button" type="button" class="btn"><img src="./img/ppl_Qilin.png"><div>Kirin</div></button></td>
+            </tr>
+            <tr>
+              <td><button id="redboy-button" type="button" class="btn"><img src="./img/ppl_HongHaier.png"><div>Red Boy</div></button></td>
+              <td><button id="huodou-button" type="button" class="btn"><img src="./img/ppl_HuoDou.png"><div>Huo Dou</div></button></td>
+              <td><button id="mob-button" type="button" class="btn"><img src="./img/lizhede.png"><div>Mob</div></button></td>
+            </tr>
+          </table>
+          
+      </div>
+    
+    </div>
+    </center>
 </div>
 
 <!--jQuery and Bootstrap scripts-->
