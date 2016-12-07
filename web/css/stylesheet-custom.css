@@ -593,3 +593,85 @@ button.all-custom-button:hover{
 }
 
 /*******monster*******/
+
+/*******save*******/
+.save-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.save-container div{
+    color: white;
+/*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+.save-container input{
+    width: 230px;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+.save-container button{
+    color: white;
+    display: block;
+    width: 165px;
+    margin: 10px 0px 3px 0px;
+    padding: 0;
+    border: 0;
+    background: #B63436;
+    padding: 10px 10px 10px 10px;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 19px;
+}
+@media screen and (max-width: 1200px){
+.save-container div{
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+.save-container input{
+    width: 200px;
+    height: 25px;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+.save-container button{
+    width: 135px;
+    margin: 10px 0px 3px 0px;
+    background: #B63436;
+    padding: 10px 10px 10px 10px;
+    font-size: 19px;
+}
+}
+@media screen and (max-width: 900px){
+.save-container div{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.save-container input{
+    width: 170px;
+    height: 20px;
+    /*font*/
+    font-family: 'Roboto';/*can use different font later*/
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.save-container button{
+    width: 100px;
+    margin: 10px 0px 3px 0px;
+    padding: 5px 5px 5px 5px;
+    font-size: 15px;
+}
+}
+/*******save*******/

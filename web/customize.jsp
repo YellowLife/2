@@ -61,7 +61,7 @@
       <table>
         <tr>
           <td><button type="button" id="control-customize-button1" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Play"><span class="glyphicon glyphicon-play-circle"></span></button></td>
-          <td><button type="button" id="control-customize-button2" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button></td>
+          <td><button type="button" class="control-customize-button" data-toggle="modal" data-target="#save-popup"><span class="glyphicon glyphicon-floppy-disk" data-toggle="tooltip" title="Save" data-placement="bottom"></span></button></td>
           <td><button type="button" id="control-customize-button4" class="control-customize-button" data-toggle="tooltip" data-placement="bottom" title="Quit"><span class="glyphicon glyphicon-log-out"></span></button></td>
 
         </tr>
@@ -107,6 +107,18 @@
     </div>
     </center>
 </div>
+<div class="modal fade" id="save-popup" role="dialog">
+  <div class="close-select-monster-container"><button data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button></div>
+  <center>
+    <div class="save-container form-group">
+      <div>Please provide a unique name</div>
+      <input type="text" class="form-control">
+      <button data-dismiss="modal" id="control-customize-button2">Save</button>
+    </div>
+  </center>
+</div>
+
+
 
 <!--jQuery and Bootstrap scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
