@@ -314,7 +314,7 @@ function getLevelName(){
     return document.getElementById("levelname").value;
 }
 function getCustomMoney(){
-    window.alert(document.getElementById("money-text").innerHTML);
+    //window.alert(document.getElementById("money-text").innerHTML);
     return document.getElementById("money-text").innerHTML;
 }
 document.getElementById("path-button").addEventListener('click',function(){clickCustomButton(7);});
