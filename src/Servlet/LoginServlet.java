@@ -26,14 +26,18 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String Id = request.getParameter("id");
             String Name= request.getParameter("name");
+            /*default level sign for guest player*/
             int Level = -1;
-
+            /*check if the player is guest*/
             if(!(Id.equalsIgnoreCase("Guest"))){
+                /*if not guest, we get info from DB*/
                 String query = "select * from account where Id = '" + Id + "'";
                 ResultSet rs = JdbcConnector.excuteQuery(query);
+                /*based on DB, get user info*/
                 if (rs.first()) {
                     Level = rs.getInt("Level");
                     JdbcConnector.closeDatabase();
+                    /* otherwise create a new user info in DB*/
                 } else {
                     JdbcConnector.closeDatabase();
                     query = "INSERT INTO account VALUES ('" + Id + "', '" + Name + "','" + 1 + "','" + 0 + "')";
@@ -44,8 +48,9 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
-
+            /*clear up old user info bean in session*/
             request.getSession().invalidate();
+            /*create an user info bean in session*/
             Bean.UserInfoBean UserInfo = new Bean.UserInfoBean();
             UserInfo.setUserId(Id);
             UserInfo.setName(Name);

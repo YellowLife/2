@@ -5,7 +5,7 @@ import java.lang.String;
 public class UserInfoBean implements Serializable{
     private String userId ="Guest";
     private String name = "Guest";
-    private int level = -1;
+    private int level = 1;
 
 
 
