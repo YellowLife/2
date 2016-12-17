@@ -79,7 +79,7 @@ body{
 	margin: 10px 10px 10px 10px;
 	display: block;
 	border-radius: 0px 0px 0px 0px;
-	background: #B63436;
+	background: #cd4c4e;
 	color: white;
 	/*font*/
 	font-family: 'Roboto';/*can use different font later*/
@@ -87,7 +87,7 @@ body{
 	font-size: 21px;
 }
 .button-container button:hover{
-	color: white;
+	background: #B63436;
 }
 @media screen and (max-width: 900px){
 .center-container{
