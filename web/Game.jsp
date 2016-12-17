@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Signika:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Signika:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!--all the custom css stylesheets-->
     <link rel="stylesheet" type="text/css" href="./css/stylesheet-splash.css">
 </head>
@@ -31,26 +32,29 @@
 </audio>
 
 <jsp:useBean id="UserInfo" class="Bean.UserInfoBean" scope="session"/>
-<div class="splash-container">
-    <div class="game-title-container">
-        <div class="title-logo-div"><img src="./img/logo_final.png">Fire Brick Life</div>
-        <div class="username-div"><button><%=UserInfo.getName()%></button></div>
-        <input id="level" value="<%=UserInfo.getLevel()%>"  hidden/>
-    </div>
-    <center>
-        <div class="splash-child-container">
-            <div class="splash-child-container2">
-                <div class="welcome-container">WELCOME</div>
-                <div class="button-container">
-                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','chapter')"  onmouseover = "playAudio('btn_press','none')">Chapter</button>
-                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','customize')"  onmouseover = "playAudio('btn_press','none')">Customize</button>
-                    <button type="button" class="btn btn-danger" onclick="playAudio('btn_click','quit')"  onmouseover = "playAudio('btn_press','none')">Quit</button>
-                </div>
-                <div class="color-white"></div>
-            </div>
-        </div>
-    </center>
+
+<div class="game-title-container">
+    <div class="title-logo-div"><img src="./img/logo_final.png"><div>Fire Brick Life</div></div>
+    <input id="level" value="<%=UserInfo.getLevel()%>" hidden/>
 </div>
+<div class="username-div"><%=UserInfo.getName()%></div>
+
+
+<div class="center-container">
+    <div class="welcome-container">WELCOME</div>
+    <div class="button-container">
+        <button type="button" onclick="playAudio('btn_click','chapter')"  onmouseover = "playAudio('btn_press','none')">Chapter</button>
+        <button type="button" onclick="playAudio('btn_click','customize')"  onmouseover = "playAudio('btn_press','none')">Customize</button>
+        <button type="button" onclick="playAudio('btn_click','quit')"  onmouseover = "playAudio('btn_press','none')">Quit</button>
+    </div>
+</div>
+
+
+
+<!--jQuery and Bootstrap scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--all custom scripts-->
 <script src="./scripts/main.js"></script>
 </body>
 </html>
