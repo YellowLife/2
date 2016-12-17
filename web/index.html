@@ -32,7 +32,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="navbar-header">
             <a class="navbar-brand" href="#game"><img class="logo" src="./img/logo_final.png">Fire Brick Life</a>
-            <button type="button" class="btn btn-danger home-navbar-button">
+            <button type="button" class="home-navbar-button">
                 <span class="glyphicon glyphicon-menu-hamburger home-nav-text"></span>
             </button>
         </div>
@@ -74,13 +74,13 @@
                             <form method="post" action="/LoginServlet">
                                 <input name="id" value="Guest" hidden/>
                                 <input name="name" value="Guest" hidden/>
-                                <button id="guestbtn" type="submit" class="btn btn-success">
+                                <button id="guestbtn" type="submit">
                                     <span class="glyphicon glyphicon-user"></span>Play as Guest</button>
                             </form>
 
 
-                            <button id="signinButton" type="button" class="btn btn-success">
-                                <span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign In with Google</button>
+                            <button id="signinButton" type="button">
+                                <span class="glyphicon glyphicon-log-in" data-onsuccess="onSignIn"></span>Sign In and Play</button>
                             <script>
                                 $('#signinButton').click(function(){
                                     auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
